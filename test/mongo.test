@@ -1,0 +1,20 @@
+db.updateUser("kiranw",
+  {
+    roles: [ 
+    	{ role: "root", db: "admin" },
+    	{ role: "dbAdmin", db: "admin" }, 
+    	{ role: "userAdminAnyDatabase", db: "admin" }
+    ]
+  }
+)
+
+
+use test
+db.createUser(
+  {
+    user: "myTester",
+    pwd: "xyz123",
+    roles: [ { role: "readWrite", db: "test" },
+             { role: "read", db: "reporting" } ]
+  }
+)
