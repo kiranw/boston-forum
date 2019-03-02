@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+  h3 Public Notices
+
+  div #{notices.count}
+
+  main.main-area
+  .centered
+    section.cards
+      for n in notices
+        - var id = n.id
+        - var testimony_time = n.testimony_time
+        - var url = n.url
+        - var title = n.title
+        - var location_name = n.location_name
+        - var location_room = n.location_room
+        - var location_street = n.location_street
+        - var canceled = n.canceled
+        - var notice_date = n.notice_date
+        - var notice_time = n.notice_time
+        - var field_drawer = n.field_drawer
+        - var notice_body = n.body
+        - var posted = n.posted
+        include notice

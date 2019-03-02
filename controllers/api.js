@@ -23,25 +23,6 @@ exports.getApi = (req, res) => {
 };
 
 
-/**
- * GET /api/public-notices
-  Boston public notices
- */
-exports.getPublicNotices = (req, res, next) => {
-  request.get({ url: 'https://www.boston.gov/api/v2/public-notices' }, (err, request, body) => {
-    if (err) { return next(err); }
-    if (request.statusCode >= 400) {
-      return next(new Error(`Boston Government API - ${body}`));
-    }
-    const notices = JSON.parse(body).results;
-    res.render('api/public-notices', {
-      title: 'Public Notices API',
-      notices
-    });
-  });
-};
-
-
 
 
 // /**

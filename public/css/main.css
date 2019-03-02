@@ -1,51 +1,3 @@
-@font-face {
-  font-family: "National-Regular";
-  src: url("/fonts/National-Regular.otf");
-}
-
-@font-face {
-  font-family: "National-Book";
-  src: url("/fonts/National-Book.otf");
-}
-
-@font-face {
-  font-family: "National-Medium";
-  src: url("/fonts/National-Medium.otf");
-}
-
-@font-face {
-  font-family: "National-Semibold";
-  src: url("/fonts/National-Semibold.otf");
-}
-
-@font-face {
-  font-family: "National-Bold";
-  src: url("/fonts/National-Bold.otf");
-}
-
-
-@font-face {
-  font-family: "National-Regular-Italic";
-  src: url("/fonts/National-RegularItalic.otf");
-}
-@font-face {
-  font-family: "National-Book-Italic";
-  src: url("/fonts/National-BookItalic.otf");
-}
-@font-face {
-  font-family: "National-Medium-Italic";
-  src: url("/fonts/National-MediumItalic.otf");
-}
-@font-face {
-  font-family: "National-Semibold-Italic";
-  src: url("/fonts/National-SemiboldItalic.otf");
-}
-@font-face {
-  font-family: "National-Bold-Italic";
-  src: url("/fonts/National-BoldItalic.otf");
-}
-
-
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -79,7 +31,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "National-Regular", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -98,7 +50,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "National-Regular", "HelveticaNeue-CondensedBold", "Helvetica Neue", Arial, sans-serif;
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -347,7 +299,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: "National-Bold", "HelveticaNeue-CondensedBold", "Helvetica Neue", Arial, sans-serif;
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
   line-height: 1.2; }
 
@@ -12828,6 +12780,46 @@ readers do not read off random characters that represent icons */
   right: 0;
   /* add right with 0 or a low pixel value */ }
 
+@font-face {
+  font-family: "National-Regular";
+  src: url("/fonts/National-Regular.otf"); }
+
+@font-face {
+  font-family: "National-Book";
+  src: url("/fonts/National-Book.otf"); }
+
+@font-face {
+  font-family: "National-Medium";
+  src: url("/fonts/National-Medium.otf"); }
+
+@font-face {
+  font-family: "National-Semibold";
+  src: url("/fonts/National-Semibold.otf"); }
+
+@font-face {
+  font-family: "National-Bold";
+  src: url("/fonts/National-Bold.otf"); }
+
+@font-face {
+  font-family: "National-Regular-Italic";
+  src: url("/fonts/National-RegularItalic.otf"); }
+
+@font-face {
+  font-family: "National-Book-Italic";
+  src: url("/fonts/National-BookItalic.otf"); }
+
+@font-face {
+  font-family: "National-Medium-Italic";
+  src: url("/fonts/National-MediumItalic.otf"); }
+
+@font-face {
+  font-family: "National-Semibold-Italic";
+  src: url("/fonts/National-SemiboldItalic.otf"); }
+
+@font-face {
+  font-family: "National-Bold-Italic";
+  src: url("/fonts/National-BoldItalic.otf"); }
+
 html {
   position: relative;
   min-height: 100%; }
@@ -12835,7 +12827,8 @@ html {
 body {
   padding-top: 80px;
   margin-bottom: 75px;
-  font-size: 14px; }
+  font-size: 14px;
+  font-family: "National-Regular"; }
 
 footer {
   position: absolute;
@@ -12925,8 +12918,38 @@ textarea {
 .far {
   margin-right: 6px; }
 
-.btn-snapchat {
-  background-color: #fffc00;
-  color: #000 !important; }
-  .btn-snapchat:hover, .btn-snapchat:active {
-    background-color: #f1ef00; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "National-Bold"; }
+
+.card {
+  background: white;
+  margin-bottom: 2em; }
+
+.card:hover {
+  box-shadow: 3px 3px 8px #cccccc; }
+
+.card-content {
+  color: black;
+  text-decoration: none;
+  padding: 1.4em; }
+
+.card-content:hover, a > .card-content:hover {
+  color: black;
+  text-decoration: none; }
+
+.card-content h2 {
+  margin-top: 0;
+  margin-bottom: .5em;
+  font-weight: bold; }
+
+.card-content p {
+  font-size: 80%; }
+
+/* Flexbox stuff */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.card {
+  flex: 0 1 calc(25% - 1em); }
