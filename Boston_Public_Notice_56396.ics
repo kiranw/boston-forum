@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:5f56e16e-4be2-495a-8889-06f761d01eef
+SUMMARY:Boston Landmarks Commission Design Review Committee Meeting 3/4/201
+	9
+DTSTAMP:20190302T224400Z
+DTSTART:20180530T063000Z
+URL:https://www.boston.gov/public-notices/56396
+LOCATION:Commonwealth Avenue Mall, Collins Statue; ; Commonwealth Avenue, b
+	etween Clarendon and Dartmouth Streets
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

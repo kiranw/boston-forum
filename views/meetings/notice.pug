@@ -1,5 +1,11 @@
 .card
-  .card-header
+  .card-header 
+    a.button-group(href='/meetings/download-ics/'+ics)
+      i.fab.fa.fa-calendar-plus.fa-sm
+      span Export
+    a.button-group(href='/meetings/follow-meeting/'+id)  
+      i.fab.fas.fa-bell.fa-sem
+      span Subscribe
   a(href= url)
     .card-content
       h5= title

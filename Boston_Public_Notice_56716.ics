@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:1ccefa65-cd40-4e23-a801-afa74bbabfc7
+SUMMARY:Conservation Commission hearing
+DTSTAMP:20190302T224400Z
+DTSTART:20180530T063000Z
+DESCRIPTION:In accordance with the Massachusetts Wetlands Protection Act\, 
+	M.G.L. Chapter 131\, Section 40\, the Boston Conservation Commission will 
+	hold a public hearing in Boston City Hall\, Piemonte Room\, at 6:00 p.m. o
+	n March 6\, 2019 to review the following projects to determine what condit
+	ions\, if any\, the Commission will impose in order to protect the interes
+	ts of the public and private water supply\, ground water\, prevention of p
+	ollution\, flood control\, prevention of storm damage\, protection of fish
+	eries and land containing shellfish\, and protection of wildlife habitat.\
+	n
+URL:https://www.boston.gov/public-notices/56716
+LOCATION:Piemonte Room; 5th Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

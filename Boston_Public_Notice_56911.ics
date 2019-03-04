@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:0a08653c-ca2c-4378-98b7-5601531d946f
+SUMMARY:Boston Civic Design Commission meeting
+DTSTAMP:20190302T224400Z
+DTSTART:20180530T063000Z
+DESCRIPTION:All members of the public are invited to attend.  Please enter 
+	City Hall through the Dock Square (Congress Street) entrance.\n
+URL:https://www.boston.gov/public-notices/56911
+LOCATION:Boston City Hall; Room 900 (Boston Redevelopment Authority Board R
+	oom); 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

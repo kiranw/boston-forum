@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:d3e98abc-3a35-4ddf-947e-288d1afd5cb0
+SUMMARY:Committee on Planning\, Development\, and Transportation Hearing on
+	 Docket #0131
+DTSTAMP:20190302T224400Z
+DTSTART:20180530T063000Z
+URL:https://www.boston.gov/public-notices/56476
+LOCATION:Iannella Chamber; Fifth floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

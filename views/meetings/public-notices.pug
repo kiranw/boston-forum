@@ -3,6 +3,10 @@ extends ../layout
 block content
 
   h3 Public Notices
+  form.form-inline.search-bar.active-cyan-4
+    i.fas.fa-search(aria-hidden="true")
+    input.form-control.form-control-sm.ml-3.w-75(type="text",placeholder="Search",aria-label="Search")
+  br
 
   div #{notices.count}
 
@@ -23,4 +27,5 @@ block content
         - var field_drawer = n.field_drawer
         - var notice_body = n.body
         - var posted = n.posted
+        - var ics = n.ics
         include notice

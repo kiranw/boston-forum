@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:1be2040e-65ab-4c79-a51c-307a925b5019
+SUMMARY:Community meeting for proposed Brighton cannabis establishment
+DTSTAMP:20190302T224400Z
+DTSTART:20180530T063000Z
+URL:https://www.boston.gov/public-notices/56756
+LOCATION:Bright Elks Lodge; ; 326 Washington Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

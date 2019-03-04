@@ -204,6 +204,25 @@ h1,h2,h3,h4,h5,h6 {
 
 
 
+// -----------------------------------------------------------------------------------------------------------------------------
+// Public Notices
+// -----------------------------------------------------------------------------------------------------------------------------
+
+.search-bar {
+  margin: 0 auto;
+  padding: 3vh 0vh;
+  justify-content: center;
+}
+
+.button-group {
+  margin-left: 10px;
+  float: right;
+}
+
+.button-group:hover {
+  text-decoration: none;
+  color: #d33682;
+}
 
 .card {
     background: white;
