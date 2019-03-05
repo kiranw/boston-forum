@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:f380ba71-39ac-461f-a6ba-c7e2f43e3b57
+UID:2517ea98-7e1f-44fd-8af3-69d2bc9cdc29
 SUMMARY:South End Landmark District Commission
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 DESCRIPTION:After 5:30 p.m.\, please use Congress Street as an entrance and
 	 exit.\n

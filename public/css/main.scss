@@ -54,7 +54,30 @@
   font-family: "National-Bold-Italic";
   src: url("/fonts/National-BoldItalic.otf");
 }
-
+@font-face {
+  font-family: "CrimsonText-Bold.ttf";
+  src: url("/fonts/CrimsonText-Bold.ttf");
+}
+@font-face {
+  font-family: "CrimsonText-BoldItalic.ttf";
+  src: url("/fonts/CrimsonText-BoldItalic.ttf");
+}
+@font-face {
+  font-family: "CrimsonText-Italic.ttf";
+  src: url("/fonts/CrimsonText-Italic.ttf");
+}
+@font-face {
+  font-family: "CrimsonText-Regular.ttf";
+  src: url("/fonts/CrimsonText-Regular.ttf");
+}
+@font-face {
+  font-family: "CrimsonText-SemiBold.ttf";
+  src: url("/fonts/CrimsonText-SemiBold.ttf");
+}
+@font-face {
+  font-family: "CrimsonText-SemiBoldItalic.ttf";
+  src: url("/fonts/CrimsonText-SemiBoldItalic.ttf");
+}
 
 
 // Scaffolding
@@ -404,7 +427,8 @@ input:checked + .slider:before {
 // -----------------------------------------------------------------------------------------------------------------------------
 
 .paper {
-  font-size: 1.5em;
+  font-family: "CrimsonText-Regular";
+  font-size: 1.3em;
   background: #fff;
   box-shadow:
     /* The top layer shadow */
@@ -419,5 +443,6 @@ input:checked + .slider:before {
     0 20px 1px -9px rgba(0,0,0,0.15);
     /* Padding for demo purposes */
     padding: 30px;
+  margin-top: 50px;
   margin-bottom: 50px;
 }

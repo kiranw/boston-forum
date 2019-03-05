@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:5c3cbfc7-2596-48b8-8da3-b48d189987a5
+UID:f16e3100-1d04-4335-841f-cda4f7777708
 SUMMARY:Community meeting for proposed Chinatown cannabis establishment
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56471
 LOCATION:Revere Hotel Boston Common; ; 200 Stuart Street

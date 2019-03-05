@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:1be684d6-e43e-4d6b-852d-b50a863fd7ee
+UID:e09f7874-0345-4ce5-9021-2a7fa1b237d9
 SUMMARY:Boston School Committee FY20 Budget hearing
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57086
 LOCATION:Josiah Quincy Elementary School; ; 885 Washington Street

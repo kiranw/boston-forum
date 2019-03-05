@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:e6fe2979-57a7-4de4-80a8-3979c4b4ad77
+UID:5b435b1b-c4d0-4001-9b3c-61e36b2601fb
 SUMMARY:Charlestown Neighborhood Council meeting
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56931
 LOCATION:Knights Of Columbus; ; 545 Medford Street

@@ -5,7 +5,6 @@ block content
     h3.homepage-title
       span.underline-hover #{meeting.title}
 
-
     a.button-group(href='/meetings/delete/'+meeting.assigned_id)
       i.fab.fa.fa-trash-alt.fa-sm
       span Delete Meeting
@@ -19,6 +18,12 @@ block content
       i.fab.fas.fa-bell.fa-sem
       span Subscribe
 
+    if (meeting.is_live)
+      i.fa.fa-circle.text-danger.blink
+      | Currently Live
+      br
+      br
+
     div #{meeting.notice_time}
     div #{meeting.notice_date}
 
@@ -29,9 +34,12 @@ block content
     div #{meeting.location_street}
 
     br
-    br
+
+    div Testimony Time
+    | #{meeting.testimony_time}
+
 
     div.paper.meeting-field-drawer !{meeting.field_drawer}
 
-    div #{meeting.testimony_time}
+    
     a(href='#{meeting.url}') Additional Information

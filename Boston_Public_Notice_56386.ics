@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:5ccd99af-d775-4b5e-9f0e-4946200299ec
+UID:b29f62ac-fc36-44dc-9e42-2960140ad04e
 SUMMARY:Community meeting for proposed Bay Village marijuana establishment
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56386
 LOCATION:Boston Park Plaza; ; 50 Park Plaza

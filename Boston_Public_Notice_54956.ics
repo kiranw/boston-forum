@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:c7415b3d-ed95-4e72-b8fd-a66908af9502
+UID:12a16564-096c-4a59-ae30-b36e0c5eaa36
 SUMMARY:Community meeting for proposed Mattapan marijuana establishment
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/54956
 LOCATION:Mildred Avenue Community Center; ; 5 Mildred Avenue

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:32868552-bf83-4707-bf7b-5a10644c3d42
+UID:cfe0046b-2b3a-4b4c-8fa7-7f71d3fbb1ad
 SUMMARY:Emergency Management - Homeland Security Meeting
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57021
 LOCATION:Boston Police Department District A-15; ; 20 Vine Street

@@ -152,7 +152,7 @@ exports.newMeeting = (req, res, next) => {
   const unknownUser = !(req.user);
 
   res.render('meetings/new-meeting', {
-    title: 'New Meeting',
+    title: 'New Notice',
     unknownUser
   });
 }

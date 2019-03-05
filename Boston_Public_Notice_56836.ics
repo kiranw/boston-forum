@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:47196aeb-e0da-4536-9e86-f6f8ede8e7e1
+UID:2701c1ed-279d-4725-842e-4dca3674d232
 SUMMARY:City Council Committee on the Community Preservation Act Hearing on
 	 Docket #0377
-DTSTAMP:20190305T182100Z
+DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56836
 LOCATION:Iannella Chamber; Fifth floor; 1 City Hall Square
