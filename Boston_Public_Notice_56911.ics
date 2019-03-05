@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:e60ed5ff-d49a-4b6e-ba13-3e62e7c0222d
+UID:c419a4f0-468b-4356-a7c2-9bb6f87ee8f5
 SUMMARY:Boston Civic Design Commission meeting
-DTSTAMP:20190305T154700Z
+DTSTAMP:20190305T164400Z
 DTSTART:20190330T063000Z
 DESCRIPTION:All members of the public are invited to attend.  Please enter 
 	City Hall through the Dock Square (Congress Street) entrance.\n

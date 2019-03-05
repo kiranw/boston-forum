@@ -187,6 +187,7 @@ app.get('/meetings/live-meetings', meetingsController.getLiveMeetings);
 app.get('/meetings/download-ics/:event', function(req, res) {
   meetingsController.downloadIcs(res, req.params);
 })
+app.get('/meetings/new-meeting', meetingsController.newMeeting)
 
 
 /**

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:33397b85-a1fb-4b31-9f2d-93f0ce564783
+UID:17c71d77-db27-4923-a991-f22301dff358
 SUMMARY:Community meeting for proposed Roslindale cannabis establishment
-DTSTAMP:20190305T154700Z
+DTSTAMP:20190305T164400Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56706
 LOCATION:Roslindale Community Center; ; 6 Cummins Highway

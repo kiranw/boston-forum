@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:d47f4eb1-e069-4903-bf50-a99217d933a9
+UID:5ad79b65-0c38-4649-96b7-4cd0b6878c0a
 SUMMARY:City Council Committee on Education Hearing on Docket #0182
-DTSTAMP:20190305T154700Z
+DTSTAMP:20190305T164400Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56446
 LOCATION:Iannella Chamber; 5th Floor; One City Hall Square

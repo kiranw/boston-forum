@@ -1,0 +1,63 @@
+extends ../layout
+block content
+
+  .homepage-section
+    h3.homepage-title
+      span.underline-hover Create a New Meeting
+
+    if (unknownUser)
+      .alert.alert-warning Only authenticated administrators can create new meetings. If you should have these privileges, please contact 
+        a(href="mailto:kwattamwar@mde.harvard.edu") kwattamwar@mde.harvard.edu.
+
+    if (!unknownUser)
+      form(method='POST', action="meetings/create-new-meeting")
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='meeting-title') Meeting Title
+            .col-md-8
+              input.form-control(type='text', name='meeting-title', id='meeting-title', autocomplete='meeting-title', autofocus=true, placeholder="ie. Tree Removal Hearing - Allston")
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='location-name') Location Name
+            .col-md-8
+                input.form-control(type='text', name='location-name', id='location-name', autocomplete='location-name', placeholder="ie. Iannella Chamber")
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='location-room') Location Room
+            .col-md-8
+                input.form-control(type='text', name='location-room', id='location-room', autocomplete='location-room', placeholder="ie. Fifth Floor")
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='location-street') Location Street
+            .col-md-8
+                input.form-control(type='text', name='location-street', id='location-street', autocomplete='location-street', placeholder="ie. 1 City Hall Square")
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='testimony-time') Testimony Time 
+            .col-md-8
+                input.form-control(type='text', name='testimony-time', id='testimony-time', autocomplete='testimony-time', placeholder="Format: 3:00pm")
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='field-drawer') Field Drawer
+            .col-md-8
+                input.form-control(type='text', name='field-drawer', id='field-drawer', autocomplete='field-drawer', placeholder="(pasted agenda)")
+
+          .form-group.row
+              label(class='col-md-2 col-form-label font-weight-bold', for='set-to-live-comment') Set to Live (now)?
+              .col-md-8
+                label(class='switch', for='live')
+                  input.form-check-input(type='checkbox', name='live', id='live', autocomplete='live')
+                  span.slider.round
+
+          .form-group.row
+              label(class='col-md-2 col-form-label font-weight-bold', for='set-to-open-comment') Set to Open Comment?
+              .col-md-8
+                label(class='switch', for='open-comment')
+                  input.form-check-input(type='checkbox', name='open-comment', id='open-comment', autocomplete='open-comment')
+                  span.slider.round
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='agenda-path') Link to Agenda
+            .col-md-8
+                input.form-control(type='text', name='agenda-path', id='agenda-path', autocomplete='agenda-path', placeholder="ie. http://meetingrecords.cityofboston.gov/sirepub/<...>.PDF")
+          .form-group
+            .offset-md-2.col-md-8.p-1
+              button.btn.btn-primary(type='submit')
+                i.far.fa-envelope.fa-sm
+                | Send
+
+

@@ -4,6 +4,7 @@ const ics = require('ics')
 const mongoose = require('mongoose');
 const Meeting = require('../models/Meeting');
 
+
 /**
  * GET /meetings/download-ics/:event
   Download calendar file for a public notice event
@@ -134,4 +135,20 @@ exports.getLiveMeetings = (req, res, next) => {
   res.render('meetings/live-meetings', {
       title: 'Live Meetings',
     });
+}
+
+
+
+
+
+/**
+  New Meeting
+*/
+exports.newMeeting = (req, res, next) => {
+  const unknownUser = !(req.user);
+
+  res.render('meetings/new-meeting', {
+    title: 'New Meeting',
+    unknownUser
+  });
 }
