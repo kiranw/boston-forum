@@ -61,19 +61,7 @@ exports.getPublicNotices = (req, res, next) => {
       n["body"] = n.body.replace(/(\<.*?\>)/g, "");
       n["canceled"] = n.canceled==1;
       n["assigned_id"] = n.id;
-
-    // TODO - Parse the time and date so that this is correct
-      const event = {
-        start: [2019, 3, 30, 6, 30],
-        duration: { hours: 6, minutes: 30 },
-        title: n["title"],
-        description: n["body"],
-        location: n["location_name"] + "; " + n["location_room"] + "; " + n["location_street"],
-        url: n["url"],
-        categories: ['Boston Local Government', 'Public Notice', 'Boston'],
-        status: 'CONFIRMED'
-      }
-      n["ics"] = prepareIcs(event, n.id);
+      n["ics"] = prepareIcs(prepareCalendarEvent(n), n.id);
       delete n["id"];
 
       addMeetingtoDb(n);
@@ -92,6 +80,22 @@ exports.getPublicNotices = (req, res, next) => {
     })
   });
 };
+
+
+function prepareCalendarEvent(n){
+  // TODO - Parse the time and date so that this is correct
+  const event = {
+    start: [2019, 3, 30, 6, 30],
+    duration: { hours: 6, minutes: 30 },
+    title: n["title"],
+    description: n["body"],
+    location: n["location_name"] + "; " + n["location_room"] + "; " + n["location_street"],
+    url: n["url"],
+    categories: ['Boston Local Government', 'Public Notice', 'Boston'],
+    status: 'CONFIRMED'
+  }
+  return event;
+}
 
 
 function prepareMeetingObject(notice){
@@ -142,7 +146,7 @@ exports.getLiveMeetings = (req, res, next) => {
 
 
 /**
-  New Meeting
+  New Meeting Form
 */
 exports.newMeeting = (req, res, next) => {
   const unknownUser = !(req.user);
@@ -152,3 +156,116 @@ exports.newMeeting = (req, res, next) => {
     unknownUser
   });
 }
+
+
+/**
+  New Meeting Form
+*/
+exports.create = (req, res, next) => {
+  const User = req.user;
+
+  validated_meeting = {}
+  validated_meeting["assigned_id"] = '_' + Math.random().toString(36).substr(2, 9)
+  validated_meeting["testimony_time"] = req.body["testimony-time"];
+  validated_meeting["url"] = req.body["meeting-url"] == "" ? "/meetings/error-page": req.body["meeting-url"];
+  validated_meeting["title"] = req.body["meeting-title"];
+  validated_meeting["location_name"] = req.body["location-name"];
+  validated_meeting["location_room"] = req.body["location-room"];
+  validated_meeting["location_street"] = req.body["location-street"];
+  validated_meeting["canceled"] = false;
+  validated_meeting["notice_date"] = req.body["notice-date"]
+  validated_meeting["notice_time"] = req.body["notice-time"]
+  validated_meeting["field_drawer"] = req.body["field-drawer"]
+  validated_meeting["notice_body"] = req.body["field-drawer"]
+  validated_meeting["posted"] = Date.now();
+  validated_meeting["is_live"] = req.body["live"] == "on" ? true : false;
+  validated_meeting["is_open_comment"] = req.body["open-comment"] == "on" ? true: false;
+  validated_meeting["agenda_path"] = req.body["agenda-path"] == "" ? "/meetings/error-page": req.body["url"];
+  validated_meeting["meeting_minutes_path"] = "/meetings/error-page";
+  validated_meeting["owner"] = User;
+  validated_meeting["ics"] = prepareIcs(prepareCalendarEvent(validated_meeting), validated_meeting["assigned_id"]);
+
+  meeting = prepareMeetingObject(validated_meeting);
+  addMeetingtoDb(meeting);
+
+  res.redirect('/meetings/expanded-meeting/'+validated_meeting["assigned_id"]);
+}
+
+
+exports.renderExpandedMeeting = (res, req) => {
+  const User = req.user;
+  Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+    if (err) {
+      console.log("Error finding meeting with id: ", req.params.assigned_id);
+    }
+    if (!matching_meeting) {
+      console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
+    }
+    res.render('meetings/expanded-meeting', {
+      title: 'Expanded Meeting Information',
+      meeting: matching_meeting
+    });
+  })
+}
+
+
+
+/**
+  Delete a meeting by its assigned_id
+  GET /meetings/edit/:assigned_id
+*/
+exports.edit = (res, req) => {
+  const User = req.user;
+  Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+    if (err) {
+      console.log("Error finding meeting with id: ", req.params.assigned_id);
+    }
+    if (!matching_meeting) {
+      console.log("Error finding meeting for edits:",err, " with assigned_id:",req.params.assigned_id);
+    }
+    res.render('meetings/edit', {
+      title: 'Edit',
+      meeting: matching_meeting
+    });
+  })
+}
+
+
+/**
+  Edit a meeting by its assigned_id, submit the edit and upsert to db
+  POST /meetings/edit/:assigned_id
+*/
+exports.submitEdit = (res, req) => {
+  const User = req.user;
+  console.log(User);
+  res.redirect('/');
+  // Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+  //   if (err) {
+  //     console.log("Error finding meeting with id: ", req.params.assigned_id);
+  //   }
+  //   if (!matching_meeting) {
+  //     console.log("Error finding meeting for edits:",err, " with assigned_id:",req.params.assigned_id);
+  //   }
+  //   res.render('meetings/edit', {
+  //     title: 'Edit',
+  //     meeting: matching_meeting
+  //   });
+  // })
+}
+
+
+
+/**
+  Delete a meeting by its assigned_id
+  /meetings/delete/:assigned_id
+*/
+exports.delete = (res, req) => {
+  Meeting.deleteOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+    if (err) {
+      console.log("Error deleting meeting with assigned_id: ", req.params.assigned_id);
+    }
+    res.redirect('/');
+  });
+}
+
+

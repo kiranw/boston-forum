@@ -5,12 +5,11 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:b7093b3f-ace8-4680-ba72-bf3cd964dd67
-SUMMARY:Entertainment Administrative hearings
-DTSTAMP:20190305T182100Z
+UID:9efac841-a533-4715-9851-da580942cac6
+SUMMARY:title
+DTSTAMP:20190305T172800Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56796
-LOCATION:Boston City Hall; 809A; 1 City Hall Square
+LOCATION:Chamber; 405; Churchill Rd
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

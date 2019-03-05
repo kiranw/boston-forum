@@ -318,9 +318,6 @@ h1,h2,h3,h4,h5,h6 {
 
 
 
-// -----------------------------------------------------------------------------------------------------------------------------
-// Forms
-// -----------------------------------------------------------------------------------------------------------------------------
 
 
 /* The switch - the box around the slider */
@@ -396,4 +393,31 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+
+
+
+
+// -----------------------------------------------------------------------------------------------------------------------------
+// Expanded Meeting
+// -----------------------------------------------------------------------------------------------------------------------------
+
+.paper {
+  font-size: 1.5em;
+  background: #fff;
+  box-shadow:
+    /* The top layer shadow */
+    0px 0px 15px 3px rgba(0,0,0,0.15),
+    /* The second layer */
+    0 10px 0 -5px #eee,
+    /* The second layer shadow */
+    0 10px 1px -4px rgba(0,0,0,0.15),
+     /* The third layer */
+    0 20px 0 -10px #eee,
+    /* The third layer shadow */
+    0 20px 1px -9px rgba(0,0,0,0.15);
+    /* Padding for demo purposes */
+    padding: 30px;
+  margin-bottom: 50px;
 }

@@ -186,9 +186,20 @@ app.get('/meetings/open-comments', meetingsController.getOpenComments);
 app.get('/meetings/live-meetings', meetingsController.getLiveMeetings);
 app.get('/meetings/download-ics/:event', function(req, res) {
   meetingsController.downloadIcs(res, req.params);
-})
+});
 app.get('/meetings/new-meeting', meetingsController.newMeeting)
-
+app.post('/meetings/create', meetingsController.create)
+// app.get('/meetings/expanded-meeting/:assigned_id', meetingsController.getExpandedMeeting)
+app.get('/meetings/expanded-meeting/:assigned_id', function(req, res) {
+  meetingsController.renderExpandedMeeting(res, req);
+});
+app.get('/meetings/delete/:assigned_id', function(req, res) {
+  meetingsController.delete(res, req);
+});
+app.get('/meetings/edit/:assigned_id', function(req, res) {
+  meetingsController.edit(res, req);
+});
+// app.post('/meetings/edit', meetingsController.submit_edit)
 
 /**
  * OAuth authentication routes. (Sign in)

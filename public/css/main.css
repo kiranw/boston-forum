@@ -13071,3 +13071,11 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%; }
+
+.paper {
+  font-size: 1.5em;
+  background: #fff;
+  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee, 0 10px 1px -4px rgba(0, 0, 0, 0.15), 0 20px 0 -10px #eee, 0 20px 1px -9px rgba(0, 0, 0, 0.15);
+  /* Padding for demo purposes */
+  padding: 30px;
+  margin-bottom: 50px; }

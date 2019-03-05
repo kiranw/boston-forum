@@ -1,0 +1,37 @@
+extends ../layout
+block content
+
+  .homepage-section
+    h3.homepage-title
+      span.underline-hover #{meeting.title}
+
+
+    a.button-group(href='/meetings/delete/'+meeting.assigned_id)
+      i.fab.fa.fa-trash-alt.fa-sm
+      span Delete Meeting
+    a.button-group(href='/meetings/edit/'+meeting.assigned_id)
+      i.fab.fa.fa-pencil-alt.fa-sm
+      span Edit Meeting Information
+    a.button-group(href='/meetings/download-ics/'+ics)
+      i.fab.fa.fa-calendar-plus.fa-sm
+      span Export
+    a.button-group(href='/meetings/follow-meeting/'+meeting.assigned_id)  
+      i.fab.fas.fa-bell.fa-sem
+      span Subscribe
+
+    div #{meeting.notice_time}
+    div #{meeting.notice_date}
+
+    br
+
+    div #{meeting.location_name}
+    div #{meeting.location_room}
+    div #{meeting.location_street}
+
+    br
+    br
+
+    div.paper.meeting-field-drawer !{meeting.field_drawer}
+
+    div #{meeting.testimony_time}
+    a(href='#{meeting.url}') Additional Information

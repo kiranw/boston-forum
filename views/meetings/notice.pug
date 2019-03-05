@@ -1,6 +1,6 @@
 .card
   .card-header 
-    a.button-group-left(href='/meetings/expanded-meeting/'+assigned_id)
+    a.button-group-left(href='/meetings/edit/'+assigned_id)
       i.fab.fa.fa-pencil-alt.fa-sm
     a.button-group(href='/meetings/download-ics/'+ics)
       i.fab.fa.fa-calendar-plus.fa-sm
@@ -8,7 +8,7 @@
     a.button-group(href='/meetings/follow-meeting/'+assigned_id)  
       i.fab.fas.fa-bell.fa-sem
       span Subscribe
-  a(href= url)
+  a(href='/meetings/expanded-meeting/'+assigned_id)
     .card-content
       h5= title
       .card-dateplace

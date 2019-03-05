@@ -3,14 +3,14 @@ block content
 
   .homepage-section
     h3.homepage-title
-      span.underline-hover Create a New Meeting
+      span.underline-hover Edit Meeting
 
     if (unknownUser)
       .alert.alert-warning Only authenticated administrators can create new meetings. If you should have these privileges, please contact 
         a(href="mailto:kwattamwar@mde.harvard.edu") kwattamwar@mde.harvard.edu.
 
     if (!unknownUser)
-      form(method='POST', action="/meetings/create")
+      form(method='POST', action="/meetings/edit2")
           input(type='hidden', name='_csrf', value=_csrf)
           .form-group.row
             label(class='col-md-2 col-form-label font-weight-bold', for='meeting-title') Meeting Title
