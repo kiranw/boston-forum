@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:81e7a5ac-749d-43bd-bce4-65167d0c4f8f
+UID:e51a0aad-e6b5-403d-9f16-2fdc76968464
 SUMMARY:City Council meeting
-DTSTAMP:20190302T224400Z
-DTSTART:20180530T063000Z
+DTSTAMP:20190305T154700Z
+DTSTART:20190330T063000Z
 DESCRIPTION:All meetings are open to the public. You can also watch meeting
 	s on Comcast channel 8\, RCN channel 82\, Verizon channel 1964\, and onlin
 	e at Boston.gov.\nPLEASE NOTE\nThe schedule for meetings is subject to cha

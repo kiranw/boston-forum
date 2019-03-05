@@ -5,12 +5,12 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:4548a03f-3bf3-4396-8f1a-02bb6ba18c5f
-SUMMARY:Licensing Board hearing
+UID:15d14e67-9116-49f0-a554-a356a7b48973
+SUMMARY:Licensed Premise Violations hearing
 DTSTAMP:20190305T154700Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56791
-LOCATION:Boston City Hall; Room 809A; 1 City Hall Square
+URL:https://www.boston.gov/public-notices/56496
+LOCATION:Boston City Hall; Room 809A; One City Hall Square
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

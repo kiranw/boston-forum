@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
   steam: String,
   tokens: Array,
 
+  subscriptions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Meeting' }],
+
   profile: {
     name: String,
     gender: String,

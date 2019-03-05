@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:5f56e16e-4be2-495a-8889-06f761d01eef
+UID:7c685c73-fe86-432b-acd2-866285d8f3f5
 SUMMARY:Boston Landmarks Commission Design Review Committee Meeting 3/4/201
 	9
-DTSTAMP:20190302T224400Z
+DTSTAMP:20190304T193600Z
 DTSTART:20180530T063000Z
 URL:https://www.boston.gov/public-notices/56396
 LOCATION:Commonwealth Avenue Mall, Collins Statue; ; Commonwealth Avenue, b

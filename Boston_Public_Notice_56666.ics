@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:b47ca6e0-7e75-4d2a-ba10-71d4bddbeb23
+UID:e42c2e0b-2d06-4c28-8240-56fd42642393
 SUMMARY:South End Landmark District Commission
-DTSTAMP:20190302T224400Z
-DTSTART:20180530T063000Z
+DTSTAMP:20190305T154700Z
+DTSTART:20190330T063000Z
 DESCRIPTION:After 5:30 p.m.\, please use Congress Street as an entrance and
 	 exit.\n
 URL:https://www.boston.gov/public-notices/56666

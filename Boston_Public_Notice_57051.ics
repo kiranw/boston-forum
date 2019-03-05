@@ -5,12 +5,13 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:4548a03f-3bf3-4396-8f1a-02bb6ba18c5f
-SUMMARY:Licensing Board hearing
+UID:53ad1263-5cc5-4aa4-aacb-f61f305cc10a
+SUMMARY:Boston Public Library Trustees Governance and Development Committee
+	 meeting
 DTSTAMP:20190305T154700Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56791
-LOCATION:Boston City Hall; Room 809A; 1 City Hall Square
+URL:https://www.boston.gov/public-notices/57051
+LOCATION:Central Library; ; 700 Boylston Street
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

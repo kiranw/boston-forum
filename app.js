@@ -182,6 +182,8 @@ app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
  * Meetings routes.
  */
 app.get('/meetings/public-notices', meetingsController.getPublicNotices);
+app.get('/meetings/open-comments', meetingsController.getOpenComments);
+app.get('/meetings/live-meetings', meetingsController.getLiveMeetings);
 app.get('/meetings/download-ics/:event', function(req, res) {
   meetingsController.downloadIcs(res, req.params);
 })

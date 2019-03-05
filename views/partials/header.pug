@@ -12,6 +12,12 @@
           a.nav-link(href='/') Home
         li.nav-item(class=(title === 'About') ? 'active' : undefined)
           a.nav-link(href='/about') About
+        li.nav-item(class=(title === 'Live Meetings') ? 'active' : undefined)
+          a.nav-link(href='/meetings/live-meetings') Live Meetings
+        li.nav-item(class=(title === 'Open Comment') ? 'active' : undefined)
+          a.nav-link(href='/meetings/open-comments') Open Comment  
+        li.nav-item(class=(title === 'Public Notices') ? 'active' : undefined)
+          a.nav-link(href='/meetings/public-notices') Public Notices          
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)

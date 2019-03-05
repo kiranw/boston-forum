@@ -5,12 +5,12 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:4548a03f-3bf3-4396-8f1a-02bb6ba18c5f
-SUMMARY:Licensing Board hearing
+UID:5848f05b-57ed-4a5d-ad63-4af124c0e809
+SUMMARY:Licensing Board one-day amendments
 DTSTAMP:20190305T154700Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56791
-LOCATION:Boston City Hall; Room 809A; 1 City Hall Square
+URL:https://www.boston.gov/public-notices/57061
+LOCATION:Boston City Hall; Room 809A; 1 City Hall Sqaure
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M
