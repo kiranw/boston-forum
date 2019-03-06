@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:82bb39c1-1e9e-4ef4-aa41-8323203caf1c
+UID:9b429ec7-b8b9-47d5-ab64-7837b41246bf
 SUMMARY:City Council meeting
-DTSTAMP:20190306T213800Z
+DTSTAMP:20190306T230000Z
 DTSTART:20190330T063000Z
 DESCRIPTION:All meetings are open to the public. You can also watch meeting
 	s on Comcast channel 8\, RCN channel 82\, Verizon channel 1964\, and onlin

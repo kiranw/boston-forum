@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:400dc8ac-7e53-4c94-9077-57f19126b2b0
+UID:597dabb4-0df6-45a0-863f-baa2c652c3d8
 SUMMARY:Tree Removal Hearing - Allston
-DTSTAMP:20190306T213800Z
+DTSTAMP:20190306T230000Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56351
 LOCATION:Conference room; 3rd Floor; 1010 Massachusetts Avenue

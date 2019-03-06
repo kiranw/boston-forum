@@ -12,7 +12,7 @@
           a.nav-link(href='/') Home
         li.nav-item(class=(title === 'About') ? 'active' : undefined)
           a.nav-link(href='/about') About
-        if (iscouncilor)
+        if (iscouncilor && user)
           li.nav-item(class=(title === 'New Notice') ? 'active' : undefined)
             a.nav-link(href='/meetings/new-meeting') 
               i.fas.fa-plus-circle

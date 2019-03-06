@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:1a647ae3-2bc1-42d9-ba71-7336a7fa660f
+UID:82f848bb-966e-495d-9291-5483fc4ee317
 SUMMARY:Bay Village Historic District Commission
-DTSTAMP:20190306T213800Z
+DTSTAMP:20190306T230000Z
 DTSTART:20190330T063000Z
 DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
 URL:https://www.boston.gov/public-notices/56861

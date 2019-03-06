@@ -51,6 +51,7 @@ exports.getPublicNotices = async (req, res, next) => {
       n["canceled"] = n.canceled==1;
       n["assigned_id"] = n.id;
       n["ics"] = prepareIcs(prepareCalendarEvent(n), n.id);
+      n["hashtags"] = ["#assembly"+n["assigned_id"]];
       delete n["id"];
 
       addMeetingtoDb(n);
@@ -58,20 +59,21 @@ exports.getPublicNotices = async (req, res, next) => {
     }); 
 
     user = req.user;
-    isCouncilor = checkCouncilorRole(req.user);
-
-    Meeting.find({"canceled":false}, function(err, found_notices) {
-      if (err) {
-        console.log("Error querying notices: ",err)
-        return [];
-      }
-      res.render('meetings/public-notices', {
-        title: 'Public Notices API',
-        notices: found_notices,
-        user: req.user,
-        iscouncilor: isCouncilor
+    isCouncilor = checkCouncilorRole(res, req.user);
+    Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+      Meeting.find({"canceled":false}, function(err, found_notices) {
+        if (err) {
+          console.log("Error querying notices: ",err)
+          return [];
+        }
+        res.render('meetings/public-notices', {
+          title: 'Public Notices API',
+          notices: found_notices,
+          user: req.user,
+          iscouncilor: isCouncilorBoolean
+        });
       });
-    })
+    });
   });
 };
 
@@ -82,14 +84,15 @@ exports.getPublicNotices = async (req, res, next) => {
  */
 exports.getOpenComments = async (req, res, next) => {
   user = req.user;
-  isCouncilor = checkCouncilorRole(req.user);
-
-  Meeting.find({is_open_comment:true}).exec(function(err, meetings) {
-    res.render('meetings/open-comments', {
-        title: 'Open Comments',
-        opencomments: meetings,
-        user: user,
-        iscouncilor: isCouncilor
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    Meeting.find({is_open_comment:true}).exec(function(err, meetings) {
+      res.render('meetings/open-comments', {
+          title: 'Open Comments',
+          opencomments: meetings,
+          user: user,
+          iscouncilor: isCouncilorBoolean
+      });
     });
   });
 }
@@ -102,14 +105,15 @@ exports.getOpenComments = async (req, res, next) => {
  */
 exports.getLiveMeetings = async (req, res, next) => {
   user = req.user;
-  isCouncilor = checkCouncilorRole(req.user);
-
-  Meeting.find({is_live:true}).exec(function(err, meetings) {
-    res.render('meetings/live-meetings', {
-      title: 'Live Meetings',
-      livemeetings: meetings,
-      user: user,
-      iscouncilor: isCouncilor
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    Meeting.find({is_live:true}).exec(function(err, meetings) {
+      res.render('meetings/live-meetings', {
+        title: 'Live Meetings',
+        livemeetings: meetings,
+        user: user,
+        iscouncilor: isCouncilorBoolean
+      });
     });
   });
 }
@@ -123,13 +127,14 @@ exports.getLiveMeetings = async (req, res, next) => {
 */
 exports.newMeeting = async (req, res, next) => {
   const unknownUser = !(req.user);
-  isCouncilor = checkCouncilorRole(req.user);
-
-  res.render('meetings/new-meeting', {
-    title: 'New Notice',
-    unknownUser,
-    user: req.user,
-    iscouncilor: isCouncilor
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    res.render('meetings/new-meeting', {
+      title: 'New Notice',
+      unknownUser,
+      user: req.user,
+      iscouncilor: isCouncilorBoolean
+    });
   });
 }
 
@@ -139,34 +144,36 @@ exports.newMeeting = async (req, res, next) => {
 */
 exports.create = async (req, res, next) => {
   const User = req.user;
-  isCouncilor = checkCouncilorRole(req.user);
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    validated_meeting = {}
+    validated_meeting["assigned_id"] = '_' + Math.random().toString(36).substr(2, 9)
+    validated_meeting["testimony_time"] = req.body["testimony-time"];
+    validated_meeting["url"] = req.body["meeting-url"] == "" ? "/meetings/error-page": req.body["meeting-url"];
+    validated_meeting["title"] = req.body["meeting-title"];
+    validated_meeting["location_name"] = req.body["location-name"];
+    validated_meeting["location_room"] = req.body["location-room"];
+    validated_meeting["location_street"] = req.body["location-street"];
+    validated_meeting["canceled"] = false;
+    validated_meeting["notice_date"] = req.body["notice-date"]
+    validated_meeting["notice_time"] = req.body["notice-time"]
+    validated_meeting["field_drawer"] = req.body["field-drawer"]
+    validated_meeting["notice_body"] = req.body["field-drawer"]
+    validated_meeting["posted"] = Date.now();
+    validated_meeting["is_live"] = req.body["live"] == "on" ? true : false;
+    validated_meeting["is_open_comment"] = req.body["open-comment"] == "on" ? true: false;
+    validated_meeting["agenda_path"] = req.body["agenda-path"] == "" ? "/meetings/error-page": req.body["url"];
+    validated_meeting["meeting_minutes_path"] = "/meetings/error-page";
+    validated_meeting["owner"] = User;
+    validated_meeting["ics"] = prepareIcs(prepareCalendarEvent(validated_meeting), validated_meeting["assigned_id"]);
+    validated_meeting["hashtags"] = req.body["meeting-hashtags"].split(",") + ["#assembly"+validated_meeting["assigned_id"]];
 
-  validated_meeting = {}
-  validated_meeting["assigned_id"] = '_' + Math.random().toString(36).substr(2, 9)
-  validated_meeting["testimony_time"] = req.body["testimony-time"];
-  validated_meeting["url"] = req.body["meeting-url"] == "" ? "/meetings/error-page": req.body["meeting-url"];
-  validated_meeting["title"] = req.body["meeting-title"];
-  validated_meeting["location_name"] = req.body["location-name"];
-  validated_meeting["location_room"] = req.body["location-room"];
-  validated_meeting["location_street"] = req.body["location-street"];
-  validated_meeting["canceled"] = false;
-  validated_meeting["notice_date"] = req.body["notice-date"]
-  validated_meeting["notice_time"] = req.body["notice-time"]
-  validated_meeting["field_drawer"] = req.body["field-drawer"]
-  validated_meeting["notice_body"] = req.body["field-drawer"]
-  validated_meeting["posted"] = Date.now();
-  validated_meeting["is_live"] = req.body["live"] == "on" ? true : false;
-  validated_meeting["is_open_comment"] = req.body["open-comment"] == "on" ? true: false;
-  validated_meeting["agenda_path"] = req.body["agenda-path"] == "" ? "/meetings/error-page": req.body["url"];
-  validated_meeting["meeting_minutes_path"] = "/meetings/error-page";
-  validated_meeting["owner"] = User;
-  validated_meeting["ics"] = prepareIcs(prepareCalendarEvent(validated_meeting), validated_meeting["assigned_id"]);
+    meeting = prepareMeetingObject(validated_meeting);
+    addMeetingtoDb(meeting);
 
-  meeting = prepareMeetingObject(validated_meeting);
-  addMeetingtoDb(meeting);
-
-  req.flash('success', { msg: "Success! Here's the meeting you just created."});
-  res.redirect('/meetings/expanded-meeting/'+validated_meeting["assigned_id"]);
+    req.flash('success', { msg: "Success! Here's the meeting you just created."});
+    res.redirect('/meetings/expanded-meeting/'+validated_meeting["assigned_id"]);
+  });
 }
 
 
@@ -176,22 +183,26 @@ exports.create = async (req, res, next) => {
 // */
 exports.renderExpandedMeeting = async(res, req) => {
   const User = req.user;
-  isCouncilor = checkCouncilorRole(req.user);
-
-  Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
-    if (err) {
-      console.log("Error finding meeting with id: ", req.params.assigned_id);
-    }
-    if (!matching_meeting) {
-      console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
-    }
-    res.render('meetings/expanded-meeting', {
-      title: 'Expanded Meeting Information',
-      meeting: matching_meeting,
-      user: User,
-      iscouncilor: isCouncilor
-    });
-  })
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    console.log("resolved the promise");
+    console.log(isCouncilor)
+    console.log("RESULT:",isCouncilor.result)
+    Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+      if (err) {
+        console.log("Error finding meeting with id: ", req.params.assigned_id);
+      }
+      if (!matching_meeting) {
+        console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
+      }
+      res.render('meetings/expanded-meeting', {
+        title: 'Expanded Meeting Information',
+        meeting: matching_meeting,
+        user: User,
+        iscouncilor: isCouncilorBoolean
+      });
+    })
+  });
 }
 
 
@@ -202,22 +213,23 @@ exports.renderExpandedMeeting = async(res, req) => {
 */
 exports.edit = async (res, req) => {
   const User = req.user;
-  isCouncilor = checkCouncilorRole(req.user);
-
-  Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
-    if (err) {
-      console.log("Error finding meeting with id: ", req.params.assigned_id);
-    }
-    if (!matching_meeting) {
-      console.log("Error finding meeting for edits:",err, " with assigned_id:",req.params.assigned_id);
-    }
-    res.render('meetings/edit', {
-      title: 'Edit',
-      meeting: matching_meeting,
-      user: User,
-      iscouncilor: isCouncilor
-    });
-  })
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+      if (err) {
+        console.log("Error finding meeting with id: ", req.params.assigned_id);
+      }
+      if (!matching_meeting) {
+        console.log("Error finding meeting for edits:",err, " with assigned_id:",req.params.assigned_id);
+      }
+      res.render('meetings/edit', {
+        title: 'Edit',
+        meeting: matching_meeting,
+        user: User,
+        iscouncilor: isCouncilorBoolean
+      });
+    })
+  });
 }
 
 
@@ -227,8 +239,10 @@ exports.edit = async (res, req) => {
 */
 exports.submitEdit = async (res, req) => {
   const User = req.user;
-  isCouncilor = checkCouncilorRole(req.user);
-  res.redirect('/');
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    res.redirect('/');
+  });
   // Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
   //   if (err) {
   //     console.log("Error finding meeting with id: ", req.params.assigned_id);
@@ -250,16 +264,22 @@ exports.submitEdit = async (res, req) => {
   /meetings/delete/:assigned_id
 */
 exports.delete = async (res, req) => {
-  isCouncilor = checkCouncilorRole(req.user);
-
-  if (isCouncilor) {
-    Meeting.deleteOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
-      if (err) {
-        console.log("Error deleting meeting with assigned_id: ", req.params.assigned_id);
-      }
-      res.redirect('/');
-    });
-  }
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    if (isCouncilorBoolean) {
+      Meeting.deleteOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+        if (err) {
+          console.log("Error deleting meeting with assigned_id: ", req.params.assigned_id);
+        }
+        req.flash('warning', { msg: 'Success! You just deleted a meeting.'});
+        res.redirect('/');
+      });
+    }
+    else {
+        req.flash('error', { msg: 'Unable to delete meeting.'});
+        res.redirect('/');
+    }
+  });
 }
 
 
@@ -399,20 +419,19 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
 }; 
 
 // Check if a user is a councilor
-async function checkCouncilorRole(user){      
+async function checkCouncilorRole(res, user){      
   if (!user){
     return false;
   }
-  
   emailString = user.email
   var councilorPromise = () => {
     return new Promise((resolve, reject) => {
-      
       Users.findOne({email: emailString}).exec(function(err, user){
+        console.log(user.roles.includes("councilor"));
         return user.roles.includes("councilor");    
       });
+      // resolve(user.roles.includes("councilor"));
     });
   };
-  var result = await councilorPromise();
-  return result;
+  return councilorPromise;
 }

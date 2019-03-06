@@ -339,13 +339,12 @@ h1,h2,h3,h4,h5,h6 {
 .cards {
    display: flex;
    flex-wrap: wrap;
-   justify-content: space-between;
+   justify-content: left;
 }
 
 .card {
-    flex: 0 1 calc(25% - 1em);
+    min-height: 300px;
 }
-
 
 
 
@@ -497,6 +496,13 @@ input:checked + .slider:before {
   font-family: "National-Bold-Italic";
 }
 
+.hashtag {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.3em;
+  color: #007bff;
+  margin-bottom: 20px;
+}
 
 // -----------------------------------------------------------------------------------------------------------------------------
 // Generic

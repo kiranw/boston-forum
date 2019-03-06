@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:eceae09c-6781-4bf2-b62e-65a8baaf4d49
+UID:a05f52e3-9774-415d-a0b7-c699cbb7ecf9
 SUMMARY:Tree removal hearing - Brighton
-DTSTAMP:20190306T213800Z
+DTSTAMP:20190306T230000Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56331
 LOCATION:Conference room; 3rd Floor; 1010 Massachusetts Avenue

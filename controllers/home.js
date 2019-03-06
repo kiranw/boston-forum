@@ -17,17 +17,18 @@ exports.index = async (req, res) => {
       return [];
     }
 
-    iscouncilor = checkCouncilorRole(req.user);
-
-    livemeetings = Meeting.find({"is_live":true}).exec(function(err,livemeetings) {
-      opencomments = Meeting.find({"is_open_comment":true}).exec(function(err,opencomments) {
-        res.render('home', {
-          title: 'Home',
-          notices: found_notices,
-          user: User,
-          livenotices: livemeetings,
-          opencomments: opencomments,
-          iscouncilor: iscouncilor
+    isCouncilor = checkCouncilorRole(res, req.user);
+    Promise.resolve(isCouncilor).then(function(){
+      livemeetings = Meeting.find({"is_live":true}).exec(function(err,livemeetings) {
+        opencomments = Meeting.find({"is_open_comment":true}).exec(function(err,opencomments) {
+          res.render('home', {
+            title: 'Home',
+            notices: found_notices,
+            user: User,
+            livenotices: livemeetings,
+            opencomments: opencomments,
+            iscouncilor: isCouncilor.result
+          });
         });
       });
     });
@@ -36,22 +37,19 @@ exports.index = async (req, res) => {
 
 
 
-async function checkCouncilorRole(user){      
+// Check if a user is a councilor
+async function checkCouncilorRole(res, user){      
   if (!user){
     return false;
   }
-
   emailString = user.email
   var councilorPromise = () => {
     return new Promise((resolve, reject) => {
-      
-      User.findOne({email: emailString}).exec(function(err, user){
-        console.log(user.roles);
+      Users.findOne({email: emailString}).exec(function(err, user){
         console.log(user.roles.includes("councilor"));
         return user.roles.includes("councilor");    
       });
     });
   };
-  var result = await councilorPromise();
-  return result;
+  return councilorPromise;
 }

@@ -1,30 +1,32 @@
-.card
-  .card-header 
-    if (iscouncilor)
-      a.button-group-left(href='/meetings/edit/'+assigned_id)
-        i.fab.fa.fa-pencil-alt.fa-sm
-    a.button-group(href='/meetings/download-ics/'+ics)
-      i.fab.fa.fa-calendar-plus.fa-sm
-      span Export
-    if (user)
-      if (unfollow)
-        a.button-group(href='/meetings/unfollow-meeting/'+assigned_id)  
-          i.fab.fas.fa-bell-slash.fa-sem
-          span Unfollow
-      else
-        a.button-group(href='/meetings/follow-meeting/'+assigned_id)  
+div.col-md-3
+  .card
+    .card-header 
+      if (user)
+        if (iscouncilor)
+          a.button-group-left(href='/meetings/edit/'+assigned_id)
+            i.fab.fa.fa-pencil-alt.fa-sm
+      a.button-group(href='/meetings/download-ics/'+ics)
+        i.fab.fa.fa-calendar-plus.fa-sm
+        span Export
+      if (user)
+        if (unfollow)
+          a.button-group(href='/meetings/unfollow-meeting/'+assigned_id)  
+            i.fab.fas.fa-bell-slash.fa-sem
+            span Unfollow
+        else
+          a.button-group(href='/meetings/follow-meeting/'+assigned_id)  
+            i.fab.fas.fa-bell.fa-sem
+            span Subscribe
+      if (!user)
+        a.button-group(href='/login')  
           i.fab.fas.fa-bell.fa-sem
           span Subscribe
-    if (!user)
-      a.button-group(href='/login')  
-        i.fab.fas.fa-bell.fa-sem
-        span Subscribe
-  a(href='/meetings/expanded-meeting/'+assigned_id)
-    .card-content
-      h5= title
-      .card-dateplace
-        .card-date= notice_date
-        .card-time= notice_time
-        .card-name= location_name
-        .card-room= location_room
-      p= notice_body
+    a(href='/meetings/expanded-meeting/'+assigned_id)
+      .card-content
+        h5= title
+        .card-dateplace
+          .card-date= notice_date
+          .card-time= notice_time
+          .card-name= location_name
+          .card-room= location_room
+        p= notice_body

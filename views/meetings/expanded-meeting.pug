@@ -18,6 +18,10 @@ block content
       br
       br
 
+    div.metadata-header Connected Hashtags
+    for h in meeting.hashtags
+      a.hashtag(href="/") #{h}
+
     .row
       div.col-md-4.meeting-metadata
         div.metadata-header When
@@ -37,7 +41,7 @@ block content
           div.button-group
             i.fa.fa-circle.text-danger.blink
             span Currently Live
-        if (iscouncilor)
+        if (iscouncilor && user)
           a.button-group(href='/meetings/edit/'+meeting.assigned_id)
             i.fab.fa.fa-pencil-alt.fa-sm
             span Edit Meeting Information
@@ -52,7 +56,7 @@ block content
           a.button-group(href='/login')  
             i.fab.fas.fa-bell.fa-sem
             span Subscribe
-        if (iscouncilor)
+        if (iscouncilor && user)
           a.button-group(href='/meetings/delete/'+meeting.assigned_id)
             i.fab.fa.fa-trash-alt.fa-sm
             span Delete Meeting
