@@ -1,6 +1,6 @@
 .card
   .card-header 
-    if (user)
+    if (iscouncilor)
       a.button-group-left(href='/meetings/edit/'+assigned_id)
         i.fab.fa.fa-pencil-alt.fa-sm
     a.button-group(href='/meetings/download-ics/'+ics)

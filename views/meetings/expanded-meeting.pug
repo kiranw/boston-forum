@@ -37,7 +37,7 @@ block content
           div.button-group
             i.fa.fa-circle.text-danger.blink
             span Currently Live
-        if (user)
+        if (iscouncilor)
           a.button-group(href='/meetings/edit/'+meeting.assigned_id)
             i.fab.fa.fa-pencil-alt.fa-sm
             span Edit Meeting Information
@@ -52,7 +52,7 @@ block content
           a.button-group(href='/login')  
             i.fab.fas.fa-bell.fa-sem
             span Subscribe
-        if (user)
+        if (iscouncilor)
           a.button-group(href='/meetings/delete/'+meeting.assigned_id)
             i.fab.fa.fa-trash-alt.fa-sm
             span Delete Meeting

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:43120e21-279c-4e34-bc2b-368ec52924fd
+UID:dd215695-43f3-48dc-8c84-5b37aa71c2ba
 SUMMARY:Tree Removal Hearing - Dorchester 
-DTSTAMP:20190306T202700Z
+DTSTAMP:20190306T213800Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56341
 LOCATION:Conference room; 3rd Floor; 1010 Massachusetts Avenue

@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   linkedin: String,
   steam: String,
   tokens: Array,
+  roles: [{ type: String }],
 
   subscriptions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Meeting' }],
 

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:833bf86b-5f30-4169-9109-5dfe67cfcb62
+UID:b735933d-09ee-473b-a57e-a77fe78ad51b
 SUMMARY:Boston School Committee Internal Audit Task Force meeting
-DTSTAMP:20190306T202700Z
+DTSTAMP:20190306T213800Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57106
 LOCATION:Boston City Hall; Room 608; 1 City Hall Square

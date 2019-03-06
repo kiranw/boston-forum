@@ -12,10 +12,11 @@
           a.nav-link(href='/') Home
         li.nav-item(class=(title === 'About') ? 'active' : undefined)
           a.nav-link(href='/about') About
-        li.nav-item(class=(title === 'New Notice') ? 'active' : undefined)
-          a.nav-link(href='/meetings/new-meeting') 
-            i.fas.fa-plus-circle
-            span New Notice
+        if (iscouncilor)
+          li.nav-item(class=(title === 'New Notice') ? 'active' : undefined)
+            a.nav-link(href='/meetings/new-meeting') 
+              i.fas.fa-plus-circle
+              span New Notice
         li.nav-item(class=(title === 'Live Meetings') ? 'active' : undefined)
           a.nav-link(href='/meetings/live-meetings') Live Meetings
         li.nav-item(class=(title === 'Open Comment') ? 'active' : undefined)
