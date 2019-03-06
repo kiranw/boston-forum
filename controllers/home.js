@@ -14,10 +14,17 @@ exports.index = (req, res) => {
       console.log("Error querying notices: ",err)
       return [];
     }
-    res.render('home', {
-      title: 'Home',
-      notices: found_notices,
-      user: User
+
+    livemeetings = Meeting.find({"is_live":true}).exec(function(err,livemeetings) {
+      opencomments = Meeting.find({"is_open_comment":true}).exec(function(err,opencomments) {
+        res.render('home', {
+          title: 'Home',
+          notices: found_notices,
+          user: User,
+          livenotices: livemeetings,
+          opencomments: opencomments,
+        });
+      });
     });
   })
 };

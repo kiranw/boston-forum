@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:4b6da331-edd4-4284-b902-aa9ca805de61
+UID:4011d85a-33bd-4cdd-93b5-6e58721f7cf1
 SUMMARY:City Council Committee on Healthy Women\, Families\, and Communitie
 	s Hearing on Dockets #0176 and #0305
-DTSTAMP:20190306T195000Z
+DTSTAMP:20190306T200700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56431
 LOCATION:Iannella Chamber; Fifth Floor; Boston City Hall

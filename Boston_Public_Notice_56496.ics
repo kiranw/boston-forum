@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:d86e341e-d999-4b42-b5dd-b0e443dbac36
+UID:e6d502aa-fd9e-4acc-905e-49b0089fa81e
 SUMMARY:Licensed Premise Violations hearing
-DTSTAMP:20190306T195000Z
+DTSTAMP:20190306T200700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56496
 LOCATION:Boston City Hall; Room 809A; One City Hall Square

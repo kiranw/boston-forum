@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:6b331eaa-8034-427b-a1f7-aad011df57fa
+UID:3ea3b7d4-922d-482b-8bb3-c861b535d157
 SUMMARY:Bay State Road/Back Bay West Area Architectural Conservation Distri
 	ct Commission
-DTSTAMP:20190306T195000Z
+DTSTAMP:20190306T200700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57006
 LOCATION:Boston City Hall; Room 709; 1 City Hall Square

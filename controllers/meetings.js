@@ -128,8 +128,13 @@ function addMeetingtoDb(notice){
   Get open comment period issues
  */
 exports.getOpenComments = (req, res, next) => {
-  res.render('meetings/open-comments', {
-      title: 'Open Comments',
+  user = req.user;
+  Meeting.find({is_open_comment:true}).exec(function(err, meetings) {
+    res.render('meetings/open-comments', {
+        title: 'Open Comments',
+        opencomments: meetings,
+        user: user
+    });
   });
 }
 
@@ -140,9 +145,14 @@ exports.getOpenComments = (req, res, next) => {
   Get open comment period issues
  */
 exports.getLiveMeetings = (req, res, next) => {
-  res.render('meetings/live-meetings', {
+  user = req.user;
+  Meeting.find({is_live:true}).exec(function(err, meetings) {
+    res.render('meetings/live-meetings', {
       title: 'Live Meetings',
+      livemeetings: meetings,
+      user: user
     });
+  });
 }
 
 

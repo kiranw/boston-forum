@@ -5,38 +5,45 @@ block content
     h3.homepage-title
       span.underline-hover #{meeting.title}
 
-    a.button-group(href='/meetings/delete/'+meeting.assigned_id)
-      i.fab.fa.fa-trash-alt.fa-sm
-      span Delete Meeting
-    a.button-group(href='/meetings/edit/'+meeting.assigned_id)
-      i.fab.fa.fa-pencil-alt.fa-sm
-      span Edit Meeting Information
-    a.button-group(href='/meetings/download-ics/'+ics)
-      i.fab.fa.fa-calendar-plus.fa-sm
-      span Export
-    a.button-group(href='/meetings/follow-meeting/'+meeting.assigned_id)  
-      i.fab.fas.fa-bell.fa-sem
-      span Subscribe
+    .row
+      div.col-md-8.meeting-metadata
+        div #{meeting.notice_time}
+        div #{meeting.notice_date}
 
-    if (meeting.is_live)
-      i.fa.fa-circle.text-danger.blink
-      | Currently Live
-      br
-      br
+        br
 
-    div #{meeting.notice_time}
-    div #{meeting.notice_date}
+        div #{meeting.location_name}
+        div #{meeting.location_room}
+        div #{meeting.location_street}
 
-    br
+        br
 
-    div #{meeting.location_name}
-    div #{meeting.location_room}
-    div #{meeting.location_street}
+        div Testimony Time
+        | #{meeting.testimony_time}
 
-    br
-
-    div Testimony Time
-    | #{meeting.testimony_time}
+      div.col-md-4.meeting-toolbar
+        if (meeting.is_live)
+          div.button-group
+            i.fa.fa-circle.text-danger.blink
+            span Currently Live
+        if (user)
+          a.button-group(href='/meetings/delete/'+meeting.assigned_id)
+            i.fab.fa.fa-trash-alt.fa-sm
+            span Delete Meeting
+          a.button-group(href='/meetings/edit/'+meeting.assigned_id)
+            i.fab.fa.fa-pencil-alt.fa-sm
+            span Edit Meeting Information
+        a.button-group(href='/meetings/download-ics/'+meeting.ics)
+          i.fab.fa.fa-calendar-plus.fa-sm
+          span Export to Calendar
+        if (user)
+          a.button-group(href='/meetings/follow-meeting/'+meeting.assigned_id)  
+            i.fab.fas.fa-bell.fa-sem
+            span Subscribe
+        if (!user)
+          a.button-group(href='/login')  
+            i.fab.fas.fa-bell.fa-sem
+            span Subscribe
 
 
     div.paper.meeting-field-drawer !{meeting.field_drawer}
