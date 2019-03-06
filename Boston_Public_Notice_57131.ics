@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:d01474f8-548c-4173-8dcb-1eb2826bcd06
+SUMMARY:Boston Collegiate Charter School meeting
+DTSTAMP:20190306T195000Z
+DTSTART:20190330T063000Z
+DESCRIPTION:Location: Sydney Street Campus\nAnd\, by conference call: 605-4
+	68-8010 code: 250496#\n
+URL:https://www.boston.gov/public-notices/57131
+LOCATION:Boston Collegiate Charter School; ; 215 Sydney Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

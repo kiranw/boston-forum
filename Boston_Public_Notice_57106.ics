@@ -5,12 +5,12 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:96a54fcf-1158-4fa9-8aef-11ed05d0e4a9
-SUMMARY:Charlestown Neighborhood Council meeting
-DTSTAMP:20190305T184600Z
+UID:ee526b80-965f-4fce-bbf4-5e01d31e9aba
+SUMMARY:Boston School Committee Internal Audit Task Force meeting
+DTSTAMP:20190306T195000Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56931
-LOCATION:Knights Of Columbus; ; 545 Medford Street
+URL:https://www.boston.gov/public-notices/57106
+LOCATION:Boston City Hall; Room 608; 1 City Hall Square
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

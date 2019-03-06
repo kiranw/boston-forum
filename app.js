@@ -143,6 +143,7 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+app.get('/account/subscriptions', userController.getSubscriptions);
 
 /**
  * API examples routes.
@@ -198,6 +199,12 @@ app.get('/meetings/delete/:assigned_id', function(req, res) {
 });
 app.get('/meetings/edit/:assigned_id', function(req, res) {
   meetingsController.edit(res, req);
+});
+app.get('/meetings/follow-meeting/:assigned_id', function(req, res) {
+  meetingsController.followMeeting(res, req);
+});
+app.get('/meetings/unfollow-meeting/:assigned_id', function(req, res) {
+  meetingsController.unfollowMeeting(res, req);
 });
 // app.post('/meetings/edit', meetingsController.submit_edit)
 

@@ -8,6 +8,7 @@ const Meeting = require('../models/Meeting');
  */
 var meetingsController = require("./meetings.js")
 exports.index = (req, res) => {
+  const User = req.user;
   Meeting.find({"canceled":false}, function(err, found_notices) {
     if (err) {
       console.log("Error querying notices: ",err)
@@ -15,7 +16,8 @@ exports.index = (req, res) => {
     }
     res.render('home', {
       title: 'Home',
-      notices: found_notices
+      notices: found_notices,
+      user: User
     });
   })
 };

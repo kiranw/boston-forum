@@ -441,3 +441,26 @@ exports.postForgot = (req, res, next) => {
     .then(() => res.redirect('/forgot'))
     .catch(next);
 };
+
+
+
+/**
+ * GET /subscriptions
+ * Load all notices being followed
+ */
+exports.getSubscriptions = (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+
+  User.findOne({email: req.user.email}).populate('subscriptions').exec( function(err, user) {
+    subs = user.subscriptions.length!=0 ? user.subscriptions : null;
+    console.log(subs)
+    res.render('account/subscriptions', {
+      title: "Issues I'm Following",
+      meetings: subs,
+      unfollow: true
+    });
+  });
+};
+

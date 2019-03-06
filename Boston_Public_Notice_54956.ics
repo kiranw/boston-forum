@@ -5,7 +5,7 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:12a16564-096c-4a59-ae30-b36e0c5eaa36
+UID:cdb4eb39-d1c1-4c49-aac3-a4ed097f16cd
 SUMMARY:Community meeting for proposed Mattapan marijuana establishment
 DTSTAMP:20190305T184600Z
 DTSTART:20190330T063000Z

@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:e4949665-8bc1-40a1-879d-dfbe6f466c41
+UID:e3dcd90f-1bd3-4e11-b090-704e509fa501
 SUMMARY:City Council Committee on Public Safety and Criminal Justice hearin
 	g on Docket #0143
-DTSTAMP:20190305T125900Z
+DTSTAMP:20190306T195000Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56286
 LOCATION:Iannella Chamber; Fifth Floor; 1 City Hall Square

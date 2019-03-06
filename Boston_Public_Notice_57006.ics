@@ -5,12 +5,13 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:96a54fcf-1158-4fa9-8aef-11ed05d0e4a9
-SUMMARY:Charlestown Neighborhood Council meeting
-DTSTAMP:20190305T184600Z
+UID:6b331eaa-8034-427b-a1f7-aad011df57fa
+SUMMARY:Bay State Road/Back Bay West Area Architectural Conservation Distri
+	ct Commission
+DTSTAMP:20190306T195000Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56931
-LOCATION:Knights Of Columbus; ; 545 Medford Street
+URL:https://www.boston.gov/public-notices/57006
+LOCATION:Boston City Hall; Room 709; 1 City Hall Square
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

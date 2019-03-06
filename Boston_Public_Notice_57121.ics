@@ -5,12 +5,12 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:96a54fcf-1158-4fa9-8aef-11ed05d0e4a9
-SUMMARY:Charlestown Neighborhood Council meeting
-DTSTAMP:20190305T184600Z
+UID:02669334-ed40-4c7e-851d-119e3d4867ff
+SUMMARY:Licensing Board hearing
+DTSTAMP:20190306T195000Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/56931
-LOCATION:Knights Of Columbus; ; 545 Medford Street
+URL:https://www.boston.gov/public-notices/57121
+LOCATION:Boston City Hall; Room 809A; 1 City Hall Square
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

@@ -3,6 +3,7 @@ const request = require('request');
 const ics = require('ics')
 const mongoose = require('mongoose');
 const Meeting = require('../models/Meeting');
+const Users = require('../models/User');
 
 
 /**
@@ -68,6 +69,8 @@ exports.getPublicNotices = (req, res, next) => {
       return n;
     }); 
 
+    user = req.user;
+
     Meeting.find({"canceled":false}, function(err, found_notices) {
       if (err) {
         console.log("Error querying notices: ",err)
@@ -75,7 +78,8 @@ exports.getPublicNotices = (req, res, next) => {
       }
       res.render('meetings/public-notices', {
         title: 'Public Notices API',
-        notices: found_notices
+        notices: found_notices,
+        user: req.user
       });
     })
   });
@@ -153,7 +157,8 @@ exports.newMeeting = (req, res, next) => {
 
   res.render('meetings/new-meeting', {
     title: 'New Notice',
-    unknownUser
+    unknownUser,
+    user: req.user
   });
 }
 
@@ -203,7 +208,8 @@ exports.renderExpandedMeeting = (res, req) => {
     }
     res.render('meetings/expanded-meeting', {
       title: 'Expanded Meeting Information',
-      meeting: matching_meeting
+      meeting: matching_meeting,
+      user: User
     });
   })
 }
@@ -225,7 +231,8 @@ exports.edit = (res, req) => {
     }
     res.render('meetings/edit', {
       title: 'Edit',
-      meeting: matching_meeting
+      meeting: matching_meeting,
+      user: User
     });
   })
 }
@@ -260,12 +267,90 @@ exports.submitEdit = (res, req) => {
   /meetings/delete/:assigned_id
 */
 exports.delete = (res, req) => {
-  Meeting.deleteOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
-    if (err) {
-      console.log("Error deleting meeting with assigned_id: ", req.params.assigned_id);
-    }
-    res.redirect('/');
-  });
+  if (req.user) {
+    Meeting.deleteOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+      if (err) {
+        console.log("Error deleting meeting with assigned_id: ", req.params.assigned_id);
+      }
+      res.redirect('/');
+    });
+  }
 }
 
 
+
+
+/**
+ * GET /meetings/follow-meeting/:assigned_id
+   Subscribe to updates on a meeting
+ */
+exports.followMeeting = (res, req) => {
+  assigned_id = req.params["assigned_id"];
+
+  Meeting.findOne({"assigned_id": assigned_id}, function (err, subscribed_meeting) {
+    if (err) {
+      console.log("Error subscribing to meeting with id: ", assigned_id, "with Error:",err)
+    }
+
+    console.log(subscribed_meeting);
+
+    Users.findOne({email: req.user.email}).populate('subscriptions').exec(function(err, matchingUser){
+      matchingUser.subscriptions.pushIfNotExist(subscribed_meeting, function(e) { 
+        return e.assigned_id === subscribed_meeting.assigned_id;
+      });
+      matchingUser.save();
+    })
+  });
+  req.flash('success', { msg: 'Success! You just subscribed to an issue.'});
+  res.redirect('/meetings/expanded-meeting/'+assigned_id);
+}
+
+
+
+
+
+/**
+ * GET /meetings/unfollow-meeting/:assigned_id
+   Unsubscribe to updates on a meeting
+ */
+exports.unfollowMeeting = (res, req) => {
+  assigned_id = req.params["assigned_id"];
+
+  Meeting.findOne({"assigned_id": assigned_id}, function (err, subscribed_meeting) {
+    if (err) {
+      console.log("Error subscribing to meeting with id: ", assigned_id, "with Error:",err)
+    }
+
+    Users.findOne({email: req.user.email}).populate('subscriptions').exec(function(err, matchingUser){
+      matchingUser.subscriptions.splice( 
+        matchingUser.subscriptions.indexOf( 
+          matchingUser.subscriptions.filter( function(e) { 
+            return e.assigned_id === assigned_id;
+      })));
+      matchingUser.save();
+    })
+  });
+  req.flash('success', { msg: 'Success! You just unfollowed an issue.'});
+  res.redirect('/account/subscriptions/');
+}
+
+
+
+
+
+// check if an element exists in array using a comparer function
+// comparer : function(currentElement)
+Array.prototype.inArray = function(comparer) { 
+    for(var i=0; i < this.length; i++) { 
+        if(comparer(this[i])) return true; 
+    }
+    return false; 
+}; 
+
+// adds an element to the array if it does not already exist using a comparer 
+// function
+Array.prototype.pushIfNotExist = function(element, comparer) { 
+    if (!this.inArray(comparer)) {
+        this.push(element);
+    }
+}; 

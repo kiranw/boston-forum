@@ -12894,6 +12894,10 @@ textarea {
   left: initial;
   right: 0; }
 
+li.divider {
+  height: 3px;
+  background-color: #f2f2f2; }
+
 /*
 * Solves Bootstrap 4 issue
 * https://github.com/twbs/bootstrap/issues/25654
@@ -12923,7 +12927,13 @@ textarea {
     padding-right: 15px !important; } }
 
 .alert {
-  margin-top: 20px; }
+  margin-top: 7vh;
+  position: fixed;
+  top: 0px;
+  left: 10%;
+  width: 80%;
+  z-index: 9999;
+  border-radius: 0px; }
 
 .thumbnail {
   padding: 0;
@@ -13101,7 +13111,20 @@ input:checked + .slider:before {
   font-size: 1.3em;
   background: #fff;
   box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee, 0 10px 1px -4px rgba(0, 0, 0, 0.15), 0 20px 0 -10px #eee, 0 20px 1px -9px rgba(0, 0, 0, 0.15);
-  /* Padding for demo purposes */
   padding: 30px;
   margin-top: 50px;
   margin-bottom: 50px; }
+
+.generic-text {
+  font-size: 1.5em; }
+
+div.generic-text > a.underline-hover {
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
+  -webkit-box-shadow: inset 0 -4px 0 #007bff;
+  box-shadow: inset 0 -4px 0 #007bff;
+  opacity: 0.7;
+  margin-right: 5px; }
+
+div.generic-text > a.underline-hover:hover {
+  opacity: 1; }
