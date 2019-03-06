@@ -5,21 +5,32 @@ block content
     h3.homepage-title
       span.underline-hover #{meeting.title}
 
+    if (meeting.is_live)
+      button.btn.btn-outline-primary(type="button") 
+        i.fa.fa-circle.text-danger.blink
+        |  Enter Live Meeting
+    if (meeting.is_open_comment)
+      button.btn.btn-outline-primary(type="button") 
+        i.fa.fa-circle.text-info.blink
+        |  Enter Open Comment
+    if (meeting.is_live | meeting.is_open_comment)
+      br
+      br
+      br
+
     .row
-      div.col-md-8.meeting-metadata
-        div #{meeting.notice_time}
-        div #{meeting.notice_date}
+      div.col-md-4.meeting-metadata
+        div.metadata-header When
+        div.bolditalic #{meeting.notice_time} on #{meeting.notice_date}
 
         br
-
+        div Testimony Time: #{meeting.testimony_time}
+      
+      div.col-md-4.meeting-metadata
+        div.metadata-header Where
         div #{meeting.location_name}
-        div #{meeting.location_room}
+        div #{meeting.location_room},
         div #{meeting.location_street}
-
-        br
-
-        div Testimony Time
-        | #{meeting.testimony_time}
 
       div.col-md-4.meeting-toolbar
         if (meeting.is_live)
@@ -27,9 +38,6 @@ block content
             i.fa.fa-circle.text-danger.blink
             span Currently Live
         if (user)
-          a.button-group(href='/meetings/delete/'+meeting.assigned_id)
-            i.fab.fa.fa-trash-alt.fa-sm
-            span Delete Meeting
           a.button-group(href='/meetings/edit/'+meeting.assigned_id)
             i.fab.fa.fa-pencil-alt.fa-sm
             span Edit Meeting Information
@@ -44,9 +52,13 @@ block content
           a.button-group(href='/login')  
             i.fab.fas.fa-bell.fa-sem
             span Subscribe
+        if (user)
+          a.button-group(href='/meetings/delete/'+meeting.assigned_id)
+            i.fab.fa.fa-trash-alt.fa-sm
+            span Delete Meeting
 
 
     div.paper.meeting-field-drawer !{meeting.field_drawer}
 
     
-    a(href='#{meeting.url}') Additional Information
+    a(href=meeting.url) Additional Information

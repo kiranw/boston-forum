@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:04651b90-f0c3-48ee-8042-1b98399984c9
+UID:52a69d38-196e-4525-a0bc-80e296a4c873
 SUMMARY:Boston Residency Compliance Commission meeting
-DTSTAMP:20190306T200700Z
+DTSTAMP:20190306T202700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/55666
 LOCATION:Boston City Hall; Law Department Conference Room #4, Room 621; 1 C

@@ -13132,6 +13132,22 @@ input:checked + .slider:before {
   margin-left: 10px;
   color: #d33682; }
 
+.meeting-metadata {
+  font-size: 1.5em;
+  font-family: "National-Regular-Italic"; }
+
+.metadata-header {
+  font-size: 0.8em;
+  color: gray;
+  letter-spacing: 2px;
+  text-transform: uppercase; }
+
+.bold {
+  font-family: "National-Bold"; }
+
+.bolditalic {
+  font-family: "National-Bold-Italic"; }
+
 .generic-text {
   font-size: 1.5em; }
 
@@ -13145,3 +13161,7 @@ div.generic-text > a.underline-hover {
 
 div.generic-text > a.underline-hover:hover {
   opacity: 1; }
+
+button.btn.btn-outline-primary {
+  border-radius: 5px;
+  margin-right: 10px; }

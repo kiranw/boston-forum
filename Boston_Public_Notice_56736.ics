@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:51354ad0-4850-44b0-b1cc-4ae02a6733d0
+UID:02522238-7f33-45ae-9454-a7715d6a0b9b
 SUMMARY:Boston Landmarks Commission Hearing 03/12/2019
-DTSTAMP:20190306T200700Z
+DTSTAMP:20190306T202700Z
 DTSTART:20190330T063000Z
 DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
 URL:https://www.boston.gov/public-notices/56736

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:a968dc84-65fd-46fa-87cd-be17cf23f2e6
+UID:a08493e2-e2fb-4eaa-8427-dbedf282ede9
 SUMMARY:Conservation Commission hearing
-DTSTAMP:20190306T200700Z
+DTSTAMP:20190306T202700Z
 DTSTART:20190330T063000Z
 DESCRIPTION:In accordance with the Massachusetts Wetlands Protection Act\, 
 	M.G.L. Chapter 131\, Section 40\, the Boston Conservation Commission will 
