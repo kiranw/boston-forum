@@ -18,7 +18,7 @@ exports.index = async (req, res) => {
     }
 
     isCouncilor = checkCouncilorRole(res, req.user);
-    Promise.resolve(isCouncilor).then(function(){
+    Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
       livemeetings = Meeting.find({"is_live":true}).exec(function(err,livemeetings) {
         opencomments = Meeting.find({"is_open_comment":true}).exec(function(err,opencomments) {
           res.render('home', {
@@ -27,7 +27,7 @@ exports.index = async (req, res) => {
             user: User,
             livenotices: livemeetings,
             opencomments: opencomments,
-            iscouncilor: isCouncilor.result
+            iscouncilor: isCouncilorBoolean
           });
         });
       });
