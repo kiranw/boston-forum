@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:23389174-4e1f-4519-b51f-4f31b07028ab
+SUMMARY:Metro Boston Homeland Security Region US&R Working Group meeting
+DTSTAMP:20190307T185800Z
+DTSTART:20190330T063000Z
+DESCRIPTION:If you wish to attend and require special accommodations\, plea
+	se contact Alicia Woodberry at 617-635-1400.\n
+URL:https://www.boston.gov/public-notices/57176
+LOCATION:Cambridge Professional Ambulance Services; ; 31 Smith Pl
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

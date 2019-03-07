@@ -190,9 +190,20 @@ app.get('/meetings/download-ics/:event', function(req, res) {
 });
 app.get('/meetings/new-meeting', meetingsController.newMeeting)
 app.post('/meetings/create', meetingsController.create)
-// app.get('/meetings/expanded-meeting/:assigned_id', meetingsController.getExpandedMeeting)
+app.post('/meetings/create-live-comment/:meeting_id', function(req,res) {
+  meetingsController.createLiveComment(res,req);
+})
+app.post('/meetings/create-live-subcomment/:meeting_id/:comment_id', function(req,res) {
+  meetingsController.createLiveSubcomment(res,req);
+})
 app.get('/meetings/expanded-meeting/:assigned_id', function(req, res) {
   meetingsController.renderExpandedMeeting(res, req);
+});
+app.get('/meetings/live-meeting/:assigned_id', function(req, res) {
+  meetingsController.renderLiveMeeting(res, req);
+});
+app.get('/meetings/expanded-open-comment/:assigned_id', function(req, res) {
+  meetingsController.renderOpenComment(res, req);
 });
 app.get('/meetings/delete/:assigned_id', function(req, res) {
   meetingsController.delete(res, req);

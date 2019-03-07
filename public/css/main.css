@@ -13010,6 +13010,19 @@ h1, h2, h3, h4, h5, h6 {
   background: white;
   margin-bottom: 2em; }
 
+.card-unset {
+  background: white;
+  margin-bottom: 2em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem; }
+
 .card:hover {
   box-shadow: 3px 3px 8px #cccccc; }
 
@@ -13153,12 +13166,35 @@ input:checked + .slider:before {
 .bolditalic {
   font-family: "National-Bold-Italic"; }
 
+.italic {
+  font-family: "National-Regular-Italic"; }
+
 .hashtag {
   display: inline-block;
   margin-right: 10px;
   font-size: 1.3em;
   color: #007bff;
   margin-bottom: 20px; }
+
+.tooltip-text {
+  font-size: 0.9em;
+  font-family: "National-Regular-Italic"; }
+
+.tooltip-arrow, .tooltip > .tooltip-inner {
+  background-color: #007bff;
+  fill: #007bff; }
+
+.tooltip.top .tooltip-inner {
+  background-color: #007bff; }
+
+.tooltip > .tooltip-arrow, .tooltip.top .tooltip-arrow {
+  border-top-color: #007bff; }
+
+.tooltip.bottom .tooltip-inner {
+  background-color: #007bff; }
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #007bff; }
 
 .generic-text {
   font-size: 1.5em;
@@ -13178,3 +13214,137 @@ div.generic-text > a.underline-hover:hover {
 button.btn.btn-outline-primary {
   border-radius: 5px;
   margin-right: 10px; }
+
+button.btn.btn-outline-primary:hover {
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px; }
+
+button.btn.btn-outline-primary > a:hover {
+  color: white !important; }
+
+.center-contents {
+  text-align: center;
+  justify-content: center; }
+
+.float-padded-right {
+  padding-right: 10%;
+  float: right; }
+
+.row-no-vert-padding {
+  margin-top: -30px; }
+
+.comment-img {
+  border-radius: 100px;
+  margin-bottom: 10px; }
+
+.comment-img, .comment-name {
+  display: block;
+  position: relative;
+  float: right; }
+
+input.comment-title {
+  background-clip: unset;
+  border: none;
+  border-bottom: 2px solid #f2f2f2; }
+
+textarea.comment-body {
+  background-clip: unset;
+  border: none;
+  border-top: 2px solid #f2f2f2; }
+
+.comment-button {
+  width: 100%;
+  border-radius: 5px; }
+
+.card-content.card-no-padding {
+  padding: 0px;
+  padding-top: 20px; }
+
+.live-meeting-header {
+  font-size: 0.7em; }
+
+.comment-img {
+  float: right;
+  display: inline-block;
+  margin-right: -10px; }
+
+#comment-title {
+  width: 100%; }
+
+#comment-title:focus {
+  background-clip: unset;
+  border: none;
+  border-bottom: 2px solid #f2f2f2;
+  outline: none; }
+
+.subcomment-img {
+  float: right;
+  display: inline-block;
+  margin-right: -20px;
+  height: 50px;
+  width: auto;
+  border-radius: 100px; }
+
+.comment-header {
+  font-family: "National-Regular";
+  color: gray; }
+
+.comment-utility-button {
+  float: right;
+  display: inline-block;
+  margin-right: 10px; }
+
+.small-left-spacer {
+  margin-left: 10px; }
+
+.subcomment-posted {
+  color: gray; }
+
+.comment-title {
+  font-family: "National-Bold"; }
+
+.comment-body {
+  resize: none; }
+
+textarea.subcomment-body {
+  background-clip: unset;
+  border: none;
+  font-size: 1em;
+  padding: 0.75rem;
+  border-radius: 10px;
+  margin: -0.75rem;
+  width: 100%;
+  resize: none; }
+
+textarea.subcomment-body:focus {
+  background-clip: unset;
+  border: none;
+  box-shadow: inset 0px 0px 0px 0px red; }
+
+.subcomment-submit-button {
+  display: inline-block;
+  float: right;
+  width: 70%;
+  background-clip: unset;
+  border: none;
+  box-shadow: inset 0px 0px 0px 0px red; }
+
+.subcomment-submit-button:focus, .subcomment-submit-button:hover {
+  background-clip: unset;
+  border: none;
+  box-shadow: inset 0px 0px 0px 0px red;
+  color: #007bff; }
+
+.vertical-spacer-pipe {
+  height: 100px;
+  margin-top: -50px;
+  background-color: #e8e8e8;
+  width: 4px;
+  margin-left: 58px; }
+
+.card-footer {
+  padding: 0.2rem 0.2rem; }
+
+.new-comment-card-body {
+  padding-bottom: 5px; }

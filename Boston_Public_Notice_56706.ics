@@ -5,7 +5,7 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:ecd29034-e9af-46cc-ba58-ea265f8fccdb
+UID:2cc97731-a965-4a04-8aaa-fe79422218f3
 SUMMARY:Community meeting for proposed Roslindale cannabis establishment
 DTSTAMP:20190307T001800Z
 DTSTART:20190330T063000Z

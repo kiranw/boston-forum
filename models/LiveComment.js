@@ -12,7 +12,8 @@ const liveCommentSchema = new mongoose.Schema({
 	linkedOpenComments: {type: mongoose.Schema.Types.ObjectId, ref: 'OpenComment'},
 	linkedHashtag: String,
 	upvotes: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-	meeting: {type: mongoose.Schema.Types.ObjectId, ref: 'Meeting'}
+	meeting: {type: mongoose.Schema.Types.ObjectId, ref: 'Meeting'},
+	showName: { type: Boolean, default: true }
   });
 
 

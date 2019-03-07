@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:578a6da6-d1da-4f61-a590-12de80e96a37
+UID:a57479cf-64da-4a3b-9cf8-fa6f670368dd
 SUMMARY:Tree Removal Hearing - Fenway/Kenmore
-DTSTAMP:20190307T001800Z
+DTSTAMP:20190307T185800Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/56346
 LOCATION:Conference room; 3rd Floor; 1010 Massachusetts Avenue

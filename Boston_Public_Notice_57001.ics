@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:1233f9da-139d-46c4-8015-92aa2aca1e28
+SUMMARY:Aberdeen Architectural Conservation District Commission
+DTSTAMP:20190307T085300Z
+DTSTART:20190330T063000Z
+DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30pm)\n
+URL:https://www.boston.gov/public-notices/57001
+LOCATION:Boston City Hall; Room 709, 7th Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:7af7bf62-91af-4cc6-8fd0-108f1a74563f
+SUMMARY:Boston Public Schools Superintendent Search Committee Meeting
+DTSTAMP:20190307T185800Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/57246
+LOCATION:Bruce C. Bolling Municipal Building; School Committte Chamber, 2nd
+	 Floor; 2300 Washington Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:25a5dc88-d090-457f-9671-aba3b7b7aae1
+SUMMARY:Back Bay Architectural Commission
+DTSTAMP:20190307T185800Z
+DTSTART:20190330T063000Z
+DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
+URL:https://www.boston.gov/public-notices/56956
+LOCATION:Boston City Hall; Room 900, 9th Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

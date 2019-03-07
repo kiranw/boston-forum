@@ -1,0 +1,92 @@
+div #{linkedLiveComments}
+
+
+.row
+    .col-md-1
+        if author.profile.picture
+            img.comment-img(src=author.profile.picture)
+        else
+            img.comment-img(src=author.gravatar(60))
+    .col-md-10
+        .card-unset
+          .card-header 
+            .row
+                if (showName)
+                    .col-md-9.comment-header #{author.profile.name} on #{postedDate}
+                else
+                    .col-md-9.comment-header Anonymous on #{postedDate}
+                .col-md-3
+                    span.comment-utility-button.comment-total-upvotes #{upvotes.length}
+                    if (user)
+                        a.comment-utility-button.comment-upvote(href='#') Upvote
+          .card-body
+            .comment-title #{title}
+            .comment-body #{body}
+
+
+        if (user)
+            .row.row-no-vert-padding
+                div.vertical-spacer-pipe
+            .row.row-no-vert-padding
+                .col-md-1                
+                    if user.profile.picture
+                        img.subcomment-img(src=user.profile.picture)
+                    else
+                        img.subcomment-img(src=user.gravatar(60))
+                .col-md-11
+                    .card-unset
+                      .card-body
+                        if (showName)
+                            .subcomment-posted #{author.profile.name} on #{postedDate}
+                        else
+                            .subcomment-posted Anonymous on #{postedDate}
+                        .subcomment-body #{body}
+
+
+        if (user)
+            .row.row-no-vert-padding
+                div.vertical-spacer-pipe
+            .row.row-no-vert-padding
+                .col-md-1                
+                    if user.profile.picture
+                        img.subcomment-img(src=user.profile.picture)
+                    else
+                        img.subcomment-img(src=user.gravatar(60))
+                .col-md-11
+                    .card-unset
+                      form.card-body.form.new-comment-card-body(method='POST', action="/meetings/create-live-subcomment/"+meetingId+"/"+comment_id)
+                        textarea.subcomment-body.form-control(type='text', name=comment_id+'-subcomment-body', rows='2', id=comment_id+'-subcomment-body', autocomplete=comment_id+'-subcomment-body', placeholder="What would you like to say?")
+                        .row
+                            .col-md-10
+                                label(class='col-md-7 col-form-label font-weight-bold', for=comment_id+'-subcomment-show-name') Show your name to all participants?
+                                    span.small-left-spacer(data-toggle="tooltip", data-html="true", data-placement="top", title="<span class='tooltip-text'>Councilors will still be able to see your name.</span>")
+                                    i.fab.fas.fa-user-lock.fa-sm
+                                label(class='switch', for=comment_id+'-subcomment-show-name')
+                                    input.form-check-input(type='checkbox', name=comment_id+'-subcomment-show-name', id=comment_id+'-subcomment-show-name', autocomplete=comment_id+'-subcomment-show-name')
+                                    span.slider.round
+                            .col-md-2
+                                button.btn.comment-button.subcomment-submit-button(type='submit')
+                                    i.fas.fa-bullhorn.fa-md
+
+
+        if (linkedLiveComments)
+            for linkedComment in linkedLiveComments
+                .row.row-no-vert-padding
+                    div.vertical-spacer-pipe
+                .row.row-no-vert-padding
+                    .col-md-1                
+                        if linkedComment.author.profile.picture
+                            img.subcomment-img(src=linkedComment.author.profile.picture)
+                        else
+                            img.subcomment-img(src=linkedComment.author.gravatar(60))
+                    .col-md-11
+                        .card-unset
+                          .card-body
+                            if (showName)
+                                .subcomment-posted #{linkedComment.author.profile.name} on #{linkedComment.postedDate}
+                            else
+                                .subcomment-posted Anonymous on #{linkedComment.postedDate}
+                            .subcomment-body #{linkedComment.body}
+
+br
+br

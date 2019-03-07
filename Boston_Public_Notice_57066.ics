@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:b5ffdb8c-dbd7-4ce8-af73-e6dee08813b5
+SUMMARY:Fort Point Channel Landmark District Commission
+DTSTAMP:20190307T085300Z
+DTSTART:20190330T063000Z
+DESCRIPTION:Please Use Congress Street as an entrance and exit to City Hall
+	 after 5:30 p.m.\n
+URL:https://www.boston.gov/public-notices/57066
+LOCATION:Boston City Hall; Piemonte Room 5th Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

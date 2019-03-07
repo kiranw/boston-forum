@@ -4,6 +4,8 @@ const ics = require('ics')
 const mongoose = require('mongoose');
 const Meeting = require('../models/Meeting');
 const Users = require('../models/User');
+const LiveComment = require('../models/LiveComment');
+const OpenComment = require('../models/OpenComment');
 
 
 /**
@@ -140,7 +142,8 @@ exports.newMeeting = async (req, res, next) => {
 
 
 /**
-  New Meeting Form
+  New Meeting from
+  POST /meetings/edit
 */
 exports.create = async (req, res, next) => {
   const User = req.user;
@@ -178,6 +181,82 @@ exports.create = async (req, res, next) => {
 
 
 /**
+  Create a live comment
+  POST /meetings/create-live-comment
+*/
+exports.createLiveComment = async (res, req) => {
+  const User = req.user;
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    console.log(req.body);
+    console.log(req.params);
+    liveComment = {}
+
+    Meeting.findOne({"assigned_id":req.params.meeting_id}).populate('live_comments').exec(function(err, meeting){
+      Users.findOne({"email":req.user.email}).exec(function(err,fullUser){
+        liveComment["author"] = fullUser;
+        liveComment["title"] = req.body["comment-title"];
+        liveComment["body"] = req.body["comment-body"];
+        liveComment["isTwitter"] = false;
+        liveComment["postedDate"] = Date.now();
+        // liveComment["linkedLiveComments"] = [];
+        // liveComment["linkedOpenComments"] = [];
+        // liveComment["linkedHashtag"] = "";
+        // liveComment["upvotes"] = [];
+        liveComment["meeting"] = meeting;
+        liveComment["showName"] = req.body["show-name"];
+
+        addLiveCommenttoDb(liveComment, meeting);
+
+        req.flash('success', {msg: "Success! Your comment was published."})
+        res.redirect('/meetings/live-meeting/'+req.params.meeting_id);
+      })
+    });
+  });
+}
+
+
+
+
+/**
+  Create a live comment
+  POST /meetings/create-live-subcomment/:meeting_id/:comment_id
+*/
+exports.createLiveSubComment = async (res, req) => {
+  console.log(req)
+  const User = req.user;
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    console.log(req.body);
+    console.log(req.params);
+    liveSubComment = {}
+
+    LiveComment.findOne({"_id":req.params.meeting_id}).exec(function(err, comment){
+      Users.findOne({"email":req.user.email}).exec(function(err,fullUser){
+
+
+        liveSubComment["author"] = fullUser;
+        liveSubComment["title"] = req.body[req.params.comment_id+"-subcomment-title"];
+        liveSubComment["body"] = req.body[req.params.comment_id+"-subcomment-body"];
+        liveSubComment["isTwitter"] = false;
+        liveSubComment["postedDate"] = Date.now();
+        liveSubComment["showName"] = req.body[req.params.comment_id+"-subcomment-show-name"];
+
+        addLiveSubCommenttoDb(liveSubComment, comment);
+
+        req.flash('success', {msg: "Success! Your comment was published."})
+        console.log("Getting up to here");
+        res.redirect(req.originalUrl)
+        // res.redirect('/meetings/live-meeting/'+req.params.meeting_id);
+      })
+    });
+  });
+}
+
+
+
+
+/**
   Render the full meeting information on a separate page
   GET /meetings/expanded-meeting/:assigned_id
 // */
@@ -188,7 +267,7 @@ exports.renderExpandedMeeting = async(res, req) => {
     console.log("resolved the promise");
     console.log(isCouncilor)
     console.log("RESULT:",isCouncilor.result)
-    Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate('live_comments').exec(function(err, matching_meeting) {
       if (err) {
         console.log("Error finding meeting with id: ", req.params.assigned_id);
       }
@@ -201,6 +280,87 @@ exports.renderExpandedMeeting = async(res, req) => {
         user: User,
         iscouncilor: isCouncilorBoolean
       });
+    })
+  });
+}
+
+/**
+  Render the full meeting information on a separate page
+  GET /meetings/live-meeting/:assigned_id
+// */
+exports.renderLiveMeeting = async(res, req) => {
+  const User = req.user;
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    Meeting.findOne({"assigned_id": req.params.assigned_id})
+      .populate({path: 'live_comments', populate: {path: 'author'}})
+      .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'author'}}})
+      .exec(function(err, matching_meeting) {
+        if (err) {
+          console.log("Error finding meeting with id: ", req.params.assigned_id);
+        }
+        if (!matching_meeting) {
+          console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
+        }
+        if (matching_meeting.is_live){
+          res.render('meetings/live-meeting', {
+            title: 'Live Meeting Information',
+            meeting: matching_meeting,
+            user: User,
+            iscouncilor: isCouncilorBoolean
+          });
+        }
+        else {
+          req.flash('warning', { msg: 'This meeting is not currently in progress.'});
+          res.render('meetings/expanded-meeting', {
+            title: 'Expanded Meeting Information',
+            meeting: matching_meeting,
+            user: User,
+            iscouncilor: isCouncilorBoolean
+          });
+        }
+      });
+  });
+}
+
+
+
+
+/**
+  Render the full meeting information on a separate page
+  GET /meetings/live-meeting/:assigned_id
+// */
+exports.renderOpenComment = async(res, req) => {
+  const User = req.user;
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    console.log("resolved the promise");
+    console.log(isCouncilor)
+    console.log("RESULT:",isCouncilor.result)
+    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate({path: 'live_comments', populate: {path: 'author'}}).exec(function(err, matching_meeting) {
+      if (err) {
+        console.log("Error finding meeting with id: ", req.params.assigned_id);
+      }
+      if (!matching_meeting) {
+        console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
+      }
+      if (matching_meeting.is_open_comment){
+        res.render('meetings/open-comment', {
+          title: 'Open Comment',
+          meeting: matching_meeting,
+          user: User,
+          iscouncilor: isCouncilorBoolean
+        });
+      }
+      else {
+         req.flash('warning', { msg: 'This meeting is not currently in progress.'});
+         res.render('meetings/expanded-meeting', {
+          title: 'Expanded Meeting Information',
+          meeting: matching_meeting,
+          user: User,
+          iscouncilor: isCouncilorBoolean
+        });
+      }
     })
   });
 }
@@ -345,8 +505,6 @@ exports.unfollowMeeting = (res, req) => {
 
 // HELPERS
 
-
-
 function prepareCalendarEvent(n){
   // TODO - Parse the time and date so that this is correct
   const event = {
@@ -384,6 +542,33 @@ function addMeetingtoDb(notice){
       })
     }
   })
+}
+
+function prepareLiveComment(comment){
+  comment["show-name"] = comment["show-name"] == "on";
+  return new LiveComment(comment);
+}
+
+function addLiveCommenttoDb(comment, meeting){
+  var comment = prepareLiveComment(comment);
+  comment.save(function (err) {
+    if (err) {
+      console.log("Error adding to new live comment database:",err,comment);
+    }
+  })
+  meeting.live_comments.push(comment);
+  meeting.save();
+}
+
+function addLiveSubCommenttoDb(liveSubComment, comment){
+  var newComment = prepareLiveComment(liveSubComment);
+  newComment.save(function (err) {
+    if (err) {
+      console.log("Error adding to new live comment database:",err,newComment);
+    }
+  })
+  comment.linkedLiveComments.push(newComment);
+  comment.save();
 }
 
 

@@ -7,12 +7,14 @@ block content
 
     if (meeting.is_live)
       button.btn.btn-outline-primary(type="button") 
-        i.fa.fa-circle.text-danger.blink
-        |  Enter Live Meeting
+        a(href='/meetings/live-meeting/'+meeting.assigned_id)
+          i.fa.fa-circle.text-danger.blink
+          |  Enter Live Meeting
     if (meeting.is_open_comment)
       button.btn.btn-outline-primary(type="button") 
-        i.fa.fa-circle.text-info.blink
-        |  Enter Open Comment
+        a(href='/meetings/open-comment/'+meeting.assigned_id)
+          i.fa.fa-circle.text-info.blink
+          |  Enter Open Comment
     if (meeting.is_live | meeting.is_open_comment)
       br
       br
