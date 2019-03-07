@@ -18,22 +18,25 @@ block content
       br
       br
 
-    div.metadata-header Connected Hashtags
-    for h in meeting.hashtags
-      a.hashtag(href="/") #{h}
+    if (meeting.hashtags.length != 0)
+      div.metadata-header Connected Hashtags
+      for h in meeting.hashtags
+        a.hashtag(href="https://twitter.com/search?q=" + h.substring(1) + "&src=typd") #{h}
 
     .row
       div.col-md-4.meeting-metadata
         div.metadata-header When
         div.bolditalic #{meeting.notice_time} on #{meeting.notice_date}
 
-        br
-        div Testimony Time: #{meeting.testimony_time}
+        if (meeting.testimony_time.trim() != "")
+          br
+          div Testimony Time: #{meeting.testimony_time}
       
       div.col-md-4.meeting-metadata
         div.metadata-header Where
         div #{meeting.location_name}
-        div #{meeting.location_room},
+        if (meeting.location_room.trim() != "")
+          div #{meeting.location_room},
         div #{meeting.location_street}
 
       div.col-md-4.meeting-toolbar
@@ -41,6 +44,10 @@ block content
           div.button-group
             i.fa.fa-circle.text-danger.blink
             span Currently Live
+        if (meeting.is_open_comment)
+          div.button-group
+            i.fa.fa-circle.text-info.blink
+            span Open Comment Period Active
         if (iscouncilor && user)
           a.button-group(href='/meetings/edit/'+meeting.assigned_id)
             i.fab.fa.fa-pencil-alt.fa-sm

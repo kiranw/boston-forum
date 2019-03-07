@@ -5,6 +5,14 @@ block content
       i.fa.fa-circle.text-info.blink
       span.underline-hover Notices with Open Comment
 
+
+    if (opencomments.length == 0)
+    div.generic-text Looks like there are no public notices with open comment periods active now - check out the 
+        a.underline-hover(href="/meetings/public-notices") Public Notices
+        | instead.
+        br
+        br
+
     main.main-area
     .centered
       section.row.cards

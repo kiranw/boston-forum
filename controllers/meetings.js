@@ -67,7 +67,7 @@ exports.getPublicNotices = async (req, res, next) => {
           return [];
         }
         res.render('meetings/public-notices', {
-          title: 'Public Notices API',
+          title: 'Public Notices',
           notices: found_notices,
           user: req.user,
           iscouncilor: isCouncilorBoolean

@@ -12958,7 +12958,8 @@ h1, h2, h3, h4, h5, h6 {
 .homepage-section {
   text-transform: none;
   font-family: "National-Regular";
-  margin-bottom: 10vh; }
+  margin-bottom: 8vh;
+  margin-top: 3vh; }
 
 .homepage-title {
   font-family: "National-Bold";
@@ -13014,12 +13015,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-content {
   color: black;
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 1.4em; }
 
-.card-content:hover, a > .card-content:hover {
-  color: black;
-  text-decoration: none; }
+a:hover {
+  text-decoration: none !important; }
+
+div.card-content:hover,
+a > .card-content:hover,
+a > .card-content > .card-dateplace:hover {
+  opacity: 0.9; }
 
 .card-content h2 {
   margin-top: 0;
@@ -13156,7 +13161,8 @@ input:checked + .slider:before {
   margin-bottom: 20px; }
 
 .generic-text {
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  font-family: "National-Regular-Italic"; }
 
 div.generic-text > a.underline-hover {
   color: #007bff;

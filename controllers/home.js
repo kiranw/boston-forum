@@ -25,7 +25,7 @@ exports.index = async (req, res) => {
             title: 'Home',
             notices: found_notices,
             user: User,
-            livenotices: livemeetings,
+            livemeetings: livemeetings,
             opencomments: opencomments,
             iscouncilor: isCouncilorBoolean
           });

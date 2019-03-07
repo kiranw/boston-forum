@@ -5,10 +5,17 @@ block content
       i.fa.fa-circle.text-danger.blink
       span.underline-hover Live Meetings
 
+    if (livemeetings.length == 0)
+      div.generic-text Looks like there are no meetings happening now - check out the 
+          a.underline-hover(href="/meetings/public-notices") Public Notices
+          | instead.
+          br
+          br
+
     main.main-area
     .centered
       section.row.cards
-        for n in livenotices
+        for n in livemeetings
           - var assigned_id = n.assigned_id
           - var testimony_time = n.testimony_time
           - var url = n.url

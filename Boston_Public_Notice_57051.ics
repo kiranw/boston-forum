@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:dccb2fae-9d2c-4fd0-a77e-3901c7ba7427
+UID:6fdc4c5a-8f4b-4d88-bf8c-d002dad6a0fb
 SUMMARY:Boston Public Library Trustees Governance and Development Committee
 	 meeting
-DTSTAMP:20190306T230000Z
+DTSTAMP:20190307T001800Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57051
 LOCATION:Central Library; ; 700 Boylston Street

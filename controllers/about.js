@@ -6,10 +6,13 @@ const nodemailer = require('nodemailer');
  */
 exports.getContact = (req, res) => {
   const unknownUser = !(req.user);
-
-  res.render('about', {
-    title: 'About',
-    unknownUser,
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    res.render('about', {
+      title: 'About',
+      unknownUser,
+      iscouncilor: isCouncilorBoolean
+    });
   });
 };
 
@@ -91,3 +94,23 @@ exports.postContact = (req, res) => {
       return res.redirect('/about');
     });
 };
+
+
+
+
+// Check if a user is a councilor
+async function checkCouncilorRole(res, user){      
+  if (!user){
+    return false;
+  }
+  emailString = user.email
+  var councilorPromise = () => {
+    return new Promise((resolve, reject) => {
+      Users.findOne({email: emailString}).exec(function(err, user){
+        console.log(user.roles.includes("councilor"));
+        return user.roles.includes("councilor");    
+      });
+    });
+  };
+  return councilorPromise;
+}

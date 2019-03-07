@@ -1,27 +1,2 @@
 extends ../layout
-block content
-
-  .homepage-section
-    h3.homepage-title
-      i.fa.fa-circle.text-danger.blink
-      span.underline-hover Live Meetings
-
-    main.main-area
-    .centered
-      section.row.cards
-        for n in livemeetings
-          - var assigned_id = n.assigned_id
-          - var testimony_time = n.testimony_time
-          - var url = n.url
-          - var title = n.title
-          - var location_name = n.location_name
-          - var location_room = n.location_room
-          - var location_street = n.location_street
-          - var canceled = n.canceled
-          - var notice_date = n.notice_date
-          - var notice_time = n.notice_time
-          - var field_drawer = n.field_drawer
-          - var notice_body = n.body
-          - var posted = n.posted
-          - var ics = n.ics
-          include notice
+include live-meetings-partial
