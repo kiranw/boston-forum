@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:eb49c964-93c5-47cc-9256-8157f9779210
+UID:b5f8b6c5-acf7-4666-82ab-e8e9dc3e21b2
 SUMMARY:Disability Commission Advisory Board meeting
-DTSTAMP:20190308T004100Z
+DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/55311
 LOCATION:Boston City Hall; Iannella Chambers, 5th Floor; 1 City Hall Square

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:3ef8d5a2-d3c2-42dd-b645-417b20b47838
+UID:4f8f68a0-368c-4e78-b9f7-e1ff4efd8554
 SUMMARY:Back Bay Architectural Commission
-DTSTAMP:20190308T004100Z
+DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
 DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
 URL:https://www.boston.gov/public-notices/56956

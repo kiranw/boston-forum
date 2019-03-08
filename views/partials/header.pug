@@ -1,7 +1,7 @@
 .navbar.navbar-light.fixed-top.navbar-expand-lg
   .container
     a.navbar-brand(href='/')
-      i.fas.fa-cube
+      img.navbar-logo(src="/img/logo.png")
       | Assembly
     button.navbar-toggler(type='button', data-toggle='collapse', data-target='.navbar-collapse')
       span.sr-only Toggle navigation
@@ -18,7 +18,7 @@
               i.fas.fa-plus-circle
               span New Notice
         li.nav-item(class=(title === 'Live Meetings') ? 'active' : undefined)
-          a.nav-link(href='/meetings/live-meetings') Live Meetings
+          a.nav-link(href='/meetings/live-meetings') Live Sessions
         li.nav-item(class=(title === 'Open Comments') ? 'active' : undefined)
           a.nav-link(href='/meetings/open-comments') Open Comment  
         li.nav-item(class=(title === 'Public Notices') ? 'active' : undefined)

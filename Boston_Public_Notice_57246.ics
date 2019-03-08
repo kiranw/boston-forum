@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:dc06704c-5107-4e48-9e14-17d86c9439fb
+UID:ab441f3a-c098-41c2-81a2-b6441614a5ec
 SUMMARY:Boston Public Schools Superintendent Search Committee meeting
-DTSTAMP:20190308T004100Z
+DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57246
 LOCATION:Bruce C. Bolling Municipal Building; School Committte Chamber, 2nd

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:6a0ef64f-fb0a-4d49-a95e-6bc83e6dc6f0
+UID:a5fe98df-a937-4f3d-94be-edec0c3467d7
 SUMMARY:Non-Hearing Common Victualler and Other Transactions
-DTSTAMP:20190308T004100Z
+DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57016
 LOCATION:William F. Arrigal, Jr. Library; 809A; 1 City Hall Square

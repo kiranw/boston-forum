@@ -12955,6 +12955,11 @@ li.divider {
 h1, h2, h3, h4, h5, h6 {
   font-family: "National-Bold"; }
 
+.navbar-logo {
+  height: 30px;
+  width: auto;
+  margin-right: 10px; }
+
 .homepage-section {
   text-transform: none;
   font-family: "National-Regular";
@@ -13140,10 +13145,10 @@ input:checked + .slider:before {
   width: 80%;
   padding-top: 50px;
   padding-bottom: 30px;
-  margin-top: -80px; }
+  margin-top: -70px; }
 
 .spacer {
-  height: 100px; }
+  height: 120px; }
 
 .meeting-toolbar {
   border-left: 2px solid #f2f2f2;
