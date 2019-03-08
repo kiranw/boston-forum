@@ -8,11 +8,6 @@ block content
           i.fa.fa-circle.text-danger.blink
           span.underline-hover #{meeting.title}
 
-        if (meeting.hashtags.length != 0)
-          div.metadata-header Connected Hashtags
-          for h in meeting.hashtags
-            a.hashtag(href="https://twitter.com/search?q=" + h.substring(1) + "&src=typd") #{h}
-
         button.btn.btn-outline-primary(type="button") 
           a(href="/meetings/expanded-meeting/"+ meeting.assigned_id)
             |  ← Back to Full Meeting Information
@@ -23,6 +18,12 @@ block content
 
         if (meeting.testimony_time.trim() != "")
           div Testimony Time: #{meeting.testimony_time}
+
+        if (meeting.hashtags.length != 0)
+          br
+          div.metadata-header Connected Hashtags
+          for h in meeting.hashtags
+            a.hashtag.small-text(href="https://twitter.com/search?q=" + h.substring(1) + "&src=typd") #{h}
       
       .col-md-3.meeting-metadata
         div.metadata-header Where
@@ -80,4 +81,6 @@ block content
       - linkedLiveComments = comment.linkedLiveComments
       - comment_id = comment._id
       include comment
+
+  .spacer
 

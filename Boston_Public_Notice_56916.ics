@@ -5,13 +5,13 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:cdd61e9d-643f-441b-9ee6-05bb981d9bf2
-SUMMARY:Boston Landmarks Commission Hearing 03/12/2019
+UID:47fa8205-5310-43cf-b4fa-c9b095f12eaa
+SUMMARY:City Council Committee on Government Operations Hearing on Docket #
+	0315
 DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
-DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
-URL:https://www.boston.gov/public-notices/56736
-LOCATION:BPDA Conference Room; 9th Floor / Room 900; 1 City Hall Plaza
+URL:https://www.boston.gov/public-notices/56916
+LOCATION:Iannella Chamber; Fifth floor; 1 City Hall Square
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

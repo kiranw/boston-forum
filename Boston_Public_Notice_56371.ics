@@ -5,13 +5,12 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:cdd61e9d-643f-441b-9ee6-05bb981d9bf2
-SUMMARY:Boston Landmarks Commission Hearing 03/12/2019
+UID:8f32cac3-e1a2-43be-9cfc-492e4934dc62
+SUMMARY:Community meeting for proposed Mattapan cannabis establishment
 DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
-DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
-URL:https://www.boston.gov/public-notices/56736
-LOCATION:BPDA Conference Room; 9th Floor / Room 900; 1 City Hall Plaza
+URL:https://www.boston.gov/public-notices/56371
+LOCATION:Mildred Avenue Community Center; ; 5 Mildred Avenue
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

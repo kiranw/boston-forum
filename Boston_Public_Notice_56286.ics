@@ -5,7 +5,7 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:fabd4402-0d86-422b-81fe-4297b7912ca3
+UID:0ab3f26f-d049-43a6-b06b-a2017d7818cd
 SUMMARY:City Council Committee on Public Safety and Criminal Justice hearin
 	g on Docket #0143
 DTSTAMP:20190308T021700Z

@@ -297,14 +297,14 @@ exports.renderLiveMeeting = async(res, req) => {
       .populate({path: 'live_comments', populate: {path: 'author'}})
       .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'author'}}})
       .exec(function(err, matching_meeting) {
-        test = matching_meeting.live_comments.map(function(c){
-          c["is_author"] = c.author.email == req.user.email;
-          c["is_upvoted"] = c.upvotes.some(function(e){
-            e.email == req.user.email;
-          });
-          return c;
-        })
-        console.log(test);
+        // test = matching_meeting.live_comments.map(function(c){
+        //   // c["is_author"] = req.user ? c.author.email == req.user.email : false;
+        //   c["is_upvoted"] = c.upvotes.some(function(e){
+        //     e.email == req.user.email;
+        //   });
+        //   return c;
+        // })
+        // console.log(test);
 
         // console.log(matching_meeting.live_comments[0]);
         if (err) {

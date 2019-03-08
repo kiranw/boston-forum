@@ -13144,11 +13144,11 @@ input:checked + .slider:before {
   z-index: 5;
   width: 80%;
   padding-top: 50px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   margin-top: -70px; }
 
 .spacer {
-  height: 120px; }
+  height: 130px; }
 
 .meeting-toolbar {
   border-left: 2px solid #f2f2f2;
@@ -13216,6 +13216,9 @@ input:checked + .slider:before {
 .generic-text {
   font-size: 1.5em;
   font-family: "National-Regular-Italic"; }
+
+.small-text {
+  font-size: 0.8em; }
 
 div.generic-text > a.underline-hover {
   color: #007bff;

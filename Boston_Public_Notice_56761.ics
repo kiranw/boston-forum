@@ -5,13 +5,12 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:cdd61e9d-643f-441b-9ee6-05bb981d9bf2
-SUMMARY:Boston Landmarks Commission Hearing 03/12/2019
+UID:75c25a2c-8d3c-4609-9199-3415a082c31f
+SUMMARY:Licensed Premise Violations
 DTSTAMP:20190308T021700Z
 DTSTART:20190330T063000Z
-DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
-URL:https://www.boston.gov/public-notices/56736
-LOCATION:BPDA Conference Room; 9th Floor / Room 900; 1 City Hall Plaza
+URL:https://www.boston.gov/public-notices/56761
+LOCATION:Boston City Hall; Room 809A; 1 City Hall Square
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M
