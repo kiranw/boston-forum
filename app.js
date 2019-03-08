@@ -193,7 +193,7 @@ app.post('/meetings/create', meetingsController.create)
 app.post('/meetings/create-live-comment/:meeting_id', function(req,res) {
   meetingsController.createLiveComment(res,req);
 })
-app.post('/meetings/create-live-subcomment/:meeting_id/:comment_id', function(req,res) {
+app.post('/meetings/create-live-subcomment/:meetingId/:commentId', function(req,res) {
   meetingsController.createLiveSubcomment(res,req);
 })
 app.get('/meetings/expanded-meeting/:assigned_id', function(req, res) {
@@ -217,6 +217,10 @@ app.get('/meetings/follow-meeting/:assigned_id', function(req, res) {
 app.get('/meetings/unfollow-meeting/:assigned_id', function(req, res) {
   meetingsController.unfollowMeeting(res, req);
 });
+app.get('/meetings/upvote/:comment_id/:meeting_id', function(req, res) {
+  meetingsController.upvote(res, req);
+})
+
 // app.post('/meetings/edit', meetingsController.submit_edit)
 
 /**

@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const User = require('../models/User')
 
 /**
  * GET /contact
@@ -99,18 +100,25 @@ exports.postContact = (req, res) => {
 
 
 // Check if a user is a councilor
-async function checkCouncilorRole(res, user){      
+function checkCouncilorRole(res, user){   
   if (!user){
-    return false;
+    return new Promise((resolve,reject) => {
+      resolve(false);
+    }); 
   }
-  emailString = user.email
-  var councilorPromise = () => {
+  else {
+    emailString = user.email
     return new Promise((resolve, reject) => {
-      Users.findOne({email: emailString}).exec(function(err, user){
-        console.log(user.roles.includes("councilor"));
-        return user.roles.includes("councilor");    
+      User.findOne({email: emailString}).exec(function(err, user){
+        if (err) {
+          console.log("ERROR IN CHECKING COUNCILOR")
+          resolve(false);
+        }
+        else {
+          console.log("IS A COUNCILOR: ",user.roles.includes("councilor"));
+          resolve(user.roles.includes("councilor"));
+        }
       });
     });
-  };
-  return councilorPromise;
+  }
 }

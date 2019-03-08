@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:23389174-4e1f-4519-b51f-4f31b07028ab
+UID:a2be7818-50cf-4561-8f89-a7a67115bd5c
 SUMMARY:Metro Boston Homeland Security Region US&R Working Group meeting
-DTSTAMP:20190307T185800Z
+DTSTAMP:20190308T004100Z
 DTSTART:20190330T063000Z
 DESCRIPTION:If you wish to attend and require special accommodations\, plea
 	se contact Alicia Woodberry at 617-635-1400.\n

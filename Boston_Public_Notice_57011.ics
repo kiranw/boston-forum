@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:0bb95c7a-a4a9-41d5-9fb8-5abb51d21554
+UID:dd1de045-9e13-4507-b5d0-5497b38c0d31
 SUMMARY:District Community Engagement Advisory Council meeting
-DTSTAMP:20190307T185800Z
+DTSTAMP:20190308T004100Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/57011
 LOCATION:Bruce C. Bolling Municipal Building; 6th Floor; 2300 Washington St

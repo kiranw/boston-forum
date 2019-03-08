@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:09ea333d-8437-450c-8afc-294b0f53746c
+UID:6ef16d47-9ba1-44f4-9d5c-94497ea94ec3
 SUMMARY:Zoning Board of Appeal Hearing
-DTSTAMP:20190307T185800Z
+DTSTAMP:20190308T004100Z
 DTSTART:20190330T063000Z
 DESCRIPTION:The Boston Zoning Code has information on the Articles and defi
 	nitions of terms in this agenda.\n

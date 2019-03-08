@@ -17,8 +17,8 @@ exports.index = async (req, res) => {
       return [];
     }
 
-    isCouncilor = checkCouncilorRole(res, req.user);
-    Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    councilorPromise = checkCouncilorRole(res, req.user)
+    Promise.resolve(councilorPromise).then(function(isCouncilorBoolean){
       livemeetings = Meeting.find({"is_live":true}).exec(function(err,livemeetings) {
         opencomments = Meeting.find({"is_open_comment":true}).exec(function(err,opencomments) {
           res.render('home', {
@@ -38,18 +38,25 @@ exports.index = async (req, res) => {
 
 
 // Check if a user is a councilor
-async function checkCouncilorRole(res, user){      
+function checkCouncilorRole(res, user){   
   if (!user){
-    return false;
+    return new Promise((resolve,reject) => {
+      resolve(false);
+    }); 
   }
-  emailString = user.email
-  var councilorPromise = () => {
+  else {
+    emailString = user.email
     return new Promise((resolve, reject) => {
-      Users.findOne({email: emailString}).exec(function(err, user){
-        console.log(user.roles.includes("councilor"));
-        return user.roles.includes("councilor");    
+      User.findOne({email: emailString}).exec(function(err, user){
+        if (err) {
+          console.log("ERROR IN CHECKING COUNCILOR")
+          resolve(false);
+        }
+        else {
+          console.log("IS A COUNCILOR: ",user.roles.includes("councilor"));
+          resolve(user.roles.includes("councilor"));
+        }
       });
     });
-  };
-  return councilorPromise;
+  }
 }

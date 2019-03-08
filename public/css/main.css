@@ -13236,7 +13236,9 @@ button.btn.btn-outline-primary > a:hover {
 
 .comment-img {
   border-radius: 100px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  width: 80px;
+  height: 80px; }
 
 .comment-img, .comment-name {
   display: block;
@@ -13348,3 +13350,12 @@ textarea.subcomment-body:focus {
 
 .new-comment-card-body {
   padding-bottom: 5px; }
+
+.comment-total-upvotes {
+  font-family: "National-Bold";
+  color: white;
+  background-color: #b4e7f8;
+  padding: 8px 12px;
+  border-radius: 50px;
+  margin-top: -20px;
+  margin-right: -20px; }
