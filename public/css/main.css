@@ -13133,6 +13133,18 @@ input:checked + .slider:before {
   margin-top: 50px;
   margin-bottom: 50px; }
 
+.live-meeting-header {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 5;
+  width: 80%;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  margin-top: -80px; }
+
+.spacer {
+  height: 100px; }
+
 .meeting-toolbar {
   border-left: 2px solid #f2f2f2;
   padding-left: 20px; }
