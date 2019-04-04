@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:6949b56a-b3db-4657-9f83-db43e8089408
+SUMMARY:Community meeting for proposed Back Bay marijuana establishment
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/58126
+LOCATION:Boston Public Library - Copley; ; 700 Boylston Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

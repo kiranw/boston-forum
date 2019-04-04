@@ -13379,3 +13379,27 @@ textarea.subcomment-body:focus {
   border-radius: 50px;
   margin-top: -20px;
   margin-right: -20px; }
+
+a.tag {
+  width: 150px;
+  height: 30px;
+  position: relative;
+  background: #FF6374;
+  color: white;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  float: left;
+  padding-left: 15px;
+  font-size: 1.3em;
+  border-radius: 0px 5px 5px 0px; }
+
+a.tag:before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-right: 15px solid #FF6374;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent; }

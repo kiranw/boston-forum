@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:80f9e81f-b05a-4d3d-86b0-70e13d62ada5
+SUMMARY:City Council meeting
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+DESCRIPTION:All meetings are open to the public. You can also watch meeting
+	s on Comcast channel 8\, RCN channel 82\, Verizon channel 1964\, and onlin
+	e at Boston.gov.\nPLEASE NOTE\nThe schedule for meetings is subject to cha
+	nge at the call of the City Council president.\n
+URL:https://www.boston.gov/public-notices/53511
+LOCATION:Christopher A. Iannella Chamber; Fifth Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

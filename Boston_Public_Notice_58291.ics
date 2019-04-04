@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:ef091dab-ce2b-4a2d-9772-02083beaee1d
+SUMMARY:Boston Public Schools Superintendent Search Committee meeting
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/58291
+LOCATION:Boston Public Library at Copley McKim Building Lobby; ; 230 Dartmo
+	uth Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

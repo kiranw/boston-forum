@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  h1 Issues and Notices by Topic
+  p.lead Want to find out whats going on by topics you're interested in?
+  hr
+  form.form-inline.search-bar.active-cyan-4
+    i.fas.fa-search(aria-hidden="true")
+    input.form-control.form-control-sm.ml-3.w-75(type="text",placeholder="Search",aria-label="Search")
+  br
+  br
+
+
+  for t in tags
+    a(href='/').tag #{t}
+
+  

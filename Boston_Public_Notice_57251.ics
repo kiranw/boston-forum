@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:15ce6c8b-8586-4181-af85-cce14c4a2599
+SUMMARY:City Council Committee on Government Operations Hearing on Docket #
+	0310
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/57251
+LOCATION:Ianella Chamber; Fifth floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

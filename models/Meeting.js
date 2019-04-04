@@ -17,8 +17,13 @@ const meetingSchema = new mongoose.Schema({
   notice_body: String,
   posted: String,
   ics: String,
+
+  is_agenda_setting: { type: Boolean, default: false },
+  is_agenda_set: { type: Boolean, default: false },
   is_live: { type: Boolean, default: false },
   is_open_comment: { type: Boolean, default: false },
+  is_archived: { type: Boolean, default: false },
+  
   agenda_path: String,
   meeting_minutes_path: String,
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},

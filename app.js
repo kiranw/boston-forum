@@ -35,6 +35,7 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const aboutController = require('./controllers/about');
 const meetingsController = require('./controllers/meetings');
+const tagsController = require('./controllers/tags');
 
 /**
  * API keys and Passport configuration.
@@ -220,9 +221,12 @@ app.get('/meetings/unfollow-meeting/:assigned_id', function(req, res) {
 app.get('/meetings/upvote/:comment_id/:meeting_id', function(req, res) {
   meetingsController.upvote(res, req);
 })
-
 // app.post('/meetings/edit', meetingsController.submit_edit)
 
+
+
+
+app.get('/tags/all-tags/', tagsController.getAllTags)
 /**
  * OAuth authentication routes. (Sign in)
  */

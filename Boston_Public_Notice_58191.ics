@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:0779c201-636f-4824-bc94-3e2d4298a215
+SUMMARY:South End Landmark District Commission
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+DESCRIPTION:Please use Congress Street as an entrance and exit after 5:30 p
+	.m.\n
+URL:https://www.boston.gov/public-notices/58191
+LOCATION:Boston City Hall; 5th Floor, Piemonte Room; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

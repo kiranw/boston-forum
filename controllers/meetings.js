@@ -63,7 +63,8 @@ exports.getPublicNotices = async (req, res, next) => {
     user = req.user;
     isCouncilor = checkCouncilorRole(res, req.user);
     Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-      Meeting.find({"canceled":false}, function(err, found_notices) {
+      Meeting.find({"canceled":false, "is_archived":false}, function(err, found_notices) {
+        archiveOldMeetings(found_notices);
         if (err) {
           console.log("Error querying notices: ",err)
           return [];
@@ -581,6 +582,13 @@ function addMeetingtoDb(notice){
       })
     }
   })
+}
+
+function archiveOldMeeting(found_notices){
+  // date = 
+  // for (notice in found_notices){
+
+  // }
 }
 
 function prepareLiveComment(comment){

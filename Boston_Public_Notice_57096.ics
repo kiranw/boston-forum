@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:6e84461a-a6ef-457c-a3a9-4f7b63a69902
+SUMMARY:City On a Hill Development Committee meeting
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+DESCRIPTION:The call in number is 800-882-3610 and the passcode is 2995404.
+	\n
+URL:https://www.boston.gov/public-notices/57096
+LOCATION:City On A Hill; ; 15 Allerton Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

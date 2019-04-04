@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:65941f56-191d-42fd-b6ed-a3e1052aface
+SUMMARY:City Council Committee on Ways and Means Hearing on Dockets #0501\,
+	 #0502
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/58271
+LOCATION:Iannella Chamber; Fifth Floor; Boston City Hall
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

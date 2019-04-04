@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:0e976ebe-9f7d-4d2a-8f50-2ee30986beed
+SUMMARY:Trustees of Charitable Donations for the Inhabitants of Boston meet
+	ing
+DTSTAMP:20190328T175600Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/58216
+LOCATION:Boston City Hall; BPDA Board Room #900; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR
