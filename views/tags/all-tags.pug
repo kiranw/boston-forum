@@ -1,17 +1,48 @@
 extends ../layout
 
 block content
+  if (iscouncilor)
+    button.btn.btn-outline-primary(type="button", data-toggle='modal',data-target='#new-topic').new-topic.float-margin-right
+        i.fa.fa-plus-circle
+        |  New Topic
+  button.btn.btn-outline-primary.float-margin-right(type="button")#follow-topic-button
+    a(href="#")#follow-topic
+      i.fa.fa-plus-circle
+      |  Follow 
+      span#topic-name Placeholder
   h1 Issues and Notices by Topic
   p.lead Want to find out whats going on by topics you're interested in?
+
+  #new-topic.modal.fade(tabindex='-1', role='dialog',aria-labelledby='new-topic-label',aria-hidden='true')
+    .modal-dialog(role='document')
+      form(method='POST', action="/tags/create")
+        input(type='hidden', name='_csrf', value=_csrf)
+        .modal-content
+          .modal-header
+            h5#new-topic-label.modal-title Create a New Topic
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .form-group.row
+              .col-md-9
+                  input.form-control(type='text', name='new-topic-name', id='new-topic-name', autocomplete='new-topic-name', placeholder="ie. Affordable Housing")                                
+              .col-md-3
+                button.btn.btn-primary(type='submit')
+                  i.far.fa-envelope.fa-sm
+                  | Submit
+
   hr
-  form.form-inline.search-bar.active-cyan-4
-    i.fas.fa-search(aria-hidden="true")
-    input.form-control.form-control-sm.ml-3.w-75(type="text",placeholder="Search",aria-label="Search")
-  br
-  br
-
-
-  for t in tags
-    a(href='/').tag #{t}
-
-  
+  .row
+    .col-md-4
+      form.form-inline.search-bar.active-cyan-4
+        i.fas.fa-search(aria-hidden="true")
+        input.form-control.form-control-sm.ml-3.w-75(type="text",placeholder="Search",aria-label="Search")#all-tag-search
+      br
+      br
+      for t in tags
+        a(href="#",onClick="loadNoticesForTag('" + t.title + "'" + ", 'tag_" + t.id + "')",id="tag_"+t.id).tag
+          div.tag-circle
+          span #{t.title}
+    .col-md-8.border-left.half-page
+        div#tag-results
+          div Choose a topic tag to see public notices related to it.

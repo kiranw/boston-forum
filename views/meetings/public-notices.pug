@@ -28,4 +28,46 @@ block content
           - var notice_body = n.body
           - var posted = n.posted
           - var ics = n.ics
-          include notice
+          - var is_archived = n.is_archived
+          - var topics = n.topics
+          if (is_archived)
+            include notice
+
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    h3.homepage-title
+      span.underline-hover Archived Public Notices
+
+    main.main-area
+    .centered
+      section.row.cards
+        for n in notices
+          - var assigned_id = n.assigned_id
+          - var testimony_time = n.testimony_time
+          - var url = n.url
+          - var title = n.title
+          - var location_name = n.location_name
+          - var location_room = n.location_room
+          - var location_street = n.location_street
+          - var canceled = n.canceled
+          - var notice_date = n.notice_date
+          - var notice_time = n.notice_time
+          - var field_drawer = n.field_drawer
+          - var notice_body = n.body
+          - var posted = n.posted
+          - var ics = n.ics
+          - var is_archived = n.is_archived
+          - var topics = n.topics
+          if (!is_archived)
+            include notice
+

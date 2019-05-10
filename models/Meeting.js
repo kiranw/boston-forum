@@ -29,7 +29,8 @@ const meetingSchema = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   live_comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LiveComment' }],
   open_comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'OpenComment' }],
-  hashtags: [{type: String}]
+  hashtags: [{type: String}],
+  topics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
   });
 
 

@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:0c703b55-f269-4784-908c-6c8fd6bb482d
+SUMMARY:Aberdeen Architectural Conservation District Commission
+DTSTAMP:20190510T054000Z
+DTSTART:20190330T063000Z
+DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
+URL:https://www.boston.gov/public-notices/59901
+LOCATION:Boston City Hall; Room 801, Eighth Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

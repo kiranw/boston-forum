@@ -8,18 +8,37 @@ html
     meta(name='csrf-token', content=_csrf)
     title #{title} - Assembly
     link(rel='shortcut icon', href='/favicon.ico')
+    link(rel='stylesheet', href='/css/jquery-ui.min.css')
     link(rel='stylesheet', href='/css/main.css')
 
   body
-    include partials/header
+    .row
+      .col-sm-1#workspace-bar
+        #workspaces
+          a(href="/workspace/new-workspace").workspace
+            i.fas.fa-plus#new-workspace
+            .workspace-label New/Join
+          a(href="/workspace/change-workspace/public")#workspace-public.workspace-active.workspace
+            img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Boston.svg/1200px-Flag_of_Boston.svg.png")
+            .workspace-label Boston
+          if (user && user.workspaces)
+            for ws in user.workspaces
+              a(href="/workspace/change-workspace/"+ws.id, id="#workspace-"+ws.name).workspace
+                img(src=ws.imgpath)
+                .workspace-label #{ws.name}
+      .col-sm-1
+      .col-sm-10
+        include partials/header
+        br
 
-    .container
-      include partials/flash
-      block content
+        .container
+          include partials/flash
+          block content
 
-    include partials/footer
+        include partials/footer
 
     script(src='/js/lib/jquery.min.js')
+    script(src='/js/jquery-ui.min.js')
     script(src='/js/lib/popper.min.js')
     script(src='/js/lib/bootstrap.min.js')
     script(src='/js/main.js')

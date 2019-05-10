@@ -6,14 +6,23 @@ const Meeting = require('../models/Meeting');
 const Users = require('../models/User');
 const LiveComment = require('../models/LiveComment');
 const OpenComment = require('../models/OpenComment');
+const Tag = require('../models/Tag');
+
+const path = require("path");
+const publicPath = path.resolve(__dirname, "../public"); 
 
 
 /**
- * GET /meetings/download-ics/:event
+ * GET /meetings/download-ics/:eventId
   Download calendar file for a public notice event
  */
 exports.downloadIcs = (res, params) => {
-  res.download(params.event);
+  eventId = params.event;
+  console.log(eventId);
+  Meeting.findOne({assigned_id: eventId}).exec(function(err,result) {
+    console.log("public path: ",publicPath);
+    res.download(prepareIcs(result,eventId));
+  });
 };
 
 
@@ -23,9 +32,13 @@ exports.prepareIcs = (event, eventId) =>{
         console.log(error)
         return;
       }
-      writeFileSync('Boston_Public_Notice_'+eventId+'.ics', value);
+      // writeFileSync('Boston_Public_Notice_'+eventId+'.ics', value);
+      writeFileSync(path.join(publicPath,"calendar-exports",'Boston_Public_Notice_'+eventId+'.ics'), value);
+      ;
   })
-  return 'Boston_Public_Notice_'+eventId+'.ics';
+  // return 'Boston_Public_Notice_'+eventId+'.ics';
+  console.log("full path:",path.join(publicPath,"calendar-exports",'Boston_Public_Notice_'+eventId+'.ics'))
+  return path.join(publicPath,"calendar-exports",'Boston_Public_Notice_'+eventId+'.ics');
 }
 
 
@@ -56,14 +69,18 @@ exports.getPublicNotices = async (req, res, next) => {
       n["hashtags"] = ["#assembly"+n["assigned_id"]];
       delete n["id"];
 
-      addMeetingtoDb(n);
-      return n;
+      preparedMeeting = prepareMeetingObject(n);
+      Promise.resolve(preparedMeeting).then(function(preparedMeetingResult){
+        addMeetingtoDb(preparedMeetingResult);
+        return n;
+      });
     }); 
 
     user = req.user;
     isCouncilor = checkCouncilorRole(res, req.user);
     Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-      Meeting.find({"canceled":false, "is_archived":false}, function(err, found_notices) {
+      Meeting.find({"canceled":false}).populate("topics").exec(function(err, found_notices) {
+        console.log(found_notices);
         archiveOldMeetings(found_notices);
         if (err) {
           console.log("Error querying notices: ",err)
@@ -89,7 +106,7 @@ exports.getOpenComments = async (req, res, next) => {
   user = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.find({is_open_comment:true}).exec(function(err, meetings) {
+    Meeting.find({is_open_comment:true}).populate("topics").exec(function(err, meetings) {
       res.render('meetings/open-comments', {
           title: 'Open Comments',
           opencomments: meetings,
@@ -110,7 +127,7 @@ exports.getLiveMeetings = async (req, res, next) => {
   user = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.find({is_live:true}).exec(function(err, meetings) {
+    Meeting.find({is_live:true}).populate("topics").exec(function(err, meetings) {
       res.render('meetings/live-meetings', {
         title: 'Live Meetings',
         livemeetings: meetings,
@@ -171,12 +188,14 @@ exports.create = async (req, res, next) => {
     validated_meeting["owner"] = User;
     validated_meeting["ics"] = prepareIcs(prepareCalendarEvent(validated_meeting), validated_meeting["assigned_id"]);
     validated_meeting["hashtags"] = req.body["meeting-hashtags"].split(",") + ["#assembly"+validated_meeting["assigned_id"]];
+    validated_meeting["topics"] = req.body["meeting-topics"].split(",");
 
-    meeting = prepareMeetingObject(validated_meeting);
-    addMeetingtoDb(meeting);
-
-    req.flash('success', { msg: "Success! Here's the meeting you just created."});
-    res.redirect('/meetings/expanded-meeting/'+validated_meeting["assigned_id"]);
+    preparedMeeting = prepareMeetingObject(validated_meeting);
+    Promise.resolve(preparedMeeting).then(function(preparedMeetingResult){
+      addMeetingtoDb(preparedMeetingResult);
+      req.flash('success', { msg: "Success! Here's the meeting you just created."});
+      res.redirect('/meetings/expanded-meeting/'+validated_meeting["assigned_id"]);
+    })
   });
 }
 
@@ -189,8 +208,6 @@ exports.createLiveComment = async (res, req) => {
   const User = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    console.log(req.body);
-    console.log(req.params);
     liveComment = {}
 
     Meeting.findOne({"assigned_id":req.params.meeting_id}).populate('live_comments').exec(function(err, meeting){
@@ -234,9 +251,6 @@ exports.createLiveSubcomment = async (res, req) => {
     LiveComment.findOne({"_id":commentId}).exec(function(err, comment){
       Users.findOne({"email":req.user.email}).exec(function(err,fullUser){
 
-
-        console.log("FOUND COMMENT:",comment);
-        console.log("FOUND USER:",fullUser);
         liveSubComment["author"] = fullUser;
         liveSubComment["title"] = req.body[commentId+"-subcomment-title"];
         liveSubComment["body"] = req.body[commentId+"-subcomment-body"];
@@ -247,7 +261,6 @@ exports.createLiveSubcomment = async (res, req) => {
         addLiveSubCommenttoDb(liveSubComment, comment);
 
         req.flash('success', {msg: "Success! Your comment was published."})
-        console.log("Getting up to here");
         res.redirect('/meetings/live-meeting/'+req.params.meetingId);
       })
     });
@@ -265,10 +278,7 @@ exports.renderExpandedMeeting = async(res, req) => {
   const User = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    console.log("resolved the promise");
-    console.log(isCouncilor)
-    console.log("RESULT:",isCouncilor.result)
-    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate('live_comments').exec(function(err, matching_meeting) {
+    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate('live_comments').populate("topics").exec(function(err, matching_meeting) {
       if (err) {
         console.log("Error finding meeting with id: ", req.params.assigned_id);
       }
@@ -294,6 +304,7 @@ exports.renderLiveMeeting = async(res, req) => {
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
     Meeting.findOne({"assigned_id": req.params.assigned_id})
+      .populate("topics")
       .populate({path: 'upvotes'})
       .populate({path: 'live_comments', populate: {path: 'author'}})
       .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'author'}}})
@@ -377,7 +388,7 @@ exports.renderOpenComment = async(res, req) => {
     console.log("resolved the promise");
     console.log(isCouncilor)
     console.log("RESULT:",isCouncilor.result)
-    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate({path: 'live_comments', populate: {path: 'author'}}).exec(function(err, matching_meeting) {
+    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate("topics").populate({path: 'live_comments', populate: {path: 'author'}}).exec(function(err, matching_meeting) {
       if (err) {
         console.log("Error finding meeting with id: ", req.params.assigned_id);
       }
@@ -415,7 +426,7 @@ exports.edit = async (res, req) => {
   const User = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.findOne({"assigned_id": req.params.assigned_id}, function(err, matching_meeting) {
+    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate("topics").exec(function(err, matching_meeting) {
       if (err) {
         console.log("Error finding meeting with id: ", req.params.assigned_id);
       }
@@ -538,6 +549,35 @@ exports.unfollowMeeting = (res, req) => {
 }
 
 
+/**
+  POST /meetings/add-tag/:meeting_id
+  Add a tag to a meeting
+*/
+exports.addTag = (res, req) => {
+  assigned_id = req.params["meeting_id"];
+  Meeting.findOne({"assigned_id": assigned_id}).populate("topics").exec(function (err, meeting) {
+    if (err) {
+      console.log("Error subscribing to meeting with id: ", assigned_id, "with Error:",err)
+    }
+    topic = req.body[assigned_id+"new-topic"];
+    console.log("TOPIC FROM BOD==",topic)
+    Tag.findOne({"title":topic}).populate("linkedNotices").exec(function (err, tag){
+      tag.linkedNotices.pushIfNotExist(meeting, function(e){
+        if (e && meeting && e.assigned_id && meeting.assigned_id) {
+          return e.assigned_id === meeting.assigned_id;  
+        }
+        return false;
+      });
+      tag.save();
+      meeting.topics.pushIfNotExist(tag, function(e){
+        e.title === tag.title;
+      });
+      meeting.save();
+      res.redirect('/meetings/public-notices');
+    });
+  });
+}
+
 
 
 
@@ -563,32 +603,56 @@ function prepareCalendarEvent(n){
 
 
 function prepareMeetingObject(notice){
-  return new Meeting(notice);
+  return new Promise((resolve, reject) => {
+      Tag.find({"title": { $in: notice.topics } }).exec(function(err,result){  
+        notice["topics"] = result;
+        resolve(new Meeting(notice));
+      });
+  });
+}
+
+function addMeetingToTag(notice,tag){
+  console.log("NOTICE==",notice);
+  tag["linkedNotices"].push(notice);
+  console.log("TAG NEW MEETING====",tag);
+  tag.save();
 }
 
 
 function addMeetingtoDb(notice){
-  var meeting = prepareMeetingObject(notice);
-
   Meeting.findOne({"assigned_id": notice.assigned_id}, function(err, matching_meeting) {
     if (err) {
       console.log("Error finding meeting with id: ",notice.assigned_id);
     }
     if (!matching_meeting){
-      meeting.save(function (err) {
+      notice.save(function (err) {
         if (err) {
           console.log("Error adding to database:",err,notice);
         }
+        // notice.topics.forEach( function(tag) {
+        //   addMeetingToTag(notice, tag);
+        // });
       })
     }
   })
 }
 
-function archiveOldMeeting(found_notices){
-  // date = 
-  // for (notice in found_notices){
-
-  // }
+function archiveOldMeetings(found_notices){
+  date = new Date();
+  found_notices.forEach(function(notice){
+    noticeDate = new Date(Date.parse(notice.notice_date))
+    if (noticeDate > date) {
+      console.log("found an old notice",notice.notice_date);
+      Meeting.findOne({"assigned_id": notice.assigned_id}, function(err, matching_meeting) {
+        matching_meeting["is_archived"] = true;
+        matching_meeting.save(function (err) {
+          if (err) {
+            console.log("Error archiving old meeting: ",err);
+          }
+        });  
+      });
+    }
+  });
 }
 
 function prepareLiveComment(comment){
@@ -620,14 +684,18 @@ function addLiveSubCommenttoDb(liveSubComment, comment){
 
 
 function prepareIcs(event, eventId){
+  value = prepareCalendarEvent(event);
+  console.log("value:",value);
   ics.createEvent(event, (error, value) => {
       if (error) {
         console.log(error)
         return;
       }
-      writeFileSync('Boston_Public_Notice_'+eventId+'.ics', value);
+      // writeFileSync('Boston_Public_Notice_'+eventId+'.ics', value);
+      writeFileSync(path.join(publicPath,"calendar-exports",'Boston_Public_Notice_'+eventId+'.ics'), value);
   })
-  return 'Boston_Public_Notice_'+eventId+'.ics';
+  // return 'Boston_Public_Notice_'+eventId+'.ics';
+  return path.join(publicPath,"calendar-exports",'Boston_Public_Notice_'+eventId+'.ics');
 }
 
 

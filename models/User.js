@@ -20,6 +20,8 @@ const userSchema = new mongoose.Schema({
   roles: [{ type: String }],
 
   subscriptions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Meeting' }],
+  topics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
+  workspaces: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workspace' }],
 
   profile: {
     name: String,

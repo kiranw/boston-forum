@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:a0cda208-2311-4d4b-9d6f-dc1bd1891053
+SUMMARY:Bay State Road/Back Bay West Area Architectural Conservation Distri
+	ct Commission
+DTSTAMP:20190510T054000Z
+DTSTART:20190330T063000Z
+DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30pm)\n
+URL:https://www.boston.gov/public-notices/60441
+LOCATION:Boston City Hall; Room 709; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

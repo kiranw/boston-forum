@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  .homepage-section
+    h3.homepage-title
+      span.underline-hover Topics I'm Following
+
+    if (!topics)
+        div.generic-text Looks like you haven't followed any topics yet - check out all of the 
+            a.underline-hover(href="/tags/all-tags") topics
+            | to get started!
+    else
+      for t in topics
+        .row
+          a(href="#",onClick="loadNoticesForTag('" + t.title + "'" + ", 'tag_" + t.id + "')",id="tag_"+t.id).tag
+            div.tag-circle
+            span #{t.title}
+        main.main-area
+        .centered
+          if (t.linkedNotices.length > 0)
+            section.row.cards
+              for n in t.linkedNotices
+                - var assigned_id = n.assigned_id
+                - var testimony_time = n.testimony_time
+                - var url = n.url
+                - var title = n.title
+                - var location_name = n.location_name
+                - var location_room = n.location_room
+                - var location_street = n.location_street
+                - var canceled = n.canceled
+                - var notice_date = n.notice_date
+                - var notice_time = n.notice_time
+                - var field_drawer = n.field_drawer
+                - var notice_body = n.body
+                - var posted = n.posted
+                - var ics = n.ics
+                - var unfollow = true
+                - var topics = n.topics
+                - var iscouncilor = iscouncilor
+                - var user = user
+                include ../meetings/notice
+          else
+            div Nothing to see here!
+            br
+            br
+            br

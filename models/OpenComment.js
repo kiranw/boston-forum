@@ -11,7 +11,8 @@ const openCommentSchema = new mongoose.Schema({
 	linkedComments: {type: mongoose.Schema.Types.ObjectId, ref: 'OpenComment'},
 	linkedHashtag: String,
 	upvotes: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-	meeting: {type: mongoose.Schema.Types.ObjectId, ref: 'Meeting'}
+	meeting: {type: mongoose.Schema.Types.ObjectId, ref: 'Meeting'},
+	workspace: { type: mongoose.Schema.Types.ObjectId, ref: 'Workspace' },
   });
 
 

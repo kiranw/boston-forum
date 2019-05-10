@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+  .row
+    .homepage-section
+      h3.homepage-title
+        span.underline-hover Workspaces You've Joined
+
+      a(href="/workspace/change-workspace/public")#workspace-public.workspace.workspace-manager
+        img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Boston.svg/1200px-Flag_of_Boston.svg.png")
+        .workspace-label Boston
+
+      .row
+        for ws in memberWorkspaces
+          .workspace.workspace-manager
+            a(href="/workspace/change-workspace/"+ws.id, id="#workspace-"+ws.name)
+              img(src=ws.imgpath)
+            if (ws.owner.id != user.id)
+              a(href="/workspace/leave-workspace/"+ws.id)
+                i.workspace-leave.fas.fa-times
+            .workspace-label #{ws.name}
+
+          
+
+  .row         
+    .homepage-section
+      h3.homepage-title
+        span.underline-hover Workspaces You Manage
+
+      for ws in ownerWorkspaces
+        .row
+          .col-md-2
+            a(href="/workspace/change-workspace/"+ws.name, id="#workspace-"+ws.name).workspace.workspace-manager
+              img(src=ws.imgpath)
+              .workspace-label #{ws.name}
+          .col-md-10
+            .row
+              .col-md-3.workspace-settings Access Code: 
+              .col-md-9 #{ws.accessCode}
+            .row
+              .col-md-3.workspace-settings Users:
+              .col-md-9
+                for u in ws.users
+                  div #{u.profile.name}
+
+
+    

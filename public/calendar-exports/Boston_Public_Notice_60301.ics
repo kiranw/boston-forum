@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:5e48ce6d-1740-4f13-a8f1-79a3a565e6f1
+SUMMARY:South End Landmark District Commission
+DTSTAMP:20190501T164600Z
+DTSTART:20190330T063000Z
+DESCRIPTION:To enter and exit the building after 5:30pm\, please use the Co
+	ngress Street entrance.\n
+URL:https://www.boston.gov/public-notices/60301
+LOCATION:City Hall; 5th Floor Piemonte Room; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

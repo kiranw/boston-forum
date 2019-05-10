@@ -1,0 +1,62 @@
+extends ../layout
+block content
+
+
+  .homepage-section
+    h3.homepage-title
+      span.underline-hover Join an Existing Workspace
+
+    if (unknownUser)
+      .alert.alert-warning Only authenticated users can join workspaces. Please log in or create an account!
+
+    if (!unknownUser)
+      form(method='POST', action="/workspace/join")
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='workspace-code') Enter your access code:
+            .col-md-8
+              input.form-control(type='text', name='workspace-code', id='workspace-code', autocomplete='workspace-code', autofocus=true, placeholder="")
+          
+          .form-group
+            .offset-md-2.col-md-8.p-1
+              button.btn.btn-primary(type='submit')
+                i.fas.fa-users.fa-sm
+                | Join
+
+
+
+
+
+
+
+  .homepage-section
+    h3.homepage-title
+      span.underline-hover Create a New Workspace
+
+    p.lead Workspaces give you and your community - whether its an organization, a special interests group, or even a close group of friends - a forum, where you can comment on public notices without losing context. Comments made in workspaces are only visible to members of that workspace, and workspaces can only be joined by special access codes that you must communicate to your group. By creating this workspace, you will be an administrator of it. 
+
+    br
+    br
+
+    if (unknownUser)
+      .alert.alert-warning Only authenticated users can create new workspaces. Please log in or create an account!
+
+    if (!unknownUser)
+      form(method='POST', action="/workspace/create")
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='workspace-name') Workspace Name
+            .col-md-8
+              input.form-control(type='text', name='workspace-name', id='workspace-name', autocomplete='workspace-name', autofocus=true, placeholder="ie. Organization/Team")
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='workspace-icon') Icon
+            .col-md-8
+                input.form-control(type='text', name='workspace-icon', id='workspace-icon', autocomplete='workspace-icon', placeholder="an image URL")
+          
+          .form-group
+            .offset-md-2.col-md-8.p-1
+              button.btn.btn-primary(type='submit')
+                i.far.fa-envelope.fa-sm
+                | Create
+
+

@@ -1,0 +1,25 @@
+div.col-md-12
+  .card-unset
+    .card-header 
+      if (iscouncilor)
+        a.button-group-left(href='/meetings/edit/'+assigned_id)
+          i.fab.fa.fa-pencil-alt.fa-sm
+      a.button-group(href='/meetings/download-ics/'+ics)
+        i.fab.fa.fa-calendar-plus.fa-sm
+        span Export
+      if (user)
+        if (unfollow)
+          a.button-group(href='/meetings/unfollow-meeting/'+assigned_id)  
+            i.fab.fas.fa-bell-slash.fa-sem
+            span Unfollow
+        else
+          a.button-group(href='/meetings/follow-meeting/'+assigned_id)  
+            i.fab.fas.fa-bell.fa-sem
+            span Subscribe
+      if (!user)
+        a.button-group(href='/login')  
+          i.fab.fas.fa-bell.fa-sem
+          span Subscribe
+    a(href='/meetings/expanded-meeting/'+assigned_id)
+      .card-content
+        h5= title

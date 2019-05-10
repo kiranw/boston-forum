@@ -67,9 +67,13 @@ block content
             .col-md-8
                 input.form-control(type='text', name='meeting-url', id='meeting-url', autocomplete='meeting-url', placeholder="ie. http://meetingrecords.cityofboston.gov/sirepub/<...>.aspx")                
           .form-group.row
-            label(class='col-md-2 col-form-label font-weight-bold', for='meeting-url') Associated Hashtags
+            label(class='col-md-2 col-form-label font-weight-bold', for='meeting-hashtags') Associated Hashtags
             .col-md-8
                 input.form-control(type='text', name='meeting-hashtags', id='meeting-hashtags', autocomplete='meeting-hashtags', placeholder="#AmazonHQ2,#AffordableHousing")                                
+          .form-group.row
+            label(class='col-md-2 col-form-label font-weight-bold', for='meeting-topics') Topic Labels
+            .col-md-8
+                input.form-control(type='text', name='meeting-topics', id='meeting-topics', autocomplete='meeting-topics', placeholder="Housing, Trash/Recycling")
           .form-group
             .offset-md-2.col-md-8.p-1
               button.btn.btn-primary(type='submit')

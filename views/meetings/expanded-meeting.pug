@@ -11,8 +11,8 @@ block content
           i.fa.fa-circle.text-danger.blink
           |  Enter Live Meeting
     if (meeting.is_open_comment)
-      button.btn.btn-outline-primary(type="button") 
-        a(href='/meetings/open-comment/'+meeting.assigned_id)
+      a(href='/meetings/open-comment/'+meeting.assigned_id)
+        button.btn.btn-outline-primary(type="button") 
           i.fa.fa-circle.text-info.blink
           |  Enter Open Comment
     if (meeting.is_live | meeting.is_open_comment)
@@ -20,10 +20,17 @@ block content
       br
       br
 
-    if (meeting.hashtags.length != 0)
-      div.metadata-header Connected Hashtags
-      for h in meeting.hashtags
-        a.hashtag(href="https://twitter.com/search?q=" + h.substring(1) + "&src=typd") #{h}
+    .row
+      div.col-md-4
+        div.metadata-header Related Topics
+        for t in meeting.topics
+          a(href='/').tag
+            div.tag-circle
+            span #{t.title}
+      div.col-md-4
+        div.metadata-header Connected Hashtags
+        for h in meeting.hashtags
+          a.hashtag(href="https://twitter.com/search?q=" + h.substring(1) + "&src=typd") #{h}
 
     .row
       div.col-md-4.meeting-metadata

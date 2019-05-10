@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
+const Workspace = require('../models/Workspace');
 const toTitleCase = require('../utils/toTitleCase');
 
 const randomBytesAsync = promisify(crypto.randomBytes);
@@ -453,7 +454,7 @@ exports.getSubscriptions = (req, res) => {
     return res.redirect('/');
   }
 
-  User.findOne({email: req.user.email}).populate('subscriptions').exec( function(err, user) {
+  User.findOne({email: req.user.email}).populate({path : 'subscriptions', populate : {path : 'topics'}}).exec( function(err, user) {
     subs = user.subscriptions.length!=0 ? user.subscriptions : null;
     console.log(subs)
     res.render('account/subscriptions', {
@@ -464,3 +465,91 @@ exports.getSubscriptions = (req, res) => {
   });
 };
 
+
+/**
+ * GET /tag-subscriptions
+ * Load all notices being followed
+ */
+exports.getTagSubscriptions = (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    User.findOne({email: req.user.email}).populate({path: 'topics', populate: {path: 'linkedNotices'}}).exec( function(err, user) {
+      console.log(user);
+      subs = user.topics.length!=0 ? user.topics : null;
+      console.log(subs)
+      res.render('account/topic-subscriptions', {
+        title: "Topics I'm Following",
+        topics: subs,
+        user: user,
+        iscouncilor: isCouncilorBoolean
+      });
+    });
+  });
+};
+
+
+
+/**
+ * GET /workspaces
+ * Load all notices being followed
+ */
+exports.getWorkspaces = (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    User.findOne({email: req.user.email}).populate({path: 'workspaces'}).exec( function(err, user) {
+      Workspace.find({owner: user}).populate("users").exec(function(err, ownedSpaces) {
+        res.render('account/workspaces', {
+          title: "Workspaces",
+          memberWorkspaces: user.workspaces,
+          ownerWorkspaces: ownedSpaces,
+          user: user,
+          iscouncilor: isCouncilorBoolean        
+        })
+      });
+    });
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+// HELPERS
+
+// Check if a user is a councilor
+function checkCouncilorRole(res, user){   
+  if (!user){
+    return new Promise((resolve,reject) => {
+      resolve(false);
+    }); 
+  }
+  else {
+    emailString = user.email
+    return new Promise((resolve, reject) => {
+      User.findOne({email: emailString}).exec(function(err, user){
+        if (err) {
+          console.log("ERROR IN CHECKING COUNCILOR")
+          resolve(false);
+        }
+        else {
+          console.log("IS A COUNCILOR: ",user.roles.includes("councilor"));
+          resolve(user.roles.includes("councilor"));
+        }
+      });
+    });
+  }
+}

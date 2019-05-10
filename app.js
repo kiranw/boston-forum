@@ -36,6 +36,7 @@ const apiController = require('./controllers/api');
 const aboutController = require('./controllers/about');
 const meetingsController = require('./controllers/meetings');
 const tagsController = require('./controllers/tags');
+const workspaceController = require('./controllers/workspace');
 
 /**
  * API keys and Passport configuration.
@@ -139,12 +140,16 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/about', aboutController.getContact);
 app.post('/about', aboutController.postContact);
+app.get('/contact', aboutController.getContact);
+app.post('/contact', aboutController.postContact);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 app.get('/account/subscriptions', userController.getSubscriptions);
+app.get('/account/tag-subscriptions', userController.getTagSubscriptions);
+app.get('/account/workspaces', userController.getWorkspaces);
 
 /**
  * API examples routes.
@@ -221,12 +226,33 @@ app.get('/meetings/unfollow-meeting/:assigned_id', function(req, res) {
 app.get('/meetings/upvote/:comment_id/:meeting_id', function(req, res) {
   meetingsController.upvote(res, req);
 })
+app.post('/meetings/add-tag/:meeting_id', function(req,res) {
+  meetingsController.addTag(res, req);
+})
 // app.post('/meetings/edit', meetingsController.submit_edit)
+
+
+
+app.get('/workspace/new-workspace', workspaceController.newWorkspace)
+app.post('/workspace/create', workspaceController.create)
+app.post('/workspace/join', workspaceController.join)
+app.get('/workspace/leave-workspace/:workspace_id', workspaceController.leave)
 
 
 
 
 app.get('/tags/all-tags/', tagsController.getAllTags)
+app.get('/tags/get-tags-autocomplete', function(req, res) {
+  tagsController.getTagsAutocomplete(req, res);
+});
+app.post('/tags/create', function(req, res) {
+  tagsController.create(res, req);
+})
+app.get('/tags/get-linked-notices/:title', function(req, res) {
+  tagsController.getLinkedNotices(res, req);
+})
+app.get('/tags/follow-tag/:title', tagsController.followTag);
+
 /**
  * OAuth authentication routes. (Sign in)
  */

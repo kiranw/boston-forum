@@ -17,7 +17,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
+  User.findById(id).populate('workspaces').exec(function(err, user) {
     done(err, user);
   });
 });

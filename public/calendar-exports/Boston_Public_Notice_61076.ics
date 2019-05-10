@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:0ec0fa8d-f106-4caf-ad67-4396c73f2f93
+SUMMARY:City On a Hill Finance Committee Meeting
+DTSTAMP:20190510T054000Z
+DTSTART:20190330T063000Z
+DESCRIPTION:The call in number is 800-882-3610 and the passcode is 2995404.
+	\n
+URL:https://www.boston.gov/public-notices/61076
+LOCATION:COAH Finance Committee Meeting; ; 15 Allerton Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

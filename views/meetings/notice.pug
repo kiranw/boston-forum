@@ -4,7 +4,7 @@ div.col-md-3
       if (iscouncilor)
         a.button-group-left(href='/meetings/edit/'+assigned_id)
           i.fab.fa.fa-pencil-alt.fa-sm
-      a.button-group(href='/meetings/download-ics/'+ics)
+      a.button-group(href='/meetings/download-ics/'+assigned_id)
         i.fab.fa.fa-calendar-plus.fa-sm
         span Export
       if (user)
@@ -29,3 +29,19 @@ div.col-md-3
           .card-name= location_name
           .card-room= location_room
         p= notice_body
+    .card-bottom
+      .card-tags
+        for t in topics
+          span.badge.badge-tag #{t.title}
+      hr
+      if (iscouncilor)
+        form(method='POST', action="/meetings/add-tag/"+assigned_id)
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group.row
+            .col-md-9
+                input.small-new-topic-box.form-control.tag-input(type='text', name=assigned_id+'new-topic', id=assigned_id+'new-topic', autocomplete=assigned_id+'new-topic', placeholder="ie. Affordable Housing")                                
+            .col-md-2
+              button.btn(type='submit').small-new-topic-button
+                i.fa.fa-plus-circle
+
+

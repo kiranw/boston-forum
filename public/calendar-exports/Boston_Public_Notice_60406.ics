@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:8618c287-baa0-4073-9b35-9028f94c00c1
+SUMMARY:Fort Point Channel Landmark District Commission
+DTSTAMP:20190510T054000Z
+DTSTART:20190330T063000Z
+DESCRIPTION:To enter and exit City Hall after 5:30 p.m. please use the Cong
+	ress Street entrance.\n
+URL:https://www.boston.gov/public-notices/60406
+LOCATION:Boston City Hall; Piemonte Room 5th Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

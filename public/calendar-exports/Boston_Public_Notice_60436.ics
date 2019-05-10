@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:553f8c01-99c9-4838-9753-2de5bdbdcdd4
+SUMMARY:Bay Village Historic District Commission
+DTSTAMP:20190510T054000Z
+DTSTART:20190330T063000Z
+DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30 p.m.)\n
+URL:https://www.boston.gov/public-notices/60436
+LOCATION:Boston City Hall; Room 709; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

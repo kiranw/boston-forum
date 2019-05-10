@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:af058d83-bd96-4ca1-81a3-b08d701bef26
+SUMMARY:Committee on Healthy Women\, Families\, and Communities working ses
+	sion on Docket #0399
+DTSTAMP:20190501T164600Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/59831
+LOCATION:Piemonte Room; Fifth Floor; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR
