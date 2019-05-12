@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const tagSchema = new mongoose.Schema({
 	title: String,
-	linkedNotices: [{type: mongoose.Schema.Types.ObjectId, ref: 'Meeting'}],
+	keywords:[String]
   });
 
 

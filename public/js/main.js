@@ -145,7 +145,7 @@ function loadNoticesForTag(title,tag_id){
       success: function (data) {
         console.log(data);
         data = JSON.parse(data);
-        notices = data.tag.linkedNotices;
+        notices = data.meetings;
         console.log(notices);
         if (notices.length == 0){
           $("#tag-results").html("<div>It looks like there are no related notices to " + title +" yet. <br><br>Don't worry - choose another topic tag to see public notices related to it.</div>");

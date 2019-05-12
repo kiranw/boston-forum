@@ -4,6 +4,7 @@ const ics = require('ics')
 const mongoose = require('mongoose');
 const Users = require('../models/User');
 const Tag = require('../models/Tag');
+const Meetings = require('../models/Meeting');
 
 /**
  * GET /tags/all-tags
@@ -58,6 +59,7 @@ exports.create = async (res, req) => {
   const user = req.user;
   console.log(req.body)
   var newTopic = req.body["new-topic-name"];
+  var keywords = req.body["new-topic-keywords"].split(",").map(function(d){return d.trim();});
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
     if (isCouncilorBoolean) {
@@ -65,6 +67,7 @@ exports.create = async (res, req) => {
             if (!tag) {
                 newTag = {}
                 newTag["title"] = newTopic;
+                newTag["keywords"] = keywords;
                 (new Tag(newTag)).save();
             }
         });
@@ -88,18 +91,33 @@ exports.getLinkedNotices = async (res, req) => {
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
     var topicTitle = req.params.title.replace("escapedSlash","/");
-    Tag.find({"title":topicTitle}).populate("linkedNotices").exec(function(err, tag){
+    Tag.find({"title":topicTitle}).exec(function(err, tag){
+      Meetings.find({topics: {$in: tag}}).exec(function(err,meetings) {
+        console.log(meetings.length);
         response = {
-          "tag": tag[0],
+          "meetings": meetings,
           "user": user,
-          "iscouncilor": isCouncilor 
+          "iscouncilor": isCouncilorBoolean
         };
         res.send(JSON.stringify(response), 
           {'Content-Type': 'application/json'},
           200);
+      });
     });
   });
-}
+};
+    // Tag.find({"title":topicTitle}).populate("linkedNotices").exec(function(err, tag){
+        // response = {
+        //   "tag": tag[0],
+        //   "user": user,
+        //   "iscouncilor": isCouncilor 
+        // };
+        // res.send(JSON.stringify(response), 
+        //   {'Content-Type': 'application/json'},
+        //   200);
+    // });
+  // });
+// }
 
 
 

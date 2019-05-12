@@ -22,7 +22,9 @@ div.col-md-3
           span Subscribe
     a(href='/meetings/expanded-meeting/'+assigned_id)
       .card-content
-        h5= title
+        h5= title.substr(0,70)
+          if (title.length>70)
+            | ...
         .card-dateplace
           .card-date= notice_date
           .card-time= notice_time
@@ -43,5 +45,7 @@ div.col-md-3
             .col-md-2
               button.btn(type='submit').small-new-topic-button
                 i.fa.fa-plus-circle
+  if (live_comments.length > 0)
+    div.speech-bubble #{live_comments.length}
 
 

@@ -413,6 +413,40 @@ a>.card-content>.card-dateplace:hover {
 
 
 
+.speech-bubble {
+  position: absolute;
+  background: #007bff;
+  border-radius: 30px;
+  width: 30px;
+  line-height: 30px;
+  color: white;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5;
+  text-align: center;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: #007bff;
+  border-top: 0;
+  border-left: 0;
+  margin-left: -5px;
+  margin-top: -10px;
+}
+
+.speech-bubble:hover {
+  background: rgb(53, 129, 252);
+}
+.speech-bubble:hover:after {
+  border-bottom-color: rgb(53, 129, 252);
+}
 
 
 

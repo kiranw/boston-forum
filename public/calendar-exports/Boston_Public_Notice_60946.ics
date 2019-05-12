@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:8e9aeb60-1cdc-4b93-b004-d15533f67018
+UID:fa922c40-c2cd-4810-ad55-b6b09cb29b0f
 SUMMARY:St. Botolph Architectural Conservation District Commission
-DTSTAMP:20190511T234500Z
+DTSTAMP:20190512T040400Z
 DTSTART:20190330T063000Z
 DESCRIPTION:After 5:30 pm\, please use the Congress Street Entrance to ente
 	r and exit City Hall.\n

@@ -18,9 +18,7 @@ const publicPath = path.resolve(__dirname, "../public");
  */
 exports.downloadIcs = (res, params) => {
   eventId = params.event;
-  console.log(eventId);
   Meeting.findOne({assigned_id: eventId}).exec(function(err,result) {
-    console.log("public path: ",publicPath);
     res.download(prepareIcs(result,eventId));
   });
 };
@@ -80,8 +78,8 @@ exports.getPublicNotices = async (req, res, next) => {
     isCouncilor = checkCouncilorRole(res, req.user);
     Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
       Meeting.find({"canceled":false}).populate("topics").exec(function(err, found_notices) {
-        console.log(found_notices);
         archiveOldMeetings(found_notices);
+        labelNotices(found_notices);
         if (err) {
           console.log("Error querying notices: ",err)
           return [];
@@ -741,7 +739,7 @@ function archiveOldMeetings(found_notices){
   found_notices.forEach(function(notice){
     noticeDate = new Date(Date.parse(notice.notice_date))
     if (noticeDate > date) {
-      console.log("found an old notice",notice.notice_date);
+      // console.log("found an old notice",notice.notice_date);
       Meeting.findOne({"assigned_id": notice.assigned_id}, function(err, matching_meeting) {
         matching_meeting["is_archived"] = true;
         matching_meeting.save(function (err) {
@@ -751,6 +749,33 @@ function archiveOldMeetings(found_notices){
         });  
       });
     }
+  });
+}
+
+function labelNotices(found_notices){
+  console.log("Labeling notices");
+  Tag.find({}).exec(function (err, tags){
+    // console.log("Got the tags: ",tags)
+    found_notices.forEach(function(notice){
+      notice.topics = [];
+      all_topics = []
+      tags.forEach(function(tag) {
+        add = false;
+        if (tag.keywords && tag.keywords.length > 0) {
+          tag.keywords.forEach(function (keyword) {
+            if (keyword != "" && notice.title.toLowerCase().includes(keyword.toLowerCase())) {
+              console.log("adding topic:",tag.title," to notice ",notice.title," bc ",keyword);
+              add = true;
+            }
+          });
+          if (add) {
+            all_topics.push(tag);
+          }
+        }
+      });
+      notice.topics = Array.from(new Set(all_topics));
+      notice.save();
+    });
   });
 }
 
@@ -784,7 +809,7 @@ function addLiveSubCommenttoDb(liveSubComment, comment){
 
 function prepareIcs(event, eventId){
   value = prepareCalendarEvent(event);
-  console.log("value:",value);
+  // console.log("value:",value);
   ics.createEvent(event, (error, value) => {
       if (error) {
         console.log(error)

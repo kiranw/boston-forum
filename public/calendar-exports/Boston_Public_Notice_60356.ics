@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:e4daa9b6-6d76-4155-baf0-8368de366c0f
+UID:5282f795-efb8-4f12-9de8-568ac3f40c6a
 SUMMARY:Boston Landmarks Commission Hearing 5/14/2019
-DTSTAMP:20190511T234500Z
+DTSTAMP:20190512T040400Z
 DTSTART:20190330T063000Z
 DESCRIPTION:After 5:30 p.m.\, enter and exit City Hall at the Congress Stre
 	et entrance (across from Faneuil Hall).\n

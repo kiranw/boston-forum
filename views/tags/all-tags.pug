@@ -26,6 +26,9 @@ block content
             .form-group.row
               .col-md-9
                   input.form-control(type='text', name='new-topic-name', id='new-topic-name', autocomplete='new-topic-name', placeholder="ie. Affordable Housing")                                
+            .form-group.row
+              .col-md-9
+                  input.form-control(type='text', name='new-topic-keywords', id='new-topic-keywords', autocomplete='new-topic-keywords', placeholder="Comma-separated related words")                                                  
               .col-md-3
                 button.btn.btn-primary(type='submit')
                   i.far.fa-envelope.fa-sm
@@ -36,7 +39,7 @@ block content
     .col-md-4
       form.form-inline.search-bar.active-cyan-4
         i.fas.fa-search(aria-hidden="true")
-        input.form-control.form-control-sm.ml-3.w-75(type="text",placeholder="Search",aria-label="Search")#all-tag-search
+        input.form-control.form-control-sm.ml-3.w-75(type="text",placeholder="Search",aria-label="Search Topics")#all-tag-search
       br
       br
       for t in tags

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:2431cc1b-bafe-45c3-a412-93a92cabbd35
+UID:465b8a7c-6d0d-4317-a4a1-d98ae433b06b
 SUMMARY:English Language Learners Task Force meeting
-DTSTAMP:20190511T234500Z
+DTSTAMP:20190512T040400Z
 DTSTART:20190330T063000Z
 DESCRIPTION:Public Meeting Notice and Agenda\n
 URL:https://www.boston.gov/public-notices/60986

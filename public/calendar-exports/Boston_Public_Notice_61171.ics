@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:1d21fbd6-2c7c-4cb6-bbbc-f1b8bcfa15d4
+UID:225f00ee-22f5-4f8c-806d-e3af928375a2
 SUMMARY:Entertainment Administrative hearing
-DTSTAMP:20190511T234500Z
+DTSTAMP:20190512T040400Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/61171
 LOCATION:Boston City Hall; 809A; 1 City Hall Square
