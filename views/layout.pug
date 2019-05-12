@@ -9,23 +9,47 @@ html
     title #{title} - Assembly
     link(rel='shortcut icon', href='/favicon.ico')
     link(rel='stylesheet', href='/css/jquery-ui.min.css')
+    link(href='/calendar-packages/core/main.css', rel='stylesheet')
+    link(href='/calendar-packages/daygrid/main.css', rel='stylesheet')
+    link(href='/calendar-packages/timegrid/main.css', rel='stylesheet')
     link(rel='stylesheet', href='/css/main.css')
 
   body
     .row
       .col-sm-1#workspace-bar
         #workspaces
-          a(href="/workspace/new-workspace").workspace
-            i.fas.fa-plus#new-workspace
-            .workspace-label New/Join
-          a(href="/workspace/change-workspace/public")#workspace-public.workspace-active.workspace
-            img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Boston.svg/1200px-Flag_of_Boston.svg.png")
-            .workspace-label Boston
-          if (user && user.workspaces)
-            for ws in user.workspaces
-              a(href="/workspace/change-workspace/"+ws.id, id="#workspace-"+ws.name).workspace
-                img(src=ws.imgpath)
-                .workspace-label #{ws.name}
+          if (user)
+            a(href="/workspace/new-workspace").workspace
+              i.fas.fa-plus#new-workspace
+              .workspace-label New/Join
+          else
+            a(href="/login").workspace
+              i.fas.fa-plus#new-workspace
+              .workspace-label New/Join          
+          if (!user || !session.workspace || session.workspace == "public")
+            a(href="/workspace/change-workspace/public")#workspace-public.workspace-active.workspace
+              img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Boston.svg/1200px-Flag_of_Boston.svg.png")
+              .workspace-label Boston
+            if (user && user.workspaces)
+              for ws in user.workspaces
+                a.workspace(href="/workspace/change-workspace/"+ws.id, id="#workspace-"+ws.name)
+                  img(src=ws.imgpath)
+                  .workspace-label #{ws.name}              
+          else
+            a(href="/workspace/change-workspace/public")#workspace-public.workspace
+              img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Boston.svg/1200px-Flag_of_Boston.svg.png")
+              .workspace-label Boston          
+            if (user && user.workspaces)
+              for ws in user.workspaces
+                a(href="/workspace/change-workspace/"+ws.id, id="#workspace-"+ws.name, class= session.workspace == ws.id ? "workspace workspace-active" : "workspace")
+                  img(src=ws.imgpath)
+                  .workspace-label #{ws.name}
+          if (user)
+            a(href="/account/workspaces").workspace#workspace-settings
+              i.fas.fa-cogs
+              .workspace-label Manage
+                br
+                | Workspaces
       .col-sm-1
       .col-sm-10
         include partials/header
@@ -41,6 +65,7 @@ html
     script(src='/js/jquery-ui.min.js')
     script(src='/js/lib/popper.min.js')
     script(src='/js/lib/bootstrap.min.js')
+    script(src='https://www.google.com/recaptcha/api.js',async='',defer='')
     script(src='/js/main.js')
 
 

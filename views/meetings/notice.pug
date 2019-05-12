@@ -1,5 +1,5 @@
 div.col-md-3
-  .card
+  div(class= (!iscouncilor) ? "card card-300" : "card")
     .card-header 
       if (iscouncilor)
         a.button-group-left(href='/meetings/edit/'+assigned_id)
@@ -33,8 +33,8 @@ div.col-md-3
       .card-tags
         for t in topics
           span.badge.badge-tag #{t.title}
-      hr
       if (iscouncilor)
+        hr
         form(method='POST', action="/meetings/add-tag/"+assigned_id)
           input(type='hidden', name='_csrf', value=_csrf)
           .form-group.row

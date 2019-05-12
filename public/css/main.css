@@ -13025,6 +13025,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2em;
   min-height: 400px; }
 
+.card-300 {
+  min-height: 300px !important; }
+
 .card-unset {
   background: white;
   margin-bottom: 2em;
@@ -13047,7 +13050,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.4em; }
 
 .card-tags {
-  padding: 1.4em; }
+  padding: 1.4em;
+  margin-bottom: 1.4em; }
 
 a:hover {
   text-decoration: none !important; }
@@ -13632,7 +13636,7 @@ path {
 
 .workspace > img, .workspace > a > img, .workspace > #new-workspace {
   width: 100%;
-  min-height: 50px;
+  min-height: 40px;
   border-radius: 5px;
   margin: 5px 0px; }
 
@@ -13659,6 +13663,16 @@ path {
   padding: 25px 0px;
   font-size: 1.3em; }
 
+#workspace-settings {
+  position: fixed;
+  bottom: 0vh;
+  padding: 25px 0px; }
+
+#workspace-settings > i {
+  color: gray;
+  text-align: center;
+  font-size: 1.3em; }
+
 .workspace.workspace-manager > img, .workspace.workspace-manager > a > img {
   height: 50px !important;
   width: auto !important; }
@@ -13680,7 +13694,8 @@ path {
   top: -15px;
   right: -5px;
   position: relative;
-  margin-right: 10px; }
+  margin-right: 10px;
+  display: inline-block; }
 
 .workspace-leave:hover {
   box-shadow: 3px 3px 8px #b3b3b3; }
@@ -13688,3 +13703,22 @@ path {
 .workspace-settings {
   font-size: 1.05em;
   font-family: "National-Bold"; }
+
+th.fc-day-header {
+  background-color: #FF6374;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+
+.fc-event {
+  border-radius: 1px;
+  border: 1px solid #b4e7f8;
+  background-color: rgba(0, 123, 255, 0.8); }
+
+td.fc-today {
+  background-color: rgba(249, 197, 9, 0.3) !important; }
+
+.loading-gif {
+  text-align: center;
+  width: 6%;
+  margin-left: 47%; }

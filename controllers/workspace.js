@@ -18,6 +18,7 @@ const publicPath = path.resolve(__dirname, "../public");
 exports.newWorkspace = (req, res, next) => {
   const User = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
+  console.log("SESSION VAL: ",req.workspace)
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
     res.render('workspace/new-workspace', {
       title: 'Create a new workspace',
@@ -84,12 +85,13 @@ exports.join = async (req, res, next) => {
             return e.id === fullUser.id;
           });
           workspace.save();
+          req.workspace = workspace._id;
           fullUser.workspaces.pushIfNotExist(workspace, function(e) { 
               return e.id === workspace.id;
           });
           fullUser.save();
 
-          req.flash('success', { msg: "Wicked! You just joined the " + workspace.name + " workspace."});
+          req.flash('success', { msg: "Wicked! Welcome to the " + workspace.name + " workspace."});
           res.redirect('/account/workspaces/');
         }
       })
@@ -109,13 +111,15 @@ exports.leave = (req, res, next) => {
     return res.redirect('/');
   }
   workspaceID = req.params["workspace_id"];
+  if (req.session.workspace == workspaceID) {
+    req.session.workspace = "public";
+  }
   console.log(workspaceID);
 
   Workspace.findOne({_id: workspaceID}).populate("users").exec(function (err, ws) {
     if (err) {
       console.log("Error leaving workspace with id: ", workspaceID, "with Error:",err)
     }
-    console.log("ID:",ws);
     Users.findOne({email: req.user.email}).populate('workspaces').exec(function(err, matchingUser){
       ws.users.splice( 
         ws.users.indexOf( 
@@ -136,6 +140,29 @@ exports.leave = (req, res, next) => {
     })
   });
 }
+
+
+
+/**
+ * GET /workspace/change-workspace/:workspace_id
+   Switch contexts
+ */
+exports.changeWorkspace = (req, res, next) => {  
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  workspaceID = req.params["workspace_id"];
+  if (req.session.workspace != workspaceID) {
+    req.session.workspace = workspaceID;
+    req.flash('success', { msg: 'Success! You just switched workspaces.'});
+    res.redirect(req.get('referer'));
+  }
+  else {
+   req.flash('info', { msg: "Rest assured - you're already in this workspace."});
+   res.redirect(req.get('referer'));
+  }
+}
+  
 
 
 

@@ -70,6 +70,7 @@ block content
                     i.fas.fa-bullhorn.fa-sm
                     | Share
 
+    
     for comment in meeting.live_comments
       - meetingId = meeting.assigned_id
       - title = comment.title
@@ -80,7 +81,7 @@ block content
       - upvotes = comment.upvotes
       - linkedLiveComments = comment.linkedLiveComments
       - comment_id = comment._id
-      include comment
+        include comment
 
   .spacer
 

@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:2431cc1b-bafe-45c3-a412-93a92cabbd35
+SUMMARY:English Language Learners Task Force meeting
+DTSTAMP:20190511T234500Z
+DTSTART:20190330T063000Z
+DESCRIPTION:Public Meeting Notice and Agenda\n
+URL:https://www.boston.gov/public-notices/60986
+LOCATION:Bruce C. Bolling Municipal Building; 4-43; 2300 Washington Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

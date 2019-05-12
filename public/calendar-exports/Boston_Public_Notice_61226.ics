@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:14a0a0cf-fe98-4dc4-8450-0e5c91d2e653
+SUMMARY:Public Facilities Commission Meeting (PFD)
+DTSTAMP:20190511T234500Z
+DTSTART:20190330T063000Z
+DESCRIPTION:You can also watch the meeting on Boston City TV and Comcast ch
+	annel 24\, RCN channel 13\, and on boston.gov/boston-city-tv. \n
+URL:https://www.boston.gov/public-notices/61226
+LOCATION:Winter Chambers; 1ST. FLOOR; 26 COURT STREET
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

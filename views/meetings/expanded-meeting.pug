@@ -5,20 +5,29 @@ block content
     h3.homepage-title
       span.underline-hover #{meeting.title}
 
+    if (meeting.is_live && !user)
+      button.btn.btn-outline-primary(type="button") 
+        a(href='/meetings/stream-live-meeting/'+meeting.assigned_id)
+          i.fa.fa-circle.text-danger.blink
+          |  Participate Remotely
     if (meeting.is_live)
       button.btn.btn-outline-primary(type="button") 
         a(href='/meetings/live-meeting/'+meeting.assigned_id)
           i.fa.fa-circle.text-danger.blink
-          |  Enter Live Meeting
-    if (meeting.is_open_comment)
+          |  Enter the Live Meeting
+    else if (meeting.is_open_comment)
       a(href='/meetings/open-comment/'+meeting.assigned_id)
         button.btn.btn-outline-primary(type="button") 
           i.fa.fa-circle.text-info.blink
-          |  Enter Open Comment
-    if (meeting.is_live | meeting.is_open_comment)
-      br
-      br
-      br
+          |  Enter Online Testimony
+    else if (user && session.workspace != "public")
+      a(href='/meetings/comments/'+meeting.assigned_id)
+        button.btn.btn-outline-primary(type="button") 
+          i.fa.fa-circle.text-info.blink
+          |  Enter the Forum
+    br
+    br
+    br
 
     .row
       div.col-md-4

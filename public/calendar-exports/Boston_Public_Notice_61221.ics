@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:3692fea4-3f46-4e56-8024-54033f03b4e9
+SUMMARY:Boston Public Health Commission Board meeting
+DTSTAMP:20190511T234500Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/61221
+LOCATION:Boston Public Health Commission; 2nd Floor; 1010 Massachusetts Ave
+	nue
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

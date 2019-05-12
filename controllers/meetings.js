@@ -98,6 +98,72 @@ exports.getPublicNotices = async (req, res, next) => {
 };
 
 
+function mapNoticeDateToCalendar(notice_date, notice_time) {
+  // Target "2019-04-09T16:00:00" 
+  // Source: 
+
+  d = new Date(Date.parse(notice_date));
+  month = '' + (d.getMonth() + 1);
+  day = '' + d.getDate();
+  year = d.getFullYear();
+
+  var parts = notice_time.match(/(\d+):(\d+)(am|pm)/);
+  if (parts) {
+      var hours = parseInt(parts[1]),
+          minutes = parseInt(parts[2]),
+          tt = parts[3];
+      if (tt === 'PM' && hours < 12) hours += 12;
+      d.setHours(hours, minutes, 0, 0);
+  }
+
+  d2 = d;
+  d2.setHours(hours+1, minutes, 0,0);
+
+  // return [year, month, day].join("-") + "T" + ;
+  // return d.toString("yyyy-MM-dd'T'HH:mm:ss");
+  return [d.toISOString().substr(0,19), d2.toISOString().substr(0,19)];
+}
+
+function mapNoticeDateTimeToDate(notice_date, notice_time) {
+  d = new Date(Date.parse(notice_date));
+  month = '' + (d.getMonth() + 1);
+  day = '' + d.getDate();
+  year = d.getFullYear();
+
+  var parts = notice_time.match(/(\d+):(\d+)(am|pm)/);
+  if (parts) {
+      var hours = parseInt(parts[1]),
+          minutes = parseInt(parts[2]),
+          tt = parts[3];
+      if (tt === 'PM' && hours < 12) hours += 12;
+      d.setHours(hours, minutes, 0, 0);
+  }
+  return d;
+}
+
+/** For an ajax call to set up the calendar
+    GET /meetings/get-calendar-meetings/
+*/
+exports.getCalendarMeetings = async (req, res, next) => {
+  months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+  currentMonth = months[new Date().getMonth()];
+  // Meeting.find({notice_date: {$regex : ".*" + currentMonth + ".*"}}).exec(function(err, monthMeetings){
+  Meeting.find({}).exec(function(err, monthMeetings){
+      monthMeetings = monthMeetings.map(function(m) {
+                        meeting = {}
+                        meeting["title"] = m.title;
+                        meeting["start"] = mapNoticeDateToCalendar(m.notice_date, m.notice_time)[0];
+                        meeting["end"] = mapNoticeDateToCalendar(m.notice_date, m.notice_time)[1];
+                        meeting["url"] = '/meetings/expanded-meeting/'+m.assigned_id;
+                        return meeting;
+                      });
+      res.send(JSON.stringify(monthMeetings), 
+        {'Content-Type': 'application/json'},
+      200)
+  });  
+}
+
+
 /**
  * GET /meetings/open-comments
   Get open comment period issues
@@ -126,13 +192,30 @@ exports.getOpenComments = async (req, res, next) => {
 exports.getLiveMeetings = async (req, res, next) => {
   user = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  todayString = new Date().toLocaleDateString('en-US', options);
+
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.find({is_live:true}).populate("topics").exec(function(err, meetings) {
-      res.render('meetings/live-meetings', {
-        title: 'Live Meetings',
-        livemeetings: meetings,
-        user: user,
-        iscouncilor: isCouncilorBoolean
+    Meeting.find({is_live:true}).populate("topics").exec(function(err, live_meetings) {
+      live_meetings.forEach(function(m){
+        if (m.notice_date != todayString) {
+          m.is_live = false;
+          m.save();
+        }
+      });
+      Meeting.find({notice_date: todayString}).populate("topics").exec(function(err,todaysMeetings) {
+       todaysMeetings.forEach(function(m){
+          if (!m.is_live) {
+            m.is_live = true;
+            m.save();
+          }
+        }); 
+        res.render('meetings/live-meetings', {
+          title: "Today's Meetings",
+          livemeetings: todaysMeetings,
+          user: user,
+          iscouncilor: isCouncilorBoolean
+        });
       });
     });
   });
@@ -223,6 +306,7 @@ exports.createLiveComment = async (res, req) => {
         // liveComment["upvotes"] = [];
         liveComment["meeting"] = meeting;
         liveComment["showName"] = req.body["show-name"]=="on";
+        liveComment["workspace"] = req.session.workspace;
 
         addLiveCommenttoDb(liveComment, meeting);
 
@@ -257,6 +341,7 @@ exports.createLiveSubcomment = async (res, req) => {
         liveSubComment["isTwitter"] = false;
         liveSubComment["postedDate"] = Date.now();
         liveSubComment["showName"] = req.body[commentId+"-subcomment-show-name"]=="on";
+        liveSubComment["workspace"] = req.session.workspace;
 
         addLiveSubCommenttoDb(liveSubComment, comment);
 
@@ -306,8 +391,10 @@ exports.renderLiveMeeting = async(res, req) => {
     Meeting.findOne({"assigned_id": req.params.assigned_id})
       .populate("topics")
       .populate({path: 'upvotes'})
+      .populate({path: 'live_comments', populate: {path: 'workspace'}})
       .populate({path: 'live_comments', populate: {path: 'author'}})
       .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'author'}}})
+      .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'workspace'}}})
       .exec(function(err, matching_meeting) {
         // test = matching_meeting.live_comments.map(function(c){
         //   // c["is_author"] = req.user ? c.author.email == req.user.email : false;
@@ -317,8 +404,10 @@ exports.renderLiveMeeting = async(res, req) => {
         //   return c;
         // })
         // console.log(test);
+        matching_meeting.live_comments = matching_meeting.live_comments.filter(function(c) {
+          return c.workspace._id == req.session.workspace;
+        })
 
-        // console.log(matching_meeting.live_comments[0]);
         if (err) {
           console.log("Error finding meeting with id: ", req.params.assigned_id);
         }
@@ -388,31 +477,41 @@ exports.renderOpenComment = async(res, req) => {
     console.log("resolved the promise");
     console.log(isCouncilor)
     console.log("RESULT:",isCouncilor.result)
-    Meeting.findOne({"assigned_id": req.params.assigned_id}).populate("topics").populate({path: 'live_comments', populate: {path: 'author'}}).exec(function(err, matching_meeting) {
-      if (err) {
-        console.log("Error finding meeting with id: ", req.params.assigned_id);
-      }
-      if (!matching_meeting) {
-        console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
-      }
-      if (matching_meeting.is_open_comment){
-        res.render('meetings/open-comment', {
-          title: 'Open Comment',
-          meeting: matching_meeting,
-          user: User,
-          iscouncilor: isCouncilorBoolean
-        });
-      }
-      else {
-         req.flash('warning', { msg: 'This meeting is not currently in progress.'});
-         res.render('meetings/expanded-meeting', {
-          title: 'Expanded Meeting Information',
-          meeting: matching_meeting,
-          user: User,
-          iscouncilor: isCouncilorBoolean
-        });
-      }
-    })
+    Meeting.findOne({"assigned_id": req.params.assigned_id})
+      .populate("topics")
+      .populate({path: 'upvotes'})
+      .populate({path: 'live_comments', populate: {path: 'workspace'}})
+      .populate({path: 'live_comments', populate: {path: 'author'}})
+      .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'author'}}})
+      .populate({path: 'live_comments', populate: {path: 'linkedLiveComments', populate: {path: 'workspace'}}})
+      .exec(function(err, matching_meeting) {
+        if (err) {
+          console.log("Error finding meeting with id: ", req.params.assigned_id);
+        }
+        if (!matching_meeting) {
+          console.log("Error finding newly created meeting:",err, " with assigned_id:",req.params.assigned_id);
+        }
+        matching_meeting.live_comments = matching_meeting.live_comments.filter(function(c) {
+          return c.workspace._id == req.session.workspace;
+        })
+        if (matching_meeting.is_open_comment){
+          res.render('meetings/open-comment', {
+            title: 'Open Comment',
+            meeting: matching_meeting,
+            user: User,
+            iscouncilor: isCouncilorBoolean
+          });
+        }
+        else {
+           req.flash('warning', { msg: 'This meeting is not currently in progress.'});
+           res.render('meetings/expanded-meeting', {
+            title: 'Expanded Meeting Information',
+            meeting: matching_meeting,
+            user: User,
+            iscouncilor: isCouncilorBoolean
+          });
+        }
+      });
   });
 }
 

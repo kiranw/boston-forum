@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:57072b2c-e022-48e0-934d-454c25c56084
+UID:e18655ed-7521-49f3-bbc1-cc6c1e274900
 SUMMARY:City Council Committee on Ways and Means Hearing on Dockets #0718\,
 	 #0719
-DTSTAMP:20190510T054000Z
+DTSTAMP:20190511T234500Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/60981
 LOCATION:Iannella Chamber; Fifth Floor; Boston City Hall

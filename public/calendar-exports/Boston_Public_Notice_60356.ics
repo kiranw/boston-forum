@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:e4daa9b6-6d76-4155-baf0-8368de366c0f
+SUMMARY:Boston Landmarks Commission Hearing 5/14/2019
+DTSTAMP:20190511T234500Z
+DTSTART:20190330T063000Z
+DESCRIPTION:After 5:30 p.m.\, enter and exit City Hall at the Congress Stre
+	et entrance (across from Faneuil Hall).\n
+URL:https://www.boston.gov/public-notices/60356
+LOCATION:BPDA Conference Room; 9th Floor / Room 900; 1 City Hall Plaza
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

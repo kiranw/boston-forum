@@ -113,9 +113,14 @@ app.use((req, res, next) => {
     && !req.path.match(/^\/auth/)
     && !req.path.match(/\./)) {
     req.session.returnTo = req.originalUrl;
+    res.locals.session = req.session;
   } else if (req.user
     && (req.path === '/account' || req.path.match(/^\/api/))) {
     req.session.returnTo = req.originalUrl;
+    res.locals.session = req.session;
+  }
+  if (!req.workspace) {
+    res.locals.session = req.session;
   }
   next();
 });
@@ -124,6 +129,7 @@ app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/popper.js/d
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), { maxAge: 31557600000 }));
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
 app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
+
 
 /**
  * Primary app routes.
@@ -229,6 +235,7 @@ app.get('/meetings/upvote/:comment_id/:meeting_id', function(req, res) {
 app.post('/meetings/add-tag/:meeting_id', function(req,res) {
   meetingsController.addTag(res, req);
 })
+app.get('/meetings/get-calendar-meetings/', meetingsController.getCalendarMeetings)
 // app.post('/meetings/edit', meetingsController.submit_edit)
 
 
@@ -237,6 +244,7 @@ app.get('/workspace/new-workspace', workspaceController.newWorkspace)
 app.post('/workspace/create', workspaceController.create)
 app.post('/workspace/join', workspaceController.join)
 app.get('/workspace/leave-workspace/:workspace_id', workspaceController.leave)
+app.get('/workspace/change-workspace/:workspace_id', workspaceController.changeWorkspace)
 
 
 

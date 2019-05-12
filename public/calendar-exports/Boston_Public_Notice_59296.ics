@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:b95c3111-b9f3-4ef9-805f-596653c540c1
+SUMMARY:City Council Committee on Ways and Means Hearing on Dockets #0622-0
+	628\, FY20 Budget: Police
+DTSTAMP:20190511T234500Z
+DTSTART:20190330T063000Z
+URL:https://www.boston.gov/public-notices/59296
+LOCATION:Iannella Chamber; Fifth Floor; Boston City Hall
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

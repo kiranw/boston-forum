@@ -1,7 +1,7 @@
 .row
     .col-md-1
-        if (showName || iscouncilor)
-            if author.profile.picture
+        if (author && (showName || iscouncilor))
+            if (author.profile.picture)
                 img.comment-img(src=author.profile.picture)
             else
                 img.comment-img(src=author.gravatar(60))
@@ -11,7 +11,7 @@
         .card-unset
           .card-header 
             .row
-                if (showName || iscouncilor)
+                if (author && (showName || iscouncilor))
                     .col-md-9.comment-header #{author.profile.name} on #{postedDate}
                 else
                     .col-md-9.comment-header Anonymous on #{postedDate}
@@ -34,20 +34,26 @@
                     div.vertical-spacer-pipe
                 .row.row-no-vert-padding
                     .col-md-1           
-                        if (linkedComment.showName || iscouncilor)
-                            if (linkedComment.author.profile.picture)
-                                img.subcomment-img(src=linkedComment.author.profile.picture)
+                        if (author)
+                            if (linkedComment.showName || iscouncilor)
+                                if (linkedComment.author.profile.picture)
+                                    img.subcomment-img(src=linkedComment.author.profile.picture)
+                                else
+                                    img.subcomment-img(src=linkedComment.author.gravatar(60))
                             else
-                                img.subcomment-img(src=linkedComment.author.gravatar(60))
-                        else
+                                img.subcomment-img(src="/img/anon.png")
+                        else 
                             img.subcomment-img(src="/img/anon.png")
                     .col-md-11
                         .card-unset
                           .card-body
-                            if (linkedComment.showName || iscouncilor)
-                                .subcomment-posted #{linkedComment.author.profile.name} on #{linkedComment.postedDate}
+                            if (author)
+                                if (linkedComment.showName || iscouncilor)
+                                    .subcomment-posted #{linkedComment.author.profile.name} on #{linkedComment.postedDate}
+                                else
+                                    .subcomment-posted Anonymous on #{linkedComment.postedDate}
                             else
-                                .subcomment-posted Anonymous on #{linkedComment.postedDate}
+                                .subcomment-posted Deactivated User on #{linkedComment.postedDate}
                             .subcomment-body #{linkedComment.body}
 
 
@@ -56,7 +62,7 @@
                 div.vertical-spacer-pipe
             .row.row-no-vert-padding
                 .col-md-1                
-                    if user.profile.picture
+                    if (user && user.profile.picture)
                         img.subcomment-img(src=user.profile.picture)
                     else
                         img.subcomment-img(src=user.gravatar(60))

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:7e818266-cd66-4d84-9799-f5bf2a89b9f0
+UID:ba3856e0-1ebe-4d20-9c6a-1ee469978af3
 SUMMARY:Boston Collegiate Charter School Board of Trustees meeting
-DTSTAMP:20190510T054000Z
+DTSTAMP:20190511T234500Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/61036
 LOCATION:Boston Collegiate Charter School; ; 11 Mayhew Street

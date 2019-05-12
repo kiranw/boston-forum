@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:4e217e8f-4ab4-4508-a617-621530807500
+UID:5990c05f-b144-456e-ac5b-238fd4aac62d
 SUMMARY:English Language Learners (ELL) Task Force special meeting
-DTSTAMP:20190510T054000Z
+DTSTAMP:20190510T154000Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/61051
 LOCATION:Bruce C. Bolling Municipal Building; Room 6-6-65; 2300 Washington 

@@ -10,6 +10,8 @@ const Meeting = require('../models/Meeting');
 var meetingsController = require("./meetings.js")
 exports.index = async (req, res) => {
   const User = req.user;
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  todayString = new Date().toLocaleDateString('en-US', options);
 
   Meeting.find({"canceled":false}).populate("topics").exec(function(err, found_notices) {
     if (err) {
@@ -19,15 +21,29 @@ exports.index = async (req, res) => {
 
     councilorPromise = checkCouncilorRole(res, req.user)
     Promise.resolve(councilorPromise).then(function(isCouncilorBoolean){
-      livemeetings = Meeting.find({"is_live":true}).populate("topics").exec(function(err,livemeetings) {
-        opencomments = Meeting.find({"is_open_comment":true}).populate("topics").exec(function(err,opencomments) {
-          res.render('home', {
-            title: 'Home',
-            notices: found_notices,
-            user: User,
-            livemeetings: livemeetings,
-            opencomments: opencomments,
-            iscouncilor: isCouncilorBoolean
+      Meeting.find({is_live:true}).populate("topics").exec(function(err, live_meetings) {
+        live_meetings.forEach(function(m){
+          if (m.notice_date != todayString) {
+            m.is_live = false;
+            m.save();
+          }
+        });
+        Meeting.find({notice_date: todayString}).populate("topics").exec(function(err,todaysMeetings) {
+         todaysMeetings.forEach(function(m){
+            if (!m.is_live) {
+              m.is_live = true;
+              m.save();
+            }
+          }); 
+          opencomments = Meeting.find({"is_open_comment":true}).populate("topics").exec(function(err,opencomments) {
+            res.render('home', {
+              title: 'Home',
+              notices: found_notices,
+              user: User,
+              livemeetings: todaysMeetings,
+              opencomments: opencomments,
+              iscouncilor: isCouncilorBoolean
+            });
           });
         });
       });

@@ -1,6 +1,14 @@
 /* eslint-env jquery, browser */
 $(document).ready(() => {
 
+  grecaptcha.ready(function() {
+      site_key = "6LdBCKMUAAAAAET2cmGDXy6VbXgRhD041A0UT8As";
+      key_2 = "6LdBCKMUAAAAALWAff6MPGU4tka0LRIEFe0yIbRE";
+      grecaptcha.execute('reCAPTCHA_site_key', {action: 'homepage'}).then(function(token) {
+         console.log(token);
+      });
+  });
+
   $("#follow-topic-button").hide();
 
   $(function () {

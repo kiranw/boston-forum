@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:047d430e-96f0-4e84-b06b-3470ddcc6ead
+SUMMARY:KIPP Academy Charter School Emergency Meeting
+DTSTAMP:20190511T234500Z
+DTSTART:20190330T063000Z
+DESCRIPTION:The call in number is 1-800-882-3610 and the passcode is 586868
+	6#.\n
+URL:https://www.boston.gov/public-notices/61176
+LOCATION:KIPP MA Board Of Trustees Meeting; ; 100 Northern Avenue
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR
