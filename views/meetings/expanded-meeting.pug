@@ -17,7 +17,7 @@ block content
         a(href='/meetings/live-meeting/'+meeting.assigned_id)
           i.fa.fa-circle.text-danger.blink
           |  Participate Remotely
-    else if (meeting.is_open_comment)
+    else if (user && session.workspace && session.workspace.length > 7 && meeting.is_open_comment)
       a(href='/meetings/live-meeting/'+meeting.assigned_id)
         button.btn.btn-outline-primary(type="button") 
           i.fa.fa-circle.text-info.blink

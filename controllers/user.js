@@ -454,13 +454,21 @@ exports.getSubscriptions = (req, res) => {
     return res.redirect('/');
   }
 
-  User.findOne({email: req.user.email}).populate({path : 'subscriptions', populate : {path : 'topics'}}).exec( function(err, user) {
-    subs = user.subscriptions.length!=0 ? user.subscriptions : null;
-    console.log(subs)
-    res.render('account/subscriptions', {
-      title: "Issues I'm Following",
-      meetings: subs,
-      unfollow: true
+  isCouncilor = checkCouncilorRole(res, req.user);
+  Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
+    User.findOne({email: req.user.email})
+      .populate({path : 'subscriptions', populate : {path : 'topics'}})
+      .populate('workspaces')
+      .exec( function(err, user) {
+      subs = user.subscriptions.length!=0 ? user.subscriptions : null;
+      console.log(subs)
+      res.render('account/subscriptions', {
+        title: "Issues I'm Following",
+        meetings: subs,
+        unfollow: true,
+        user: user,
+        iscouncilor: isCouncilorBoolean
+      });
     });
   });
 };
@@ -477,7 +485,10 @@ exports.getTagSubscriptions = (req, res) => {
 
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    User.findOne({email: req.user.email}).populate({path: 'topics', populate: {path: 'linkedNotices'}}).exec( function(err, user) {
+    User.findOne({email: req.user.email})
+      .populate({path: 'topics', populate: {path: 'linkedNotices'}})
+      .populate('workspaces')
+      .exec( function(err, user) {
       console.log(user);
       subs = user.topics.length!=0 ? user.topics : null;
       console.log(subs)
@@ -504,7 +515,8 @@ exports.getWorkspaces = (req, res) => {
 
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    User.findOne({email: req.user.email}).populate({path: 'workspaces'}).exec( function(err, user) {
+    User.findOne({email: req.user.email})
+    .populate({path: 'workspaces'}).exec( function(err, user) {
       Workspace.find({owner: user}).populate("users").exec(function(err, ownedSpaces) {
         res.render('account/workspaces', {
           title: "Workspaces",
