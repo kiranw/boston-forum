@@ -45,7 +45,9 @@ div.col-md-3
             .col-md-2
               button.btn(type='submit').small-new-topic-button
                 i.fa.fa-plus-circle
-  if (live_comments.length > 0)
+  if ((iscouncilor && session.workspace && session.workspace == "public") || (iscouncilor && !session.workspace))
+    div.speech-bubble #{live_comments.length}
+  if ((session.workspace && session.workspace.length > 7 && user && live_comments.length > 0))
     div.speech-bubble #{live_comments.length}
 
 

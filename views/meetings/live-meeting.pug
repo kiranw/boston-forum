@@ -35,53 +35,59 @@ block content
     .spacer
     hr
 
-    if (user)
-      .row
-        .col-md-11
-          form.card-unset(method='POST', action="/meetings/create-live-comment/"+meeting.assigned_id)
-            .card-header
-              span.bold What's on your mind? 
-              span.italic Leave a live note.
-            .card-content.row.card-no-padding
-              .col-sm-2
-                .float-padded-right
-                  if user.profile.picture
-                      img.comment-img(src=user.profile.picture)
-                  else
-                    img.comment-img(src=user.gravatar(60))
-                  br                  
-              .col-sm-9
-                  input(type='hidden', name='_csrf', value=_csrf)
-                  .row
-                      .col-md-12
-                        input.comment-title(type='text', name='comment-title', id='comment-title', autocomplete='comment-title', autofocus=true, placeholder="Comment Title")
-                        textarea.form-control.comment-body(type='text', name='comment-body', rows='4', id='comment-body', autocomplete='comment-body', placeholder="What would you like to say?")
-                      
-            .card-footer
-              .row
-                label(class='offset-md-2 col-md-4 col-form-label font-weight-bold', for='set-to-open-comment') Show your name to all participants?  
-                  span(data-toggle="tooltip", data-html="true", data-placement="top", title="<span class='tooltip-text'>Councilors will still be able to see your name.</span>")
-                    i.fab.fas.fa-user-lock.fa-sm.small-left-spacer
-                label(class='switch', for='show-name')
-                  input.form-check-input(type='checkbox', name='show-name', id='show-name', autocomplete='show-name')
-                  span.slider.round
-                .offset-md-3.col-md-2
-                  button.btn.btn-primary.comment-button(type='submit')
-                    i.fas.fa-bullhorn.fa-sm
-                    | Share
+    if (session.workspace && session.workspace != "public")
+      if (user)
+        .row
+          .col-md-11
+            form.card-unset(method='POST', action="/meetings/create-live-comment/"+meeting.assigned_id)
+              .card-header
+                span.bold What's on your mind? 
+                span.italic Leave a live note.
+              .card-content.row.card-no-padding
+                .col-sm-2
+                  .float-padded-right
+                    if user.profile.picture
+                        img.comment-img(src=user.profile.picture)
+                    else
+                      img.comment-img(src=user.gravatar(60))
+                    br                  
+                .col-sm-9
+                    input(type='hidden', name='_csrf', value=_csrf)
+                    .row
+                        .col-md-12
+                          input.comment-title(type='text', name='comment-title', id='comment-title', autocomplete='comment-title', autofocus=true, placeholder="Comment Title")
+                          textarea.form-control.comment-body(type='text', name='comment-body', rows='4', id='comment-body', autocomplete='comment-body', placeholder="What would you like to say?")
+                        
+              .card-footer
+                .row
+                  label(class='offset-md-2 col-md-4 col-form-label font-weight-bold', for='set-to-open-comment') Show your name to all participants?  
+                    span(data-toggle="tooltip", data-html="true", data-placement="top", title="<span class='tooltip-text'>Councilors will still be able to see your name.</span>")
+                      i.fab.fas.fa-user-lock.fa-sm.small-left-spacer
+                  label(class='switch', for='show-name')
+                    input.form-check-input(type='checkbox', name='show-name', id='show-name', autocomplete='show-name')
+                    span.slider.round
+                  .offset-md-3.col-md-2
+                    button.btn.btn-primary.comment-button(type='submit')
+                      i.fas.fa-bullhorn.fa-sm
+                      | Share
 
-    
-    for comment in meeting.live_comments
-      - meetingId = meeting.assigned_id
-      - title = comment.title
-      - body = comment.body
-      - showName = comment.showName
-      - author = comment.author
-      - postedDate = comment.postedDate
-      - upvotes = comment.upvotes
-      - linkedLiveComments = comment.linkedLiveComments
-      - comment_id = comment._id
-        include comment
+      
+      for comment in meeting.live_comments
+        - meetingId = meeting.assigned_id
+        - title = comment.title
+        - body = comment.body
+        - showName = comment.showName
+        - author = comment.author
+        - postedDate = comment.postedDate
+        - upvotes = comment.upvotes
+        - linkedLiveComments = comment.linkedLiveComments
+        - comment_id = comment._id
+          include comment
 
-  .spacer
+      .spacer
+
+    else
+      p.lead Public comments are disabled.
+      if (iscouncilor)
+        p.lead As a councilor, you cannot see comments submitted by users, but you can access comments within your other workspaces.
 

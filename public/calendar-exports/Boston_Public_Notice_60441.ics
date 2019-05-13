@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:74e47be4-807d-43ce-8a13-eb8cbea29b99
+UID:faefd41e-962b-44fa-aadd-534d5d336e13
 SUMMARY:Bay State Road/Back Bay West Area Architectural Conservation Distri
 	ct Commission
-DTSTAMP:20190512T040400Z
+DTSTAMP:20190513T063700Z
 DTSTART:20190330T063000Z
 DESCRIPTION:(Use Congress Street as an entrance and exit after 5:30pm)\n
 URL:https://www.boston.gov/public-notices/60441

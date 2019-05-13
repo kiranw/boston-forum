@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:1319152b-e043-4e9b-b0a9-029cb7dc90f1
+UID:af71d3f9-80cd-4c65-8415-4192cc33107d
 SUMMARY:Trustees of the Public Library of the City of Boston meeting
-DTSTAMP:20190512T040400Z
+DTSTAMP:20190513T063700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/61066
 LOCATION:Boston Public Library Central Library, Commonwealth Salon; ; 700 B

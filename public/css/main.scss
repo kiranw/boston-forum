@@ -278,7 +278,7 @@ h1,h2,h3,h4,h5,h6 {
   margin-right: 5px;
   display: inline-block;
   float: left;
-  font-size: 1.1em;
+  font-size: 1em;
   margin-top: 5px;
 }
 
@@ -330,7 +330,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .card-300 {
- min-height: 300px !important; 
+ min-height: 350px !important; 
 }
 
 .card-unset {
@@ -362,6 +362,7 @@ h1,h2,h3,h4,h5,h6 {
 .card-tags {
     padding: 1.4em;
     margin-bottom: 1.4em;
+    min-height:60px;
 }
 
 a:hover {
@@ -619,6 +620,17 @@ input:checked + .slider:before {
   margin-bottom: 20px;
 }
 
+.badge-secondary {
+  color: #fff;
+  background-color: rgba(0,0,0,0.2);
+  margin-left: 15px;
+  font-family: "National-Regular-Italic";
+}
+
+.reading-level {
+  font-size: 12pt;
+}
+
 // -----------------------------------------------------------------------------------------------------------------------------
 // Generic
 // -----------------------------------------------------------------------------------------------------------------------------
@@ -633,17 +645,24 @@ input:checked + .slider:before {
   fill: #007bff;
 }
 .tooltip.top .tooltip-inner {
-  background-color: #007bff;
-}
-.tooltip > .tooltip-arrow, .tooltip.top .tooltip-arrow {
-  border-top-color: #007bff;
-}
-.tooltip.bottom .tooltip-inner {
-  background-color: #007bff;
-  }
-.tooltip.bottom .tooltip-arrow {
+  background-color: #007bff !important;
   border-bottom-color: #007bff;
 }
+
+.tooltip.bottom .tooltip-inner {
+  background-color: #007bff !important;
+  border-bottom-color: #007bff;
+  }
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #007bff;
+}
+
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #007bff;
+}
+
+
 
 .generic-text {
   font-size: 1.5em;
@@ -890,7 +909,7 @@ a.tag {
   background: #FF6374;
   color: white;
   margin-right: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   float: left;
   padding-left: 15px;
   font-size: 1.3em;

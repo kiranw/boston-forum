@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:13f4981b-4542-4944-b5bc-1928ce9edb10
+UID:8145b540-c4ac-4bd2-bec9-f3982afb2a1d
 SUMMARY:Boston Public Health Commission Board meeting
-DTSTAMP:20190512T040400Z
+DTSTAMP:20190513T063700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/61221
 LOCATION:Boston Public Health Commission; 2nd Floor; 1010 Massachusetts Ave

@@ -13,6 +13,7 @@ $(document).ready(() => {
 
   $(function () {
   	$('[data-toggle="tooltip"]').tooltip()
+    $(".reading-level").tooltip()
   })
 
   $(".tag-input").autocomplete({

@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:449ab3ea-5a3e-4076-a668-ff1754efc0b3
+UID:ab00a30e-fdc7-466e-b8de-17f3f7f86bb4
 SUMMARY:Boston Retirement Board meeting
-DTSTAMP:20190512T040400Z
+DTSTAMP:20190513T063700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/53951
 LOCATION:Boston City Hall; Room 716; 1 City Hall Square

@@ -35,7 +35,7 @@ exports.index = async (req, res) => {
               m.save();
             }
           }); 
-          opencomments = Meeting.find({"is_open_comment":true}).populate("topics").exec(function(err,opencomments) {
+          opencomments = Meeting.find({"is_open_comment":true,is_archived:true}).populate("topics").exec(function(err,opencomments) {
             res.render('home', {
               title: 'Home',
               notices: found_notices,

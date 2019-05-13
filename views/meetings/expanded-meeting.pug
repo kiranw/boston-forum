@@ -4,30 +4,32 @@ block content
   .homepage-section
     h3.homepage-title
       span.underline-hover #{meeting.title}
+      if (iscouncilor && user)
+        .badge.badge-pill.badge-secondary(data-toggle="tooltip", data-html="true", data-placement="top", title="<span class='tooltip-text'>Flesch-Kincaid Reading Level</span>").reading-level Reading Level: #{title_rl}
 
-    if (meeting.is_live && !user)
+    if (meeting.is_live)
       button.btn.btn-outline-primary(type="button") 
-        a(href='/meetings/stream-live-meeting/'+meeting.assigned_id)
+        a(href=meeting.url)
           i.fa.fa-circle.text-danger.blink
-          |  Participate Remotely
+          |  Live Stream
     if (meeting.is_live)
       button.btn.btn-outline-primary(type="button") 
         a(href='/meetings/live-meeting/'+meeting.assigned_id)
           i.fa.fa-circle.text-danger.blink
-          |  Enter the Live Meeting
+          |  Participate Remotely
     else if (meeting.is_open_comment)
-      a(href='/meetings/open-comment/'+meeting.assigned_id)
+      a(href='/meetings/live-meeting/'+meeting.assigned_id)
         button.btn.btn-outline-primary(type="button") 
           i.fa.fa-circle.text-info.blink
-          |  Enter Online Testimony
-    else if (user && session.workspace != "public")
-      a(href='/meetings/comments/'+meeting.assigned_id)
+          |  Submit a Testimony
+    else if (user && session.workspace && session.workspace.length > 7)
+      a(href='/meetings/live-meeting/'+meeting.assigned_id)
         button.btn.btn-outline-primary(type="button") 
-          i.fa.fa-circle.text-info.blink
-          |  Enter the Forum
-    br
-    br
-    br
+          |  Enter Your Forum
+    if (user && session.workspace && session.workspace.length > 7)
+      br
+      br
+      br
 
     .row
       div.col-md-4
@@ -40,7 +42,7 @@ block content
         div.metadata-header Connected Hashtags
         for h in meeting.hashtags
           a.hashtag(href="https://twitter.com/search?q=" + h.substring(1) + "&src=typd") #{h}
-
+    br
     .row
       div.col-md-4.meeting-metadata
         div.metadata-header When
@@ -87,7 +89,12 @@ block content
             span Delete Meeting
 
 
-    div.paper.meeting-field-drawer !{meeting.field_drawer}
+    div.paper.meeting-field-drawer 
+      if (iscouncilor && user)
+        .badge.badge-pill.badge-secondary(data-toggle="tooltip", data-html="true", data-placement="top", title="<span class='tooltip-text'>Flesch-Kincaid Reading Level</span>").reading-level Reading Level: #{agenda_rl}
+        br
+        br
+      | !{meeting.field_drawer}
 
     
     a(href=meeting.url) Additional Information

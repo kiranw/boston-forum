@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:22fd0ff0-6f32-4549-8670-fd504b03cd0e
+UID:c0e564c2-416e-435f-ae2b-58a0ee1c4fbf
 SUMMARY:Public Facilities Commission Meeting (PFD)
-DTSTAMP:20190512T040400Z
+DTSTAMP:20190513T063700Z
 DTSTART:20190330T063000Z
 DESCRIPTION:You can also watch the meeting on Boston City TV and Comcast ch
 	annel 24\, RCN channel 13\, and on boston.gov/boston-city-tv. \n

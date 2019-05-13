@@ -7,6 +7,7 @@ const Users = require('../models/User');
 const LiveComment = require('../models/LiveComment');
 const OpenComment = require('../models/OpenComment');
 const Tag = require('../models/Tag');
+const { readingLevel } = require('reading-level')
 
 const path = require("path");
 const publicPath = path.resolve(__dirname, "../public"); 
@@ -63,6 +64,8 @@ exports.getPublicNotices = async (req, res, next) => {
       n["body"] = n.body.replace(/(\<.*?\>)/g, "");
       n["canceled"] = n.canceled==1;
       n["assigned_id"] = n.id;
+      n["is_testimony"] = n.is_testimony==1;
+      n["is_open_comment"] = n.is_testimony==1;
       n["ics"] = prepareIcs(prepareCalendarEvent(n), n.id);
       n["hashtags"] = ["#assembly"+n["assigned_id"]];
       delete n["id"];
@@ -78,8 +81,9 @@ exports.getPublicNotices = async (req, res, next) => {
     isCouncilor = checkCouncilorRole(res, req.user);
     Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
       Meeting.find({"canceled":false}).populate("topics").exec(function(err, found_notices) {
-        archiveOldMeetings(found_notices);
-        labelNotices(found_notices);
+        // archiveOldMeetings(found_notices);
+        // labelNotices(found_notices);
+        archiveAndLabel(found_notices);
         if (err) {
           console.log("Error querying notices: ",err)
           return [];
@@ -170,12 +174,21 @@ exports.getOpenComments = async (req, res, next) => {
   user = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.find({is_open_comment:true}).populate("topics").exec(function(err, meetings) {
-      res.render('meetings/open-comments', {
-          title: 'Open Comments',
-          opencomments: meetings,
-          user: user,
-          iscouncilor: isCouncilorBoolean
+    Meeting.find({"title" : /.*(Hearing|HEARING).*/}).populate("topics").exec(function(err, meetings) {
+      meetings.forEach(function(m){
+          if (!m.is_open_comment && !m.title.toLowerCase().includes("non hearing")) {
+            m.is_open_comment = true;
+            m.save();
+          }
+      });
+      Meeting.find({is_open_comment:true,is_archived:true}).populate("topics").exec(function(err, hearings) {
+        console.log("Found hearings",hearings.length)
+        res.render('meetings/open-comments', {
+            title: 'Open Comments',
+            opencomments: hearings,
+            user: user,
+            iscouncilor: isCouncilorBoolean
+        });
       });
     });
   });
@@ -370,6 +383,8 @@ exports.renderExpandedMeeting = async(res, req) => {
       }
       res.render('meetings/expanded-meeting', {
         title: 'Expanded Meeting Information',
+        title_rl: readingLevel(matching_meeting.title),
+        agenda_rl: readingLevel(matching_meeting.field_drawer),
         meeting: matching_meeting,
         user: User,
         iscouncilor: isCouncilorBoolean
@@ -422,8 +437,8 @@ exports.renderLiveMeeting = async(res, req) => {
         }
         else {
           req.flash('warning', { msg: 'This meeting is not currently in progress.'});
-          res.render('meetings/expanded-meeting', {
-            title: 'Expanded Meeting Information',
+          res.render('meetings/live-meeting', {
+            title: 'Forum',
             meeting: matching_meeting,
             user: User,
             iscouncilor: isCouncilorBoolean
@@ -739,43 +754,79 @@ function archiveOldMeetings(found_notices){
   found_notices.forEach(function(notice){
     noticeDate = new Date(Date.parse(notice.notice_date))
     if (noticeDate > date) {
-      // console.log("found an old notice",notice.notice_date);
-      Meeting.findOne({"assigned_id": notice.assigned_id}, function(err, matching_meeting) {
-        matching_meeting["is_archived"] = true;
-        matching_meeting.save(function (err) {
-          if (err) {
-            console.log("Error archiving old meeting: ",err);
-          }
-        });  
-      });
-    }
+      console.log("found an old notice",notice.notice_date);
+      notice.is_archived = true;
+      notice.save();  
+    };
+  });
+}
+
+
+function archiveAndLabel(found_notices){
+  date = new Date();
+  found_notices.forEach(function(notice){
+    noticeDate = new Date(Date.parse(notice.notice_date))
+    if (noticeDate > date && !notice.is_archived) {
+      console.log("found an old notice",notice.notice_date);
+      notice.is_archived = true;
+    };
+    if (noticeDate < date && notice.is_archived) {
+      console.log("found a mistakenly archived notice",notice.notice_date);
+      notice.is_archived = false;
+    };
+    labelNotice(notice);
   });
 }
 
 function labelNotices(found_notices){
   console.log("Labeling notices");
   Tag.find({}).exec(function (err, tags){
+    found_notices.forEach(labelNotice);
     // console.log("Got the tags: ",tags)
-    found_notices.forEach(function(notice){
-      notice.topics = [];
-      all_topics = []
-      tags.forEach(function(tag) {
-        add = false;
-        if (tag.keywords && tag.keywords.length > 0) {
-          tag.keywords.forEach(function (keyword) {
-            if (keyword != "" && notice.title.toLowerCase().includes(keyword.toLowerCase())) {
-              console.log("adding topic:",tag.title," to notice ",notice.title," bc ",keyword);
-              add = true;
-            }
-          });
-          if (add) {
-            all_topics.push(tag);
+    // found_notices.forEach(function(notice){
+    //   notice.topics = [];
+    //   all_topics = []
+    //   tags.forEach(function(tag) {
+    //     add = false;
+    //     if (tag.keywords && tag.keywords.length > 0) {
+    //       tag.keywords.forEach(function (keyword) {
+    //         if (keyword != "" && notice.title.toLowerCase().includes(keyword.toLowerCase())) {
+    //           console.log("adding topic:",tag.title," to notice ",notice.title," bc ",keyword);
+    //           add = true;
+    //         }
+    //       });
+    //       if (add) {
+    //         all_topics.push(tag);
+    //       }
+    //     }
+    //   });
+    //   notice.topics = Array.from(new Set(all_topics));
+    //   notice.save();
+    // });
+  });
+}
+
+function labelNotice(notice){
+  console.log("Labeling notices");
+  Tag.find({}).exec(function (err, tags){
+    notice.topics = [];
+    all_topics = []
+    tags.forEach(function(tag) {
+      add = false;
+      if (tag.keywords && tag.keywords.length > 0) {
+        tag.keywords.forEach(function (keyword) {
+          if (keyword != "" && notice.title.toLowerCase().includes(keyword.toLowerCase())) {
+            console.log("adding topic:",tag.title," to notice ",notice.title," bc ",keyword);
+            add = true;
           }
+        });
+        if (add) {
+          all_topics.push(tag);
         }
-      });
-      notice.topics = Array.from(new Set(all_topics));
-      notice.save();
+      }
     });
+    notice.topics = Array.from(new Set(all_topics));
+    notice.save();
   });
 }
 
