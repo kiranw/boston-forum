@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:b3db498f-fc5b-41dd-933f-d809a4cd26ec
+UID:b62e585e-6334-4f4d-b0cc-6d13605861e2
 SUMMARY:City Council Committee on Ways and Means Hearing on Dockets #0622-0
 	628\, FY20 Budget: Library
-DTSTAMP:20190513T063700Z
+DTSTAMP:20190513T173200Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/59271
 LOCATION:Iannella Chamber; Fifth Floor; Boston City Hall

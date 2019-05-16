@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:06f0a908-3c65-4fc2-aaca-6d8f97e33c1d
+SUMMARY:Boston Employment Commission hearing
+DTSTAMP:20190514T124700Z
+DTSTART:20190330T063000Z
+DESCRIPTION:For more information on meeting reports and minutes\, visit the
+	 Boston Employment Commission website.\n
+URL:https://www.boston.gov/public-notices/61276
+LOCATION:Boston City Hall; Conference Room 801; 1 City Hall Square
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

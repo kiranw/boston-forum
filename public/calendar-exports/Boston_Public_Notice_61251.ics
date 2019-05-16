@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:fb277fb4-3556-4dd5-b875-aa59a574dcca
+SUMMARY:Public Facilities Commission Meeting (DND)
+DTSTAMP:20190514T124700Z
+DTSTART:20190330T063000Z
+DESCRIPTION:You can also watch the meeting on Boston City TV at Comcast cha
+	nnel 24\, RCN channel 13\, and on boston.gov/boston-city-tv.\n
+URL:https://www.boston.gov/public-notices/61251
+LOCATION:Winter Chambers; 1st Floor; 26 Court Street
+STATUS:CONFIRMED
+CATEGORIES:Boston Local Government,Public Notice,Boston
+DURATION:PT6H30M
+END:VEVENT
+END:VCALENDAR

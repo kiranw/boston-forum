@@ -12,17 +12,16 @@ block content
         a(href=meeting.url)
           i.fa.fa-circle.text-danger.blink
           |  Live Stream
-    if (meeting.is_live)
       button.btn.btn-outline-primary(type="button") 
         a(href='/meetings/live-meeting/'+meeting.assigned_id)
           i.fa.fa-circle.text-danger.blink
           |  Participate Remotely
-    else if (user && session.workspace && session.workspace.length > 7 && meeting.is_open_comment)
+    if (user && session.workspace && session.workspace.length > 7 && meeting.is_open_comment && meeting.is_archived)
       a(href='/meetings/live-meeting/'+meeting.assigned_id)
         button.btn.btn-outline-primary(type="button") 
           i.fa.fa-circle.text-info.blink
-          |  Submit a Testimony
-    else if (user && session.workspace && session.workspace.length > 7)
+          |  Ideate
+    if ((user && session.workspace && session.workspace.length > 7) && !meeting.is_live)
       a(href='/meetings/live-meeting/'+meeting.assigned_id)
         button.btn.btn-outline-primary(type="button") 
           |  Enter Your Forum
@@ -30,7 +29,7 @@ block content
       br
       br
       br
-
+    br
     .row
       div.col-md-4
         div.metadata-header Related Topics
@@ -72,7 +71,7 @@ block content
           a.button-group(href='/meetings/edit/'+meeting.assigned_id)
             i.fab.fa.fa-pencil-alt.fa-sm
             span Edit Meeting Information
-        a.button-group(href='/meetings/download-ics/'+meeting.ics)
+        a.button-group(href='/meetings/download-ics/'+meeting.assigned_id)
           i.fab.fa.fa-calendar-plus.fa-sm
           span Export to Calendar
         if (user)

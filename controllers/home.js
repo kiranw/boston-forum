@@ -13,7 +13,7 @@ exports.index = async (req, res) => {
   var options = { year: 'numeric', month: 'long', day: 'numeric' };
   todayString = new Date().toLocaleDateString('en-US', options);
 
-  Meeting.find({"canceled":false}).populate("topics").exec(function(err, found_notices) {
+  Meeting.find({"canceled":false}).populate("topics").populate("live_comments").exec(function(err, found_notices) {
     if (err) {
       console.log("Error querying notices: ",err)
       return [];
@@ -21,21 +21,21 @@ exports.index = async (req, res) => {
 
     councilorPromise = checkCouncilorRole(res, req.user)
     Promise.resolve(councilorPromise).then(function(isCouncilorBoolean){
-      Meeting.find({is_live:true}).populate("topics").exec(function(err, live_meetings) {
+      Meeting.find({is_live:true}).populate("topics").populate("live_comments").exec(function(err, live_meetings) {
         live_meetings.forEach(function(m){
           if (m.notice_date != todayString) {
             m.is_live = false;
             m.save();
           }
         });
-        Meeting.find({notice_date: todayString}).populate("topics").exec(function(err,todaysMeetings) {
+        Meeting.find({notice_date: todayString}).populate("live_comments").populate("topics").exec(function(err,todaysMeetings) {
          todaysMeetings.forEach(function(m){
             if (!m.is_live) {
               m.is_live = true;
               m.save();
             }
           }); 
-          opencomments = Meeting.find({"is_open_comment":true,is_archived:true}).populate("topics").exec(function(err,opencomments) {
+          opencomments = Meeting.find({"is_open_comment":true,is_archived:true}).populate("live_comments").populate("topics").exec(function(err,opencomments) {
             res.render('home', {
               title: 'Home',
               notices: found_notices,

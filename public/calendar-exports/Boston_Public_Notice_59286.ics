@@ -5,10 +5,10 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:23f7450f-fb0f-4d8c-864c-df3705973f0e
+UID:f6215627-9fb6-47ef-a484-93bf52a2b166
 SUMMARY:City Council Committee on Ways and Means Hearing on Dockets #0622-0
 	628\, FY20 Budget: Parks and Recreation
-DTSTAMP:20190513T063700Z
+DTSTAMP:20190513T173200Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/59286
 LOCATION:Iannella Chamber; Fifth Floor; Boston City Hall

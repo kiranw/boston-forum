@@ -5,9 +5,9 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:f17842c2-a03d-4f72-b888-3849d38169d5
+UID:52f3d951-56a2-498f-9e7b-74fa1e37e351
 SUMMARY:School Committee Quality Working Group II meeting
-DTSTAMP:20190513T063700Z
+DTSTAMP:20190514T124700Z
 DTSTART:20190330T063000Z
 URL:https://www.boston.gov/public-notices/61121
 LOCATION:Bruce C. Bolling Municipal Building; 5-64 (5th Fl); 2300 Washingto

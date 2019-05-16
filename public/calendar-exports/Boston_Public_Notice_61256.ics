@@ -5,12 +5,13 @@ PRODID:adamgibbons/ics
 METHOD:PUBLISH
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:15135bba-0412-4a4a-9b5e-7a4d39c744ca
-SUMMARY:Boston Civic Design Commission meeting
+UID:fa038ccc-c25f-49f2-9d80-cb3c7f5541cd
+SUMMARY:Boston Finance Commission meeting
 DTSTAMP:20190514T124700Z
 DTSTART:20190330T063000Z
-URL:https://www.boston.gov/public-notices/61141
-LOCATION:Boston City Hall; 9Th Floor; 1 City Hall Square
+URL:https://www.boston.gov/public-notices/61256
+LOCATION:BOSTON FINANCE COMMISSION; 2nd Floor (Curley Conference Room); 43 
+	Hawkins Street
 STATUS:CONFIRMED
 CATEGORIES:Boston Local Government,Public Notice,Boston
 DURATION:PT6H30M

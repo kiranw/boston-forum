@@ -19,7 +19,9 @@ const publicPath = path.resolve(__dirname, "../public");
  */
 exports.downloadIcs = (res, params) => {
   eventId = params.event;
+  console.log("EVENTID",eventId);
   Meeting.findOne({assigned_id: eventId}).exec(function(err,result) {
+    console.log(path.join(publicPath,"calendar-exports",'Boston_Public_Notice_'+eventId+'.ics'));
     res.download(prepareIcs(result,eventId));
   });
 };
@@ -80,7 +82,7 @@ exports.getPublicNotices = async (req, res, next) => {
     user = req.user;
     isCouncilor = checkCouncilorRole(res, req.user);
     Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-      Meeting.find({"canceled":false}).populate("topics").exec(function(err, found_notices) {
+      Meeting.find({"canceled":false}).populate("live_comments").populate("live_comments").populate("topics").exec(function(err, found_notices) {
         // archiveOldMeetings(found_notices);
         // labelNotices(found_notices);
         archiveAndLabel(found_notices);
@@ -174,14 +176,14 @@ exports.getOpenComments = async (req, res, next) => {
   user = req.user;
   isCouncilor = checkCouncilorRole(res, req.user);
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.find({"title" : /.*(Hearing|HEARING).*/}).populate("topics").exec(function(err, meetings) {
+    Meeting.find({"title" : /.*(Hearing|HEARING).*/}).populate("live_comments").populate("topics").exec(function(err, meetings) {
       meetings.forEach(function(m){
           if (!m.is_open_comment && !m.title.toLowerCase().includes("non hearing")) {
             m.is_open_comment = true;
             m.save();
           }
       });
-      Meeting.find({is_open_comment:true,is_archived:true}).populate("topics").exec(function(err, hearings) {
+      Meeting.find({is_open_comment:true,is_archived:true}).populate("live_comments").populate("live_comments").populate("topics").exec(function(err, hearings) {
         console.log("Found hearings",hearings.length)
         res.render('meetings/open-comments', {
             title: 'Open Comments',
@@ -207,14 +209,14 @@ exports.getLiveMeetings = async (req, res, next) => {
   todayString = new Date().toLocaleDateString('en-US', options);
 
   Promise.resolve(isCouncilor).then(function(isCouncilorBoolean){
-    Meeting.find({is_live:true}).populate("topics").exec(function(err, live_meetings) {
+    Meeting.find({is_live:true}).populate("topics").populate("live_comments").exec(function(err, live_meetings) {
       live_meetings.forEach(function(m){
         if (m.notice_date != todayString) {
           m.is_live = false;
           m.save();
         }
       });
-      Meeting.find({notice_date: todayString}).populate("topics").exec(function(err,todaysMeetings) {
+      Meeting.find({notice_date: todayString}).populate("live_comments").populate("topics").exec(function(err,todaysMeetings) {
        todaysMeetings.forEach(function(m){
           if (!m.is_live) {
             m.is_live = true;

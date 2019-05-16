@@ -17,7 +17,7 @@ block content
             span #{t.title}
         main.main-area
         .centered
-          if (t.linkedNotices.length > 0)
+          if (false)
             section.row.cards
               for n in t.linkedNotices
                 - var assigned_id = n.assigned_id
@@ -40,7 +40,5 @@ block content
                 - var user = user
                 include ../meetings/notice
           else
-            div Nothing to see here!
-            br
-            br
+            div 
             br
